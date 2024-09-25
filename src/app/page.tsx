@@ -1,16 +1,20 @@
 import Hero from '@/app/ui/home/Hero';
-import { preload } from 'react-dom';
+import { preload, type PreloadOptions } from 'react-dom';
+
+const PRELOAD_OPTIONS: PreloadOptions = {
+  as: 'image',
+  crossOrigin: 'anonymous',
+};
 
 export default function Home() {
-  preload('/assets/images/js.svg', { as: 'image' });
-  preload('/assets/images/nodejs.svg', { as: 'image' });
-  preload('/assets/images/react.svg', { as: 'image' });
-  preload('/assets/images/base.jpg', { as: 'image' });
-  preload('/assets/images/1.jpg', { as: 'image' });
-  preload('/assets/images/2.jpg', { as: 'image' });
+  preload('/assets/images/js.svg', PRELOAD_OPTIONS);
+  preload('/assets/images/nodejs.svg', PRELOAD_OPTIONS);
+  preload('/assets/images/react.svg', PRELOAD_OPTIONS);
+  preload('/assets/images/desktop1.webp', PRELOAD_OPTIONS);
+  preload('/assets/images/desktop2.webp', PRELOAD_OPTIONS);
 
   return (
-    <main className="max-w-7xl mx-auto relative">
+    <main className="max-w-7xl mx-auto">
       <Hero />
     </main>
   );

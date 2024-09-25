@@ -19,21 +19,23 @@ function MacBookModel({ open, hinge, ...props }) {
   const group = useRef();
   // Load model
   const { nodes, materials } = useGLTF('/assets/models/mac-draco.glb');
-  const monitorTexture = useTexture('/assets/images/base.jpg');
-  const monitorTexture2 = useTexture('/assets/images/1.jpg');
-  const monitorTexture3 = useTexture('/assets/images/2.jpg');
 
-  const [bg, setBg] = useState(monitorTexture);
+  const monitorTexture1 = useTexture('/assets/images/desktop1.webp');
+  const monitorTexture2 = useTexture('/assets/images/desktop2.webp');
+
+  monitorTexture1.flipY = false;
+  monitorTexture2.flipY = false;
+
+  const [bg, setBg] = useState(monitorTexture1);
 
   // Take care of cursor state on hover
   const [hovered, setHovered] = useState(false);
-  useEffect(
-    () => void (document.body.style.cursor = hovered ? 'pointer' : 'auto'),
-    [hovered],
-  );
+  useEffect(() => {
+    document.body.style.cursor = hovered ? 'pointer' : 'auto';
+  }, [hovered]);
 
   useEffect(() => {
-    const bgs = [monitorTexture, monitorTexture2, monitorTexture3];
+    const bgs = [monitorTexture1, monitorTexture2];
     let count = 0;
     const id = setInterval(() => {
       count += 1;
@@ -41,7 +43,7 @@ function MacBookModel({ open, hinge, ...props }) {
         count = 0;
       }
       setBg(bgs[count]);
-    }, 3000);
+    }, 5000);
 
     return () => {
       clearInterval(id);
@@ -53,7 +55,7 @@ function MacBookModel({ open, hinge, ...props }) {
     const t = state.clock.getElapsedTime();
     group.current.rotation.x = THREE.MathUtils.lerp(
       group.current.rotation.x,
-      open ? Math.cos(t / 10) / 10 + 0.35 : 0,
+      open ? Math.cos(t / 10) / 10 + 0.25 : 0,
       0.1,
     );
     group.current.rotation.y = THREE.MathUtils.lerp(
@@ -133,15 +135,16 @@ export default function FloatingLaptop() {
   // We turn this into a spring animation that interpolates between 0 and 1
   const props = useSpring({ open: Number(open) });
 
+  useEffect(() => {
+    setTimeout(() => {
+      setOpen(true);
+    }, 1200);
+  }, []);
+
   return (
-    <web.main
-      style={{
-        height: 800,
-        background: props.open.to([0, 1], ['#223', '#112']),
-      }}
-    >
+    <web.main style={{ height: 800 }}>
       <Canvas dpr={[1, 2]} camera={{ position: [0, 0, -30], fov: 50 }}>
-        <ambientLight intensity={0.8} />
+        <ambientLight intensity={0.6} />
         <directionalLight position={[0, 10, -10]} intensity={1} />
         <animated.directionalLight
           position={[3, 10, 10]}
