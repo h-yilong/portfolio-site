@@ -1,0 +1,30 @@
+.intro {
+  gap: 2%;
+  padding: 16%;
+}
+
+.intro > div:not(.radialBlend) {
+  border: 1px solid #fff4;
+  transition: border 0.3s ease-in-out;
+}
+
+.intro:hover > div:not(.radialBlend) {
+  border: 1px solid #fff5;
+}
+
+.radialBlend {
+  transition: all 0.3s ease-in-out;
+  background-image: radial-gradient(
+    circle at center,
+    transparent,
+    var(--about-bg) 45%
+  );
+}
+
+.radialBlend:hover {
+  background-image: radial-gradient(
+    circle at center,
+    transparent,
+    var(--about-bg) 55%
+  );
+}

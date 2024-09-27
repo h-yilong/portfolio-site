@@ -2,7 +2,7 @@ import FloatingLaptop from '@/app/components/FloatingLaptop';
 
 const Hero = () => {
   return (
-    <section className="w-full" id="home">
+    <section className="max-w-7xl mx-auto" id="home">
       <div className="mt-36">
         {/* <div className="mt-36 w-fit p-12 bg-white/5 rounded-3xl relative z-20 backdrop-blur-sm"> */}
         <p className="text-lg font-medium">
@@ -24,10 +24,20 @@ const Hero = () => {
           <code className="text-purple-500">const</code>
           <code className="text-emerald-500"> myGitHubLink </code>
           <code>= </code>
-          <code className="text-orange-500">
+          <code className="text-orange-500 hover:underline cursor-pointer">
             &quot;www.github.com/u/yilong&quot;
           </code>
         </p>
+
+        <button className="btn mt-16 bg-gradient-to-br from-white/10 to-white/5 py-4 px-6 rounded-3xl hover:bg-white/5 font-semibold">
+          <span className="relative h-3 w-3 inline-flex mr-3">
+            <span className="btn-ping" />
+            <span className="btn-ping_dot" />
+          </span>
+          <span className="hover:text-white inline-flex">
+            Let&apos;s work together!
+          </span>
+        </button>
       </div>
       <div className="absolute w-2/3 inset-0 left-1/3 z-10">
         <FloatingLaptop />

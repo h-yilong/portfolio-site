@@ -5,10 +5,12 @@
 :root {
   --background: #112;
   --foreground: #eee;
+  --about-bg: #161626;
 }
 
 * {
   scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,6 +29,13 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .btn-ping {
+    @apply animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75;
+  }
+
+  .btn-ping_dot {
+    @apply relative inline-flex rounded-full h-3 w-3 bg-green-500;
   }
 }
 
@@ -65,6 +74,20 @@ body {
   }
 }
 
+.skill-carousel {
+  animation: carousel-animation 60s infinite linear;
+}
+
+@keyframes carousel-animation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* (80 + 12) * 12 = 1104 */
+    transform: translateX(-1104px);
+  }
+}
+
 /* .circle-gradient {
   background-image: radial-gradient(
     circle at 30% 50%,
@@ -74,3 +97,33 @@ body {
     #0000 100%
   );
 } */
+
+.skill-card {
+  box-shadow: inset 1px 1px 2px -1px #fff4, -1px -1px 2px -1px #fff4,
+    inset -1px -1px 2px -1px #000, 1px 1px 2px -1px #000;
+}
+
+.btn {
+  box-shadow: inset 1px 1px 3px -2px #fffa, -1px -1px 3px -2px #fffa,
+    inset -1px -1px 3px -1px #000, 1px 1px 3px -1px #000;
+  transition: all 0.01s ease-in-out;
+}
+
+.btn > span {
+  transform: translate(0, 0);
+  transition: all 0.01s ease-in-out;
+}
+
+.btn:active {
+  box-shadow: inset 1px 1px 5px -2px #000, -1px -1px 5px -2px #000,
+    inset -1px -1px 3px -1px #fff4, 1px 1px 3px -1px #fff4;
+}
+
+.btn:active > span {
+  transform: translate(2px, 2px);
+}
+
+#about > div {
+  background-color: var(--about-bg);
+  padding: 10%;
+}

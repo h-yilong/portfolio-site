@@ -157,7 +157,8 @@ export default function FloatingLaptop() {
           color={props.open.to([0, 1], ['#faa', '#d25578'])}
         />
 
-        <Suspense fallback={<CanvasLoader />}>
+        {/* <Suspense fallback={<CanvasLoader />}> */}
+        <Suspense fallback={null}>
           <group
             rotation={[0, Math.PI, 0]}
             onClick={e => (e.stopPropagation(), setOpen(!open))}
@@ -175,6 +176,15 @@ export default function FloatingLaptop() {
                 scale={props.open.to([0, 1], [0, 0.7])}
                 position={[6, 2, 6]}
                 rotation={[0.6, 0, 0]}
+              />
+              <RoundedBox
+                show={open}
+                opacity={props.open.to([0, 1], [0, 1])}
+                image="/assets/images/tailwind.svg"
+                speed={0.012}
+                scale={props.open.to([0, 1], [0, 0.6])}
+                position={[5.5, -1, 2]}
+                rotation={[0.9, 0.6, 0]}
               />
               <RoundedBox
                 show={open}
