@@ -35,7 +35,7 @@ export default function TechStack() {
           <div
             className={`${styles.techStack} p-2 border rounded-full bg-aboutBg border-white/10 w-full h-full absolute inset-0 -translate-x-[150%]`}
           >
-            <img src="/assets/images/webpack.svg" alt="" />
+            <img src="/assets/images/next.svg" alt="" />
           </div>
           <div
             className={`${styles.techStack} p-2 border rounded-full bg-aboutBg border-white/10 w-full h-full absolute inset-0 translate-x-3/4 translate-y-[130%]`}

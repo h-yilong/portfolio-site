@@ -1,4 +1,5 @@
 import Intro from './Intro';
+import Location from './Location';
 import TechStack from './TechStack';
 
 export default function About() {
@@ -14,7 +15,7 @@ export default function About() {
         <TechStack />
       </div>
       <div className="col-span-1 xl:row-span-4">
-        <Intro />
+        <Location />
       </div>
       <div className="xl:col-span-2 xl:row-span-3">
         <Intro />

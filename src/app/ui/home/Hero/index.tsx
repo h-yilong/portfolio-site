@@ -11,9 +11,9 @@ const Hero = () => {
         <h1 className="text-6xl tracking-wide font-medium my-6">
           Yilong HUANG
         </h1>
-        <p className="text-2xl text-indigo-500 font-semibold tracking-wide my-4">
-          &gt; A Front End Developer
-        </p>
+        <code className="text-2xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-violet-600 font-semibold tracking-wide my-4">
+          &gt; Front-End Developer
+        </code>
         <h2 className="text-xl my-4 text-slate-300">
           I love building cool stuff for the web!
         </h2>
