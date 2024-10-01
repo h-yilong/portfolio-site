@@ -1,3 +1,4 @@
+import CodingKeyboard from './CodingKeyboard';
 import Intro from './Intro';
 import Location from './Location';
 import TechStack from './TechStack';
@@ -18,11 +19,9 @@ export default function About() {
         <Location />
       </div>
       <div className="xl:col-span-2 xl:row-span-3">
-        <Intro />
+        <CodingKeyboard />
       </div>
-      <div className="xl:col-span-1 xl:row-span-2">
-        <Intro />
-      </div>
+      <div className="xl:col-span-1 xl:row-span-2">something</div>
     </section>
   );
 }

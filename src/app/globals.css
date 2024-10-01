@@ -37,6 +37,28 @@ body {
   .btn-ping_dot {
     @apply relative inline-flex rounded-full h-3 w-3 bg-green-500;
   }
+
+  .keyboard-container {
+    @apply w-4/5 mx-auto mb-6 flex aspect-[2.4] gap-2 flex-col justify-between relative overflow-hidden;
+  }
+
+  .keyboard-key {
+    @apply shrink-0 aspect-square rounded-2xl flex justify-center items-center font-bold text-3xl cursor-default select-none uppercase;
+    transition: all 0.1s ease-in-out;
+    height: 98%;
+    border: 1px solid #fff2;
+    color: #fff5;
+    box-shadow: inset 1px 1px 2px -1px #fff2, -1px -1px 2px -1px #fff2,
+      inset -1px -1px 2px -1px #0003, 1px 1px 2px -1px #0003;
+  }
+
+  .keyboard-key:hover {
+    border: 1px solid #fffa;
+    color: #fffe;
+    text-shadow: 1px 1px 5px #fffa;
+    box-shadow: inset 1px 1px 5px -1px #fff6, -1px -1px 5px -1px #fff6,
+      inset -1px -1px 5px -1px #0003, 1px 1px 5px -1px #0003;
+  }
 }
 
 .waving-hand {

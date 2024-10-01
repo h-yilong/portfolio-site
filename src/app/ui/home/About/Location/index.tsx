@@ -12,7 +12,7 @@ export default function Location() {
         />
         <div className="w-2 h-2 rounded-full bg-green-500/60 absolute right-[36%] bottom-[22%]" />
       </div>
-      <article className="relative z-50">
+      <article className="relative z-50 xl:mt-12">
         <h3 className="font-bold text-lg leading-8 mb-2">
           I&apos;m based in Sydney, Australia
         </h3>
