@@ -1,10 +1,10 @@
-import styles from './index.module.css';
+import styles from "./index.module.css";
 
 export default function CodingKeyboard() {
   return (
-    <div className={`w-full relative ${styles.main}`}>
+    <div className={`relative w-full ${styles.main}`}>
       <div className={`keyboard-container ${styles.keyboard}`}>
-        <div className="w-full flex-1 -translate-x-[1%] flex flex-nowrap gap-2 justify-center items-center">
+        <div className="flex w-full flex-1 -translate-x-[1%] flex-nowrap items-center justify-center gap-2">
           <div className={`keyboard-key ${styles.key}`} />
           <div className={`keyboard-key ${styles.key}`} data-key="I">
             I
@@ -25,7 +25,7 @@ export default function CodingKeyboard() {
           <div className={`keyboard-key ${styles.key}`} />
         </div>
 
-        <div className="w-full flex-1 flex flex-nowrap gap-2 justify-center items-center">
+        <div className="flex w-full flex-1 flex-nowrap items-center justify-center gap-2">
           <div className={`keyboard-key ${styles.key}`} data-key="c">
             c
           </div>
@@ -49,21 +49,15 @@ export default function CodingKeyboard() {
           </div>
         </div>
 
-        <div className="w-full flex-1 flex flex-nowrap gap-2 justify-center items-center">
-          <div
-            className={`keyboard-key ${styles.key} ${styles.spaceKey}`}
-            data-key="space"
-          />
+        <div className="flex w-full flex-1 flex-nowrap items-center justify-center gap-2">
+          <div className={`keyboard-key ${styles.key} ${styles.spaceKey}`} data-key="space" />
           <div className={`keyboard-key ${styles.key} ${styles.cmdKey}`} />
         </div>
       </div>
       <article className="relative z-50">
-        <h3 className="font-bold text-lg leading-8 mb-2">
-          My Passion for Coding
-        </h3>
+        <h3 className="mb-2 text-lg font-bold leading-8">My Passion for Coding</h3>
         <p>
-          I love solving problems and building things through code. Programming
-          isn&apos;t just my profession —
+          I love solving problems and building things through code. Programming isn&apos;t just my profession —
           <b>
             <i> it&apos;s my passion</i>
           </b>

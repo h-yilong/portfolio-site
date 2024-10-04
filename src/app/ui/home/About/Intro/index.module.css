@@ -14,17 +14,9 @@
 
 .radialBlend {
   transition: all 0.3s ease-in-out;
-  background-image: radial-gradient(
-    circle at center,
-    transparent,
-    var(--about-bg) 45%
-  );
+  background-image: radial-gradient(circle at center, transparent, var(--about-bg) 45%);
 }
 
 .radialBlend:hover {
-  background-image: radial-gradient(
-    circle at center,
-    transparent,
-    var(--about-bg) 55%
-  );
+  background-image: radial-gradient(circle at center, transparent, var(--about-bg) 55%);
 }

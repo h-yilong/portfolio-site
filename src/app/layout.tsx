@@ -1,37 +1,36 @@
-import type { Metadata } from 'next';
-import localFont from 'next/font/local';
-import './globals.css';
+import type { ReactNode } from "react";
+import type { Metadata } from "next";
+import localFont from "next/font/local";
+import "./globals.css";
 
 const geistSans = localFont({
   // src: './fonts/GeistVF.woff',
   // src: './fonts/RandyVF.woff2',
-  src: './fonts/Montserrat.woff2',
-  variable: '--font-montserrat-sans',
-  weight: '100 900',
-  display: 'swap',
-  style: 'normal',
+  src: "./fonts/Montserrat.woff2",
+  variable: "--font-montserrat-sans",
+  weight: "100 900",
+  display: "swap",
+  style: "normal",
 });
 const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
 });
 
 export const metadata: Metadata = {
-  title: "Yilong's Page",
+  title: "Hi, I'm Yilong",
   description: "Yilong HUANG's Personal Site",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-full overflow-x-hidden`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} max-w-full overflow-x-hidden antialiased`}>
         {children}
       </body>
     </html>

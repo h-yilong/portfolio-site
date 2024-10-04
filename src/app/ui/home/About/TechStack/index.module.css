@@ -1,9 +1,5 @@
 .techStackContainer {
-  background-image: radial-gradient(
-    circle at center,
-    transparent,
-    var(--about-bg) 65%
-  );
+  background-image: radial-gradient(circle at center, transparent, var(--about-bg) 65%);
 }
 
 .techStack {
@@ -15,19 +11,11 @@
 }
 
 .techStackGradient1 {
-  background-image: radial-gradient(
-    circle at center,
-    #5158e821 3%,
-    transparent
-  );
+  background-image: radial-gradient(circle at center, #5158e821 3%, transparent);
 }
 
 .techStackGradient2 {
-  background-image: radial-gradient(
-    circle at center,
-    #8345fb29 3%,
-    transparent
-  );
+  background-image: radial-gradient(circle at center, #8345fb29 3%, transparent);
 }
 
 .rotate {

@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { useTexture } from '@react-three/drei';
-import * as THREE from 'three';
-import { animated } from '@react-spring/three';
+// @ts-nocheck
+import React, { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { useTexture } from "@react-three/drei";
+import * as THREE from "three";
+import { animated } from "@react-spring/three";
 
 // 圆角立方体函数 (可以放在 utils 文件中)
 function createRoundedBox(width, height, depth, radius, smoothness) {

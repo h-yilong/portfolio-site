@@ -31,33 +31,39 @@ body {
     text-wrap: balance;
   }
   .btn-ping {
-    @apply animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75;
+    @apply absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75;
   }
 
   .btn-ping_dot {
-    @apply relative inline-flex rounded-full h-3 w-3 bg-green-500;
+    @apply relative inline-flex h-3 w-3 rounded-full bg-green-500;
   }
 
   .keyboard-container {
-    @apply w-4/5 mx-auto mb-6 flex aspect-[2.4] gap-2 flex-col justify-between relative overflow-hidden;
+    @apply relative mx-auto mb-6 flex aspect-[2.4] w-4/5 flex-col justify-between gap-2 overflow-hidden;
   }
 
   .keyboard-key {
-    @apply shrink-0 aspect-square rounded-2xl flex justify-center items-center font-bold text-3xl cursor-default select-none uppercase;
+    @apply flex aspect-square shrink-0 cursor-default select-none items-center justify-center rounded-2xl text-3xl font-bold uppercase;
     transition: all 0.1s ease-in-out;
     height: 98%;
     border: 1px solid #fff2;
     color: #fff5;
-    box-shadow: inset 1px 1px 2px -1px #fff2, -1px -1px 2px -1px #fff2,
-      inset -1px -1px 2px -1px #0003, 1px 1px 2px -1px #0003;
+    box-shadow:
+      inset 1px 1px 2px -1px #fff2,
+      -1px -1px 2px -1px #fff2,
+      inset -1px -1px 2px -1px #0003,
+      1px 1px 2px -1px #0003;
   }
 
   .keyboard-key:hover {
     border: 1px solid #fffa;
     color: #fffe;
     text-shadow: 1px 1px 5px #fffa;
-    box-shadow: inset 1px 1px 5px -1px #fff6, -1px -1px 5px -1px #fff6,
-      inset -1px -1px 5px -1px #0003, 1px 1px 5px -1px #0003;
+    box-shadow:
+      inset 1px 1px 5px -1px #fff6,
+      -1px -1px 5px -1px #fff6,
+      inset -1px -1px 5px -1px #0003,
+      1px 1px 5px -1px #0003;
   }
 }
 
@@ -121,13 +127,19 @@ body {
 } */
 
 .skill-card {
-  box-shadow: inset 1px 1px 2px -1px #fff4, -1px -1px 2px -1px #fff4,
-    inset -1px -1px 2px -1px #000, 1px 1px 2px -1px #000;
+  box-shadow:
+    inset 1px 1px 2px -1px #fff4,
+    -1px -1px 2px -1px #fff4,
+    inset -1px -1px 2px -1px #000,
+    1px 1px 2px -1px #000;
 }
 
 .btn {
-  box-shadow: inset 1px 1px 3px -2px #fffa, -1px -1px 3px -2px #fffa,
-    inset -1px -1px 3px -1px #000, 1px 1px 3px -1px #000;
+  box-shadow:
+    inset 1px 1px 3px -2px #fffa,
+    -1px -1px 3px -2px #fffa,
+    inset -1px -1px 3px -1px #000,
+    1px 1px 3px -1px #000;
   transition: all 0.01s ease-in-out;
 }
 
@@ -137,8 +149,11 @@ body {
 }
 
 .btn:active {
-  box-shadow: inset 1px 1px 5px -2px #000, -1px -1px 5px -2px #000,
-    inset -1px -1px 3px -1px #fff4, 1px 1px 3px -1px #fff4;
+  box-shadow:
+    inset 1px 1px 5px -2px #000,
+    -1px -1px 5px -2px #000,
+    inset -1px -1px 3px -1px #fff4,
+    1px 1px 3px -1px #fff4;
 }
 
 .btn:active > span {

@@ -1,12 +1,15 @@
 /** @type {import('next').NextConfig} */
+
+import nextBundleAnalyzer from "@next/bundle-analyzer";
+
+const withBundleAnalyzer = nextBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
+
 const nextConfig = {
   typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false, // ! WARN: Dangerous
   },
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);
