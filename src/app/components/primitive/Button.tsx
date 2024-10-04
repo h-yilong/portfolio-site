@@ -1,17 +1,42 @@
-import type { ButtonHTMLAttributes } from "react";
+import { memo, type ButtonHTMLAttributes } from "react";
 
-// todo: extend Button props
-export default function Button({ children, type = "button" }: ButtonHTMLAttributes<HTMLButtonElement>) {
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  loading?: boolean;
+  ping?: boolean;
+  variant?: "primary" | "secondary";
+};
+
+function Button({
+  children,
+  ping = false,
+  type = "button",
+  loading = false,
+  variant = "primary",
+  disabled,
+  ...rest
+}: ButtonProps) {
+  const color =
+    variant === "primary"
+      ? "from-indigo-700 to-indigo-800 hover:from-indigo-600 hover:to-indigo-700"
+      : "from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700";
+
   return (
     <button
+      {...rest}
       type={type}
-      className="btn mt-16 w-fit rounded-3xl bg-gradient-to-br from-white/10 to-white/5 px-6 py-4 font-semibold hover:bg-white/5"
+      disabled={disabled || loading}
+      className={`btn flex w-fit items-center gap-2 rounded-3xl bg-gradient-to-br px-6 py-4 font-semibold hover:text-white disabled:cursor-not-allowed ${color}`}
     >
-      <span className="relative mr-3 inline-flex h-3 w-3">
-        <span className="btn-ping" />
-        <span className="btn-ping_dot" />
-      </span>
-      <span className="inline-flex hover:text-white">{children}</span>
+      {ping && (
+        <span className="relative inline-flex h-3 w-3">
+          <span className="btn-ping" />
+          <span className="btn-ping_dot" />
+        </span>
+      )}
+      <span className="inline-flex">{children}</span>
+      {loading && <img src="/assets/icons/spinner.svg" alt="loading" className="h-4 w-4" />}
     </button>
   );
 }
+
+export default memo(Button);

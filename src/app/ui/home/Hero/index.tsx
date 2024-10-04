@@ -19,15 +19,23 @@ const Hero = () => {
         <p className="mt-12 text-slate-500">
           <code>&#47;&#47; check the links below</code>
         </p>
-        <p className="my-2">
+        <p className="mt-2">
           <code className="text-purple-500">const</code>
-          <code className="text-emerald-500"> myGitHubLink </code>
+          <code className="text-emerald-500"> github </code>
           <code>= </code>
           <code className="cursor-pointer text-orange-500 hover:underline">&quot;www.github.com/u/yilong&quot;</code>
         </p>
+        <p className="mb-16 mt-2">
+          <code className="text-purple-500">const</code>
+          <code className="text-emerald-500"> linkedIn </code>
+          <code>= </code>
+          <code className="cursor-pointer text-orange-500 hover:underline">
+            &quot;www.linkedin.com/in/yilonghuang&quot;
+          </code>
+        </p>
 
         <Link href="#contact">
-          <Button>Let&apos;s work together!</Button>
+          <Button ping>Let&apos;s work together!</Button>
         </Link>
       </div>
       <div className="absolute inset-0 left-1/3 z-10 w-2/3">

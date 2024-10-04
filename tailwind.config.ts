@@ -13,11 +13,11 @@ const config: Config = {
         foreground: "var(--foreground)",
         aboutBg: "var(--about-bg)",
       },
-    },
-    keyframes: {
-      shimmer: {
-        "100%": {
-          transform: "translateX(100%)",
+      keyframes: {
+        shimmer: {
+          "100%": {
+            transform: "translateX(100%)",
+          },
         },
       },
     },

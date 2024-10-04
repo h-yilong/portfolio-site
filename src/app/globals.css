@@ -116,16 +116,6 @@ body {
   }
 }
 
-/* .circle-gradient {
-  background-image: radial-gradient(
-    circle at 30% 50%,
-    #d25578 20%,
-    blue 40%,
-    #faa1 60%,
-    #0000 100%
-  );
-} */
-
 .skill-card {
   box-shadow:
     inset 1px 1px 2px -1px #fff4,
