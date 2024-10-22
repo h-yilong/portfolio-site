@@ -1,5 +1,32 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Table of Content
+
+- Objective
+- Design
+- Tech Stack
+- 3D implementation
+- DX
+  - prettier-plugin-tailwindcss
+- User experience
+- QA
+  - linting
+  - prettier
+  - spellCheck
+  - [husky](https://typicode.github.io/husky/)
+- Testing
+  - unit
+  - component
+  - e2e
+- User Experience
+- CI/CD
+  - github actions
+- Performance
+- Others
+- Todo list
+  - Data structure and algorithm problems and notes
+  - system design playground and articles
+
 ## Getting Started
 
 First, run the development server:
@@ -42,6 +69,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Protect `master` branch
   - pushing directly on `master` branch shall be forbidden
 - Merging of Pull request shall trigger deployment
+- UI responsiveness test
+- Using `release` branch for releasing
+- pre-commit hook to run tests(unit, component and e2e)
+  - commit should fail if linting or test fails
 - proper input attributes for better user experience
 - frontend form validation
   - and test
