@@ -9,4 +9,4 @@ git update-index --again
 unset ELECTRON_RUN_AS_NODE # to run in VSCode's built-in source control
 yarn test:pre-commit
 
-echo "\n\n-------- Pre-Commit Hook Complete --------\n"
+echo "\n\n-------- Pre-Commit Hook Complete --------\n\n\n"
