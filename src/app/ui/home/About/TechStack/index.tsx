@@ -12,8 +12,8 @@ export default function TechStack() {
         <div className="absolute -top-1/2 left-0 aspect-square w-full overflow-hidden rounded-full border-2 border-white/15">
           <div className={`absolute top-1/2 h-full w-full ${styles.techStackGradient1}`} />
         </div>
-        <div className={`absolute left-0 aspect-square w-full rounded-full ${styles.techStackContainer}`} />
-        <div className={`relative aspect-square w-1/5 rotate-45 ${styles.rotate}`}>
+        <div className={`absolute left-0 aspect-square w-full rounded-full ${styles.techStackBgMask}`} />
+        <div className={`relative aspect-square w-1/5 ${styles.rotate}`}>
           <div className={`${styles.techStack} h-full w-full rounded-full border border-white/10 bg-aboutBg p-2`}>
             <img src="/assets/images/js2.svg" alt="" />
           </div>

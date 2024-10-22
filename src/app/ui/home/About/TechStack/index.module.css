@@ -1,4 +1,4 @@
-.techStackContainer {
+.techStackBgMask {
   background-image: radial-gradient(circle at center, transparent, var(--about-bg) 65%);
 }
 
@@ -20,6 +20,10 @@
 
 .rotate {
   animation: rotate-animation 36s linear infinite;
+}
+
+.techStackContainer:hover * {
+  animation-play-state: paused;
 }
 
 @keyframes rotate-animation {

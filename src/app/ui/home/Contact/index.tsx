@@ -1,18 +1,17 @@
 "use client";
 import Button from "@/app/components/primitive/Button";
-import { createContactRequest } from "@/app/lib/actions";
+import { createContactRequest, type State } from "@/app/lib/actions";
 import { useFormState, useFormStatus } from "react-dom";
 import { useEffect, useId, useRef } from "react";
 import Input from "@/app/components/primitive/Input";
 
-const Form = ({ state }) => {
+const Form = ({ state }: { state: State }) => {
   const { pending } = useFormStatus();
   const id = useId();
 
   return (
     <>
       <Input
-        htmlFor={`${id}-name`}
         id={`${id}-name`}
         disabled={pending}
         isError={!!state.errors?.name}
@@ -25,7 +24,6 @@ const Form = ({ state }) => {
       />
 
       <Input
-        htmlFor={`${id}-email`}
         id={`${id}-email`}
         disabled={pending}
         isError={!!state.errors?.email}
@@ -38,7 +36,6 @@ const Form = ({ state }) => {
       />
 
       <Input
-        htmlFor={`${id}-message`}
         id={`${id}-message`}
         disabled={pending}
         isError={!!state.errors?.message}
@@ -49,12 +46,12 @@ const Form = ({ state }) => {
         errorMessage={state.errors?.message && state.errors.message.join(";")}
         required
       />
-      <p className="text-md h-5 text-center leading-5 text-green-500">
+      <p data-test="success-msg" className="text-md h-5 text-center leading-5 text-green-500">
         {/successfully/.test(state.message) ? state.message : null}
       </p>
       <div className="mx-auto flex w-fit gap-3">
         <Button type="submit" loading={pending}>
-          {pending ? "Pending" : "Submit"}
+          {pending ? "Submitting" : "Submit"}
         </Button>
         <Button type="reset" variant="secondary">
           Reset

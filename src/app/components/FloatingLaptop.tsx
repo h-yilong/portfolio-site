@@ -21,9 +21,11 @@ function MacBookModel({ open, hinge, ...props }) {
   // Load model
   const { nodes, materials } = useGLTF("/assets/models/mac-draco.glb");
 
+  const monitorTexture0 = useTexture("/assets/images/desktop0.webp");
   const monitorTexture1 = useTexture("/assets/images/desktop1.webp");
   const monitorTexture2 = useTexture("/assets/images/desktop2.webp");
 
+  monitorTexture0.flipY = false;
   monitorTexture1.flipY = false;
   monitorTexture2.flipY = false;
 
@@ -36,7 +38,7 @@ function MacBookModel({ open, hinge, ...props }) {
   }, [hovered]);
 
   useEffect(() => {
-    const bgs = [monitorTexture1, monitorTexture2];
+    const bgs = [monitorTexture0, monitorTexture1, monitorTexture2];
     let count = 0;
     const id = setInterval(() => {
       count += 1;

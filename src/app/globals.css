@@ -27,6 +27,12 @@ body {
 }
 
 @layer utilities {
+  a {
+    @apply rounded focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-offset-2;
+  }
+  .animation-pause {
+    animation-play-state: paused;
+  }
   .text-balance {
     text-wrap: balance;
   }

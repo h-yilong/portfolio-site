@@ -4,7 +4,6 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   isError?: boolean;
   label?: string;
   errorMessage?: string;
-  htmlFor?: string;
 };
 
 export default function Input({
@@ -16,13 +15,12 @@ export default function Input({
   placeholder,
   required,
   id,
-  htmlFor,
   errorMessage,
   ...rest
 }: InputProps) {
   return (
     <div className="flex items-center gap-2">
-      <label htmlFor={htmlFor} className="flex-1 pb-5 font-semibold">
+      <label htmlFor={id} className="flex-1 pb-5 font-semibold">
         {label}
       </label>
       <div className="flex-[2]">
@@ -30,7 +28,7 @@ export default function Input({
           id={id}
           {...rest}
           disabled={disabled}
-          className={`w-full rounded-xl bg-white/10 px-4 py-2 ${isError ? "border-rose-500" : "border-transparent"} border-2 outline-2 placeholder:text-gray-400 disabled:cursor-not-allowed disabled:text-opacity-50`}
+          className={`w-full rounded-xl bg-white/10 px-4 py-2 ${isError ? "!border-rose-500" : "border-transparent"} border-2 outline-none placeholder:text-gray-400 focus:border-indigo-600 disabled:cursor-not-allowed disabled:text-opacity-50`}
           type={type}
           name={name}
           placeholder={placeholder}
