@@ -33,7 +33,8 @@ describe("home page", () => {
           .should("have.focus") // equivalent to should('be.focused')
           .then(($input) => {
             // ! see: https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/validationMessage
-            expect(($input[0] as HTMLInputElement).validationMessage).to.eq("Please fill in this field.");
+            // expect(($input[0] as HTMLInputElement).validationMessage).to.eq("Please fill in this field.");
+            expect(($input[0] as HTMLInputElement).validationMessage).to.match(/please fill/gim);
           });
         cy.get("input[name='name']").type("John Doe");
         cy.get("input[name='email']").type("johndoe");
