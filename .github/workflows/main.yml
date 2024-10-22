@@ -7,13 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        # env:
+        #   CYPRESS_BASE_URL: http://localhost:3000
         with:
-          # project: ./site
+          component: true
           build: yarn build
           start: yarn start
-          # browser: chrome
-          # wait-on: "http://localhost:3000"
+          command: yarn test:ci
+          browser: chrome
+          wait-on: "http://localhost:3000"

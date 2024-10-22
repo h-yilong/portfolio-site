@@ -6,9 +6,7 @@ echo "\n\n-------- Running Pre-Commit Hook --------\n"
 prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
 git update-index --again
 
-yarn test:unit:ci
 unset ELECTRON_RUN_AS_NODE # to run in VSCode's built-in source control
-yarn test:component
-yarn test:e2e:headless
+yarn test:pre-commit
 
 echo "\n\n-------- Pre-Commit Hook Complete --------\n"
