@@ -19,6 +19,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
   - component
   - e2e
 - User Experience
+  - smooth scrolling
 - CI/CD
   - github actions
 - Performance

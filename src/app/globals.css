@@ -28,7 +28,7 @@ body {
 
 @layer utilities {
   a {
-    @apply rounded focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-offset-2;
+    @apply rounded focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-offset-2;
   }
   .animation-pause {
     animation-play-state: paused;
@@ -119,6 +119,25 @@ body {
   100% {
     /* (80 + 12) * 12 = 1104 */
     transform: translateX(-1104px);
+  }
+}
+
+.draw-logo {
+  animation: drawLogo 20s infinite linear;
+}
+
+@keyframes drawLogo {
+  0% {
+    stroke-dashoffset: 1633px;
+  }
+  5% {
+    stroke-dashoffset: 0px;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
