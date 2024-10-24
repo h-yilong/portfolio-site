@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="mt-36">
         {/* <div className="mt-36 w-fit p-12 bg-white/5 rounded-3xl relative z-20 backdrop-blur-sm"> */}
         <p className="text-lg font-medium">
-          Hi all<span className="waving-hand">👋</span>, I am
+          Hi there<span className="waving-hand">👋</span>, I am
         </p>
         <h1 data-test="hero-heading" className="my-6 text-6xl font-medium tracking-wide">
           Yilong HUANG
