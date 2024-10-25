@@ -6,7 +6,7 @@ import Link from "next/link";
 const Hero = () => {
   return (
     <section className="mx-auto max-w-7xl" id="home">
-      <div className="mt-36">
+      <div className="mt-16">
         {/* <div className="mt-36 w-fit p-12 bg-white/5 rounded-3xl relative z-20 backdrop-blur-sm"> */}
         <p className="text-lg font-medium">
           Hi there<span className="waving-hand">👋</span>, I am
