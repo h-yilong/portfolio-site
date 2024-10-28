@@ -68,8 +68,6 @@ export default function Contact() {
   const initialState = { message: "", errors: {} };
   const [state, dispatch] = useFormState(createContactRequest, initialState);
 
-  console.log(`%c state `, "font-weight:bolder;color:#f45;padding:2px;background:#fd1", state);
-
   useEffect(() => {
     if (ref?.current && /successfully/.test(state.message)) {
       ref.current.reset();
@@ -77,15 +75,17 @@ export default function Contact() {
   }, [state]);
 
   return (
-    <div className="mx-auto my-24 max-w-7xl overflow-hidden rounded-xl border border-white/10 bg-black/5" id="contact">
-      <div className="flex h-8 w-full items-center bg-gradient-to-r from-white/5 via-white/10 to-white/5">
-        <div className="ml-4 h-3 w-3 rounded-full bg-white/30" />
-        <div className="ml-2 h-3 w-3 rounded-full bg-white/30" />
-        <div className="ml-2 h-3 w-3 rounded-full bg-white/30" />
+    <section className="max-width">
+      <div className="my-24 overflow-hidden rounded-xl border border-white/10 bg-black/5" id="contact">
+        <div className="flex h-8 w-full items-center bg-gradient-to-r from-white/5 via-white/10 to-white/5">
+          <div className="ml-4 h-3 w-3 rounded-full bg-white/30" />
+          <div className="ml-2 h-3 w-3 rounded-full bg-white/30" />
+          <div className="ml-2 h-3 w-3 rounded-full bg-white/30" />
+        </div>
+        <form ref={ref} action={dispatch} className="mx-auto flex w-full max-w-md flex-col gap-3 py-6">
+          <Form state={state} />
+        </form>
       </div>
-      <form ref={ref} action={dispatch} className="mx-auto flex w-full max-w-md flex-col gap-3 py-6">
-        <Form state={state} />
-      </form>
-    </div>
+    </section>
   );
 }

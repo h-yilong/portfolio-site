@@ -7,7 +7,7 @@ import TechStack from "./TechStack";
 export default function About() {
   return (
     <section
-      className="mx-auto mt-24 grid h-full max-w-7xl grid-cols-1 gap-6 *:rounded-xl *:border *:border-white/10 md:grid-cols-2 xl:grid-cols-3 xl:grid-rows-6"
+      className="max-width mt-24 grid h-full grid-cols-1 gap-6 *:rounded-xl *:border *:border-white/10 md:grid-cols-2 xl:grid-cols-3 xl:grid-rows-6"
       id="about"
     >
       <div className="col-span-1 xl:row-span-3">

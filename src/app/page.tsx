@@ -19,7 +19,7 @@ export default function Home() {
   preload("/assets/images/desktop2.webp", PRELOAD_OPTIONS);
 
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <Hero />
       <Skills />
       <About />

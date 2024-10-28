@@ -1,13 +1,13 @@
-import FloatingLaptop from "@/app/components/FloatingLaptop";
-import Button from "@/app/components/primitive/Button";
+import dynamic from "next/dynamic";
 import Link from "next/link";
+import Button from "@/app/components/primitive/Button";
 
-// todo: lazy load <FloatingLaptop />
+const FloatingLaptop = dynamic(() => import("@/app/components/FloatingLaptop"));
+
 const Hero = () => {
   return (
-    <section className="mx-auto max-w-7xl" id="home">
-      <div className="mt-16">
-        {/* <div className="mt-36 w-fit p-12 bg-white/5 rounded-3xl relative z-20 backdrop-blur-sm"> */}
+    <section className="max-width relative" id="home">
+      <div className="relative z-20 w-fit pt-28">
         <p className="text-lg font-medium">
           Hi there<span className="waving-hand">👋</span>, I am
         </p>
@@ -42,13 +42,11 @@ const Hero = () => {
           </code>
         </p>
 
-        <Link href="#contact">
+        <Link className="" href="#contact">
           <Button ping>Let&apos;s work together!</Button>
         </Link>
       </div>
-      <div className="absolute inset-0 left-1/3 z-10 w-2/3">
-        <FloatingLaptop />
-      </div>
+      <FloatingLaptop />
     </section>
   );
 };
