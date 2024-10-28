@@ -59,11 +59,11 @@ body {
   }
 
   .keyboard-container {
-    @apply relative mx-auto mb-6 flex aspect-[2.4] w-4/5 flex-col justify-between gap-2 overflow-hidden;
+    @apply relative mx-auto mb-8 flex aspect-[2.4] w-4/5 flex-col justify-between gap-1 overflow-hidden sm:gap-2;
   }
 
   .keyboard-key {
-    @apply flex aspect-square shrink-0 cursor-default select-none items-center justify-center rounded-2xl text-3xl font-bold uppercase;
+    @apply flex aspect-square shrink-0 cursor-default select-none items-center justify-center font-bold uppercase;
     transition: all 0.1s ease-in-out;
     height: 98%;
     border: 1px solid #fff2;

@@ -19,7 +19,7 @@ export default function About() {
       <div className="col-span-1 xl:row-span-4">
         <Location />
       </div>
-      <div className="xl:col-span-2 xl:row-span-3">
+      <div className="row-start-4 md:col-span-2 md:row-start-3 xl:row-span-3 xl:row-start-4">
         <CodingKeyboard />
       </div>
       <div className="xl:col-span-1 xl:row-span-2">
