@@ -33,9 +33,14 @@ body {
 }
 
 @layer utilities {
-  a {
-    @apply inline-block rounded focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-offset-2;
+  /* tips: https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible#providing_a_focus_fallback */
+  .focus-ring {
+    @apply outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-300;
   }
+  a {
+    @apply focus-ring inline-block rounded;
+  }
+
   .max-width {
     @apply mx-auto max-w-7xl px-6 xl:px-0;
   }

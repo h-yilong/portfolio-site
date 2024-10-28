@@ -26,7 +26,7 @@ export default function Skills() {
   return (
     <section
       style={{ "--skill-length": SKILLS.length } as CSSProperties}
-      className="mt-36 w-screen overflow-hidden py-2"
+      className="mt-16 w-screen overflow-hidden py-2 md:mt-36"
     >
       <div className={clsx("flex w-fit", styles.carousel)}>
         {SKILL_CAROUSEL_ITEMS.map((skill, index) => (

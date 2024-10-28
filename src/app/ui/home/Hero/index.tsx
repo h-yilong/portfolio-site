@@ -7,7 +7,7 @@ const FloatingLaptop = dynamic(() => import("@/app/components/FloatingLaptop"));
 const Hero = () => {
   return (
     <section className="max-width relative" id="home">
-      <div className="relative z-20 w-fit pt-28">
+      <div className="relative z-20 mx-auto w-fit pt-28 text-center md:ml-0 md:text-left">
         <p className="text-lg font-medium">
           Hi there<span className="waving-hand">👋</span>, I am
         </p>
@@ -18,29 +18,35 @@ const Hero = () => {
           &gt; Front-End Developer
         </code>
         <h2 className="my-4 text-xl text-slate-300">I love building cool stuff for the web!</h2>
-        <p className="mt-12 text-slate-500">
-          <code>&#47;&#47; check the links below</code>
-        </p>
-        <p className="mt-2">
-          <code className="text-purple-500">const</code>
-          <code className="text-emerald-500"> github </code>
-          <code>= </code>
-          <code className="cursor-pointer text-orange-500">
-            <Link target="_blank" href="https://github.com/h-yilong/">
-              &quot;www.github.com/h-yilong&quot;
-            </Link>
-          </code>
-        </p>
-        <p className="mb-16 mt-2">
-          <code className="text-purple-500">const</code>
-          <code className="text-emerald-500"> linkedIn </code>
-          <code>= </code>
-          <code className="cursor-pointer text-orange-500">
-            <Link target="_blank" href="https://www.linkedin.com/in/yilonghuang">
-              &quot;www.linkedin.com/in/yilonghuang&quot;
-            </Link>
-          </code>
-        </p>
+        <div className="text-left">
+          <p className="mt-12 text-slate-500">
+            <code>&#47;&#47; check the links below</code>
+          </p>
+          <p className="mt-2">
+            <code className="text-purple-500">const</code>
+            <code className="text-emerald-500"> github </code>
+            <code>= </code>
+            <code className="cursor-pointer text-orange-500">
+              <Link className="underline-offset-2 hover:underline" target="_blank" href="https://github.com/h-yilong/">
+                &quot;www.github.com/h-yilong&quot;
+              </Link>
+            </code>
+          </p>
+          <p className="mb-16 mt-2">
+            <code className="text-purple-500">const</code>
+            <code className="text-emerald-500"> linkedIn </code>
+            <code>= </code>
+            <code className="cursor-pointer text-orange-500">
+              <Link
+                className="underline-offset-2 hover:underline"
+                target="_blank"
+                href="https://www.linkedin.com/in/yilonghuang"
+              >
+                &quot;www.linkedin.com/in/yilonghuang&quot;
+              </Link>
+            </code>
+          </p>
+        </div>
 
         <Link className="" href="#contact">
           <Button ping>Let&apos;s work together!</Button>

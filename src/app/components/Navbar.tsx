@@ -66,6 +66,7 @@ const Navbar = () => {
           </nav>
           <MenuButton
             aria-label="Toggle menu"
+            data-test="menu-button"
             className="sm:hidden"
             isOpen={isOpen}
             toggle={() => setIsOpen((prev) => !prev)}
