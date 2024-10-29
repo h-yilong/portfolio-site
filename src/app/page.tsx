@@ -3,6 +3,7 @@ import Hero from "@/app/ui/home/Hero";
 import Skills from "@/app/ui/home/Skills";
 import About from "@/app/ui/home/About";
 import Contact from "@/app/ui/home/Contact";
+import Footer from "@/app/ui/home/Footer";
 
 const PRELOAD_OPTIONS: PreloadOptions = {
   as: "image",
@@ -24,6 +25,7 @@ export default function Home() {
       <Skills />
       <About />
       <Contact />
+      <Footer />
     </main>
   );
 }
