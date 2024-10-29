@@ -19,11 +19,11 @@ export default function Input({
   ...rest
 }: InputProps) {
   return (
-    <div className="flex items-center gap-2">
-      <label htmlFor={id} className="flex-1 pb-5 font-semibold">
+    <div className="sm:flex sm:flex-row sm:items-center sm:gap-2">
+      <label htmlFor={id} className="block pb-2 font-semibold sm:flex-1 sm:pb-5">
         {label}
       </label>
-      <div className="flex-[2]">
+      <div className="flex-1 sm:flex-[2]">
         <input
           id={id}
           {...rest}

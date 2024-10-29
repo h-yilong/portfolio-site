@@ -82,7 +82,7 @@ export default function Contact() {
           <div className="ml-2 h-3 w-3 rounded-full bg-white/30" />
           <div className="ml-2 h-3 w-3 rounded-full bg-white/30" />
         </div>
-        <form ref={ref} action={dispatch} className="mx-auto flex w-full max-w-md flex-col gap-3 py-6">
+        <form ref={ref} action={dispatch} className="mx-auto flex w-full max-w-md flex-col gap-3 px-3 py-6 sm:px-0">
           <Form state={state} />
         </form>
       </div>
