@@ -48,7 +48,7 @@ const Navbar = () => {
     <header className="fixed left-0 right-0 top-0 z-[100] border-b border-b-white/10 bg-black/30 backdrop-blur-md">
       <div className="max-width">
         <div className="flex w-full items-center justify-between py-3">
-          <Link href="/">
+          <Link href="/" onClick={closeMenu}>
             <svg width={36} height={36} xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 300 300">
               <path
                 stroke="#5355da"
