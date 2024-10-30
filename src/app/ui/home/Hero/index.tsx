@@ -77,7 +77,7 @@ const Hero = () => {
             target="_blank"
             href="https://github.com/h-yilong/portfolio-site"
           >
-            Learn more about how I build, test and deploy this site.
+            Learn more about how I design, develop, test and deploy this site.
           </Link>
         </div>
 
