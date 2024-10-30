@@ -1,4 +1,6 @@
+import { clsx } from "@/app/lib/utils";
 import type { CSSProperties } from "react";
+import styles from "./index.module.css";
 
 const SKILLS = [
   "/assets/images/js2.svg",
@@ -15,22 +17,22 @@ const SKILLS = [
   "/assets/images/mongo.svg",
 ];
 
-const MAX_WIDTH = 3840; // 4k resolution
-const SKILL_WIDTH = (80 + 12) * SKILLS.length; // tips: 80(w-20), 12(gap-3)
+const MAX_WIDTH = 2560; // 4k resolution
+const SKILL_WIDTH = (80 + 12) * SKILLS.length;
 const REPEAT_TIMES = Math.ceil(MAX_WIDTH / SKILL_WIDTH) + 1;
 const SKILL_CAROUSEL_ITEMS = Array.from({ length: REPEAT_TIMES }, () => SKILLS).flat(1);
 
 export default function Skills() {
   return (
     <section
-      style={{ "--skill-width": `${-SKILL_WIDTH}px` } as CSSProperties}
-      className="mt-36 w-screen overflow-hidden py-2"
+      style={{ "--skill-length": SKILLS.length } as CSSProperties}
+      className="mt-16 w-screen overflow-hidden py-2 md:mt-36"
     >
-      <div className="skill-carousel flex w-fit gap-3">
+      <div className={clsx("flex w-fit", styles.carousel)}>
         {SKILL_CAROUSEL_ITEMS.map((skill, index) => (
           <div
             key={index}
-            className="skill-card flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-white/10 p-2"
+            className="flex aspect-square flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-white/10 p-2"
           >
             <img src={skill} alt={skill} loading="lazy" />
           </div>

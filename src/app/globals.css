@@ -20,6 +20,12 @@
   }
 }
 
+@media screen and (max-width: 767px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -27,8 +33,16 @@ body {
 }
 
 @layer utilities {
+  /* tips: https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible#providing_a_focus_fallback */
+  .focus-ring {
+    @apply outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-300;
+  }
   a {
-    @apply rounded focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-offset-2;
+    @apply focus-ring inline-block rounded;
+  }
+
+  .max-width {
+    @apply mx-auto max-w-7xl px-6 xl:px-0;
   }
   .animation-pause {
     animation-play-state: paused;
@@ -45,11 +59,11 @@ body {
   }
 
   .keyboard-container {
-    @apply relative mx-auto mb-6 flex aspect-[2.4] w-4/5 flex-col justify-between gap-2 overflow-hidden;
+    @apply relative mx-auto mb-8 flex aspect-[2.4] w-4/5 flex-col justify-between gap-1 overflow-hidden sm:gap-2;
   }
 
   .keyboard-key {
-    @apply flex aspect-square shrink-0 cursor-default select-none items-center justify-center rounded-2xl text-3xl font-bold uppercase;
+    @apply flex aspect-square shrink-0 cursor-default select-none items-center justify-center font-bold uppercase;
     transition: all 0.1s ease-in-out;
     height: 98%;
     border: 1px solid #fff2;
@@ -108,31 +122,18 @@ body {
   }
 }
 
-.skill-carousel {
-  animation: carousel-animation 60s infinite linear;
-}
-
-@keyframes carousel-animation {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(var(--skill-width));
-  }
-}
-
 .draw-logo {
-  animation: drawLogo 20s infinite linear;
+  animation: drawLogo 10s infinite linear;
 }
 
 @keyframes drawLogo {
   0% {
     stroke-dashoffset: 1633px;
   }
-  5% {
+  6% {
     stroke-dashoffset: 0px;
   }
-  90% {
+  88% {
     opacity: 1;
   }
   100% {
@@ -140,12 +141,18 @@ body {
   }
 }
 
-.skill-card {
-  box-shadow:
-    inset 1px 1px 2px -1px #fff4,
-    -1px -1px 2px -1px #fff4,
-    inset -1px -1px 2px -1px #000,
-    1px 1px 2px -1px #000;
+.draw-line {
+  animation: drawLine 3.6s 1 ease-out;
+}
+
+@keyframes drawLine {
+  0%,
+  50% {
+    stroke-dashoffset: 5000px;
+  }
+  100% {
+    stroke-dashoffset: 0px;
+  }
 }
 
 .btn {

@@ -3,6 +3,7 @@ import Hero from "@/app/ui/home/Hero";
 import Skills from "@/app/ui/home/Skills";
 import About from "@/app/ui/home/About";
 import Contact from "@/app/ui/home/Contact";
+import Footer from "@/app/ui/home/Footer";
 
 const PRELOAD_OPTIONS: PreloadOptions = {
   as: "image",
@@ -19,11 +20,12 @@ export default function Home() {
   preload("/assets/images/desktop2.webp", PRELOAD_OPTIONS);
 
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <Hero />
       <Skills />
       <About />
       <Contact />
+      <Footer />
     </main>
   );
 }

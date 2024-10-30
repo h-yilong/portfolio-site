@@ -26,9 +26,8 @@ function Button({
       {...rest}
       type={type}
       disabled={disabled || loading}
-      // tips: https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible#providing_a_focus_fallback
       className={clsx(
-        `btn flex w-fit items-center gap-2 rounded-3xl bg-gradient-to-br px-6 py-4 font-semibold hover:text-white focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-300 disabled:cursor-not-allowed`,
+        `btn focus-ring flex w-fit items-center gap-2 rounded-3xl bg-gradient-to-br px-6 py-4 font-semibold hover:text-white disabled:cursor-not-allowed`,
         color,
       )}
     >

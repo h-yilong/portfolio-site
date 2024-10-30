@@ -13,11 +13,11 @@ export default function MenuButton({ isOpen, toggle, className, ...rest }: MenuB
     <button
       {...rest}
       onClick={toggle}
-      className={clsx("relative flex h-6 w-6 flex-col justify-between py-1", className || "")}
+      className={clsx("focus-ring relative flex h-8 w-8 flex-col justify-between py-1", className || "")}
     >
       <div className={clsx(divCls, "transition-opacity", isOpen ? "opacity-0" : "opacity-100")} />
-      <div className={clsx(divCls, "absolute top-[11px] transition-transform", isOpen ? "rotate-45" : "rotate-0")} />
-      <div className={clsx(divCls, "absolute top-[11px] transition-transform", isOpen ? "-rotate-45" : "rotate-0")} />
+      <div className={clsx(divCls, "absolute top-[13px] transition-transform", isOpen ? "rotate-45" : "rotate-0")} />
+      <div className={clsx(divCls, "absolute top-[13px] transition-transform", isOpen ? "-rotate-45" : "rotate-0")} />
       <div className={clsx(divCls, "transition-opacity", isOpen ? "opacity-0" : "opacity-100")} />
     </button>
   );
