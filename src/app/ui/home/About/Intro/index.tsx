@@ -37,8 +37,8 @@ export default function Intro() {
       <article className="relative z-50">
         <h3 className="mb-2 text-lg font-bold leading-8">Hi, I&apos;m Yilong HUANG</h3>
         <p>
-          With 7+ years of experience, I have honed my skills in both frontend and backend dev, creating performant &
-          responsive websites.
+          With more than 7 years of experience, I have honed my skills in both frontend and backend dev, creating
+          performant & responsive websites.
         </p>
       </article>
     </div>

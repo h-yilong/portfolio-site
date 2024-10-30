@@ -1,6 +1,5 @@
 // @ts-nocheck
 "use client";
-
 import * as THREE from "three";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
@@ -11,10 +10,11 @@ import {
 } from "@react-three/drei";
 import { useSpring } from "@react-spring/core";
 import { animated } from "@react-spring/three";
-import { a as web } from "@react-spring/web";
-import RoundedBox from "./RoundedBox";
-import HeroCamera from "./HeroCamera";
+import RoundedBox from "../RoundedBox";
+import HeroCamera from "../HeroCamera";
 // import CanvasLoader from '@/app/components/Loading';
+import styles from "./index.module.css";
+import { clsx } from "@/app/lib/utils";
 
 function MacBookModel({ open, hinge, ...props }) {
   const group = useRef();
@@ -114,7 +114,7 @@ export default function FloatingLaptop() {
   }, []);
 
   return (
-    <web.main style={{ height: 800 }}>
+    <div className={clsx("absolute right-0 z-10", styles.container)}>
       <Canvas dpr={[1, 2]} camera={{ position: [0, 0, -30], fov: 50 }}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[0, 10, -10]} intensity={1} />
@@ -174,6 +174,6 @@ export default function FloatingLaptop() {
           </group>
         </Suspense>
       </Canvas>
-    </web.main>
+    </div>
   );
 }

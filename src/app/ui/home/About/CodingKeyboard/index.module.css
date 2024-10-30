@@ -5,6 +5,40 @@
 
 .key {
   animation: none;
+  font-size: 28px;
+  border-radius: 16px;
+}
+
+@media (max-width: 1024px) {
+  .key {
+    font-size: 24px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 860px) {
+  .key {
+    font-size: 20px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 800px) {
+  .keyboard {
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .key {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 500px) {
+  .key {
+    font-size: 13px;
+  }
 }
 
 .key:hover {

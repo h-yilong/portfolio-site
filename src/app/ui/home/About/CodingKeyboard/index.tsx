@@ -4,7 +4,7 @@ export default function CodingKeyboard() {
   return (
     <div className={`relative w-full ${styles.main}`}>
       <div className={`keyboard-container ${styles.keyboard}`}>
-        <div className="flex w-full flex-1 -translate-x-[1%] flex-nowrap items-center justify-center gap-2">
+        <div className="flex w-full flex-1 -translate-x-[1%] flex-nowrap items-center justify-center gap-1 sm:gap-2">
           <div className={`keyboard-key ${styles.key}`} />
           <div className={`keyboard-key ${styles.key}`} data-key="I">
             I
@@ -25,7 +25,7 @@ export default function CodingKeyboard() {
           <div className={`keyboard-key ${styles.key}`} />
         </div>
 
-        <div className="flex w-full flex-1 flex-nowrap items-center justify-center gap-2">
+        <div className="flex w-full flex-1 flex-nowrap items-center justify-center gap-1 sm:gap-2">
           <div className={`keyboard-key ${styles.key}`} data-key="c">
             c
           </div>
@@ -49,7 +49,7 @@ export default function CodingKeyboard() {
           </div>
         </div>
 
-        <div className="flex w-full flex-1 flex-nowrap items-center justify-center gap-2">
+        <div className="flex w-full flex-1 flex-nowrap items-center justify-center gap-1 sm:gap-2">
           <div className={`keyboard-key ${styles.key} ${styles.spaceKey}`} data-key="space" />
           <div className={`keyboard-key ${styles.key} ${styles.cmdKey}`} />
         </div>
