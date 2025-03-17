@@ -1,12 +1,10 @@
-// @ts-nocheck
 import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { animated } from "@react-spring/three";
-
 // 圆角立方体函数 (可以放在 utils 文件中)
-function createRoundedBox(width, height, depth, radius, smoothness) {
+function createRoundedBox(width: number, height: number, depth: number, radius: number, smoothness: number) {
   const shape = new THREE.Shape();
   const eps = 0.00001;
   const radius0 = radius - eps;
@@ -35,8 +33,24 @@ function createRoundedBox(width, height, depth, radius, smoothness) {
 const geometry = createRoundedBox(1.4, 1.4, 1.4, 0.2, 10);
 
 // 自定义立方体组件
-const RoundedBox = ({ show = false, opacity = 1, image, position, rotation, scale, speed = 0.01 }) => {
-  const boxRef = useRef();
+const RoundedBox = ({
+  show = false,
+  opacity = 1,
+  image,
+  position = [0, 0, 0],
+  rotation = [0, 0, 0],
+  scale = [1, 1, 1],
+  speed = 0.01,
+}: {
+  show?: boolean;
+  opacity?: number;
+  image: string;
+  position?: [number, number, number];
+  rotation?: [number, number, number];
+  scale?: [number, number, number];
+  speed?: number;
+}) => {
+  const boxRef = useRef<THREE.Mesh>(null);
   // 加载 logo 图片材质
   const texture = useTexture(image);
 

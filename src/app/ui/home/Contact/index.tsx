@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/app/components/primitive/Button";
-import { createContactRequest, type State } from "@/app/lib/actions";
+import { createContactRequest, type State } from "@/app/lib/server-actions";
 import { useFormState, useFormStatus } from "react-dom";
 import { useEffect, useId, useRef } from "react";
 import Input from "@/app/components/primitive/Input";
@@ -46,7 +46,7 @@ const Form = ({ state }: { state: State }) => {
         errorMessage={state.errors?.message && state.errors.message.join(";")}
         required
       />
-      <p data-test="success-msg" className="text-md h-5 text-center leading-5 text-green-500">
+      <p data-test="success-msg" className="text-md min-h-5 text-center leading-5 text-green-500">
         {/successfully/.test(state.message) ? state.message : null}
       </p>
       <div className="mx-auto flex w-fit gap-3">

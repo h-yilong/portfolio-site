@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./index.module.css";
 
 export default function Intro() {
@@ -20,8 +21,11 @@ export default function Intro() {
         <div className="h-full w-full rounded-lg" />
         <div className="h-full w-full rounded-lg" />
         <div className="col-span-2 row-span-2 h-full w-full overflow-hidden rounded-lg border-2 !border-white/80">
-          <img
-            // src="/assets/images/avatar.webp"
+          <Image
+            quality={100}
+            width={250}
+            height={250}
+            loading="lazy"
             src="/assets/images/linked-in-avatar.webp"
             alt="yilong-avatar"
             className="h-full w-full"

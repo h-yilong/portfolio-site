@@ -1,3 +1,8 @@
 .earth {
-  box-shadow: 0 0 36px -6px #312ea1;
+  transition: all 0.3s ease-in;
+  box-shadow: 0 0 36px -6px #312ea155;
+}
+
+:global(.about-location:hover) .earth {
+  box-shadow: 0 0 48px -5px #312ea177;
 }

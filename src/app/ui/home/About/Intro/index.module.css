@@ -5,18 +5,17 @@
 
 .intro > div:not(.radialBlend) {
   border: 1px solid #fff4;
-  transition: border 0.3s ease-in-out;
+  transition: border 0.36s ease-in-out;
 }
 
-.intro:hover > div:not(.radialBlend) {
-  border: 1px solid #fff5;
+:global(.about-intro:hover) .intro > div:not(.radialBlend) {
+  border: 1px solid #fff6;
 }
 
 .radialBlend {
-  transition: all 0.3s ease-in-out;
-  background-image: radial-gradient(circle at center, transparent, var(--about-bg) 45%);
+  background-image: radial-gradient(circle at center, transparent, var(--about-bg) 50%);
 }
 
-.radialBlend:hover {
-  background-image: radial-gradient(circle at center, transparent, var(--about-bg) 55%);
+:global(.about-intro:hover) .radialBlend {
+  background-image: radial-gradient(circle at center, transparent, var(--about-bg) 58%);
 }

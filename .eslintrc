@@ -1,25 +1,20 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "next/typescript",
-    "plugin:storybook/recommended",
-    "prettier"
-  ],
+  "extends": ["next/core-web-vitals", "next/typescript", "plugin:storybook/recommended", "prettier"],
   "rules": {
     "no-underscore-dangle": "off",
     "no-unused-vars": [
       "error",
       {
         "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_"
-      }
+        "varsIgnorePattern": "^_",
+      },
     ],
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
         "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_"
-      }
+        "varsIgnorePattern": "^_",
+      },
     ],
     "no-param-reassign": 1,
     "no-console": "warn",
@@ -30,17 +25,23 @@
     "react/display-name": 1,
     "@typescript-eslint/ban-ts-comment": 1,
     "@next/next/no-img-element": 0,
-    "@typescript-eslint/no-explicit-any": 1
+    "@typescript-eslint/no-explicit-any": 1,
   },
   "overrides": [
     {
-      "files": [
-        "**/*.cy.{js,ts,tsx,jsx}"
-      ],
+      "files": ["**/*.cy.{js,ts,tsx,jsx}"],
       "rules": {
         "no-undef": 0,
-        "no-param-reassign": 0
-      }
-    }
-  ]
+        "no-param-reassign": 0,
+      },
+    },
+    {
+      "files": ["cypress/support/*.ts"],
+      "rules": {
+        "no-undef": 0,
+        "@typescript-eslint/no-namespace": 0,
+        "no-unused-vars": 0,
+      },
+    },
+  ],
 }
