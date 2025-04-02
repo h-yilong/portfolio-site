@@ -45,7 +45,7 @@ const Navbar = () => {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-[100] border-b border-b-white/10 bg-black/30 backdrop-blur-md print:hidden">
+    <header className="fixed top-0 right-0 left-0 z-100 border-b border-b-white/10 bg-black/30 backdrop-blur-md print:hidden">
       <div className="max-width">
         <div className="flex w-full items-center justify-between py-3">
           <Link aria-label="homepage" href="/" onClick={closeMenu}>

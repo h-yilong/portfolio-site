@@ -39,7 +39,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             )}
           </label>
         )}
-        <div className="flex-1 sm:flex-[2]">
+        <div className="flex-1 sm:flex-2">
           <input
             ref={ref}
             id={inputId}
@@ -47,7 +47,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             disabled={disabled}
             className={`w-full rounded-xl bg-white/10 px-4 py-2 ${
               isError ? "border-rose-500" : "border-transparent"
-            } border-2 outline-none placeholder:text-gray-400 focus:border-indigo-600 disabled:cursor-not-allowed disabled:text-opacity-50 ${className}`.trim()}
+            } disabled:text-opacity-50 border-2 outline-hidden placeholder:text-gray-400 focus:border-indigo-600 disabled:cursor-not-allowed ${className}`.trim()}
             type={type}
             name={name}
             placeholder={placeholder}

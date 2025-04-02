@@ -38,7 +38,7 @@ const Hero = async () => {
           </h1>
         </div>
 
-        <code className="my-4 bg-gradient-to-r from-indigo-500 to-violet-600 bg-clip-text text-2xl font-semibold tracking-wide text-transparent">
+        <code className="my-4 bg-linear-to-r from-indigo-500 to-violet-600 bg-clip-text text-2xl font-semibold tracking-wide text-transparent">
           &gt; Front-End Developer
         </code>
         <h2 className="my-4 text-xl text-slate-300">I love building cool stuff for the web!</h2>
@@ -61,7 +61,7 @@ const Hero = async () => {
               </Link>
             </code>
           </p>
-          <p className="mb-4 mt-2">
+          <p className="mt-2 mb-4">
             <code className="text-purple-500">const</code>
             <code className="text-emerald-500"> linkedIn </code>
             <code>= </code>

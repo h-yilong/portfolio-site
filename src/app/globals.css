@@ -1,70 +1,114 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --about-bg: #161626;
-}
+@custom-variant dark (&:is(.dark *));
 
-* {
-  scroll-behavior: smooth;
-  box-sizing: border-box;
-}
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-about-bg: var(--about-bg);
 
-@media screen and (max-width: 767px) {
-  :root {
-    font-size: 14px;
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
   }
 }
 
-body {
-  font-family: var(--font-montserrat), Arial, Helvetica, sans-serif;
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
-@layer utilities {
+@utility focus-ring {
   /* tips: https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible#providing_a_focus_fallback */
-  .focus-ring {
-    @apply outline-none focus-visible:ring focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-300;
-  }
-  a {
-    @apply focus-ring inline-block rounded;
-  }
+  @apply outline-hidden focus-visible:ring-3 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-300;
+}
 
-  .max-width {
-    @apply mx-auto max-w-7xl px-6 xl:px-0;
-  }
-  .animation-pause {
-    animation-play-state: paused;
-  }
-  .text-balance {
-    text-wrap: balance;
-  }
-  .btn-ping {
-    @apply absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75;
-  }
+@utility max-width {
+  @apply mx-auto max-w-7xl px-6 xl:px-0;
+}
 
-  .btn-ping_dot {
-    @apply relative inline-flex h-3 w-3 rounded-full bg-green-500;
-  }
+@utility animation-pause {
+  animation-play-state: paused;
+}
 
-  .keyboard-container {
-    @apply relative mx-auto mb-8 flex aspect-[2.4] w-4/5 flex-col justify-between gap-1 overflow-hidden sm:gap-2;
-  }
+@utility text-balance {
+  text-wrap: balance;
+}
 
-  .keyboard-key {
-    @apply flex aspect-square shrink-0 cursor-default select-none items-center justify-center font-bold uppercase;
-    transition: all 0.1s ease-in-out;
-    height: 98%;
-    border: 1px solid #fff2;
-    color: #fff5;
-    box-shadow:
-      inset 1px 1px 2px -1px #fff2,
-      -1px -1px 2px -1px #fff2,
-      inset -1px -1px 2px -1px #0003,
-      1px 1px 2px -1px #0003;
-  }
+@utility btn-ping {
+  @apply absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75;
+}
 
-  .keyboard-key:hover {
+@utility btn-ping_dot {
+  @apply relative inline-flex h-3 w-3 rounded-full bg-green-500;
+}
+
+@utility keyboard-container {
+  @apply relative mx-auto mb-8 flex aspect-[2.4] w-4/5 flex-col justify-between gap-1 overflow-hidden sm:gap-2;
+}
+
+@utility keyboard-key {
+  @apply flex aspect-square shrink-0 cursor-default items-center justify-center font-bold uppercase select-none;
+  transition: all 0.1s ease-in-out;
+  height: 98%;
+  border: 1px solid #fff2;
+  color: #fff5;
+  box-shadow:
+    inset 1px 1px 2px -1px #fff2,
+    -1px -1px 2px -1px #fff2,
+    inset -1px -1px 2px -1px #0003,
+    1px 1px 2px -1px #0003;
+
+  &:hover {
     border: 1px solid #fffa;
     color: #fffe;
     text-shadow: 1px 1px 5px #fffa;
@@ -76,109 +120,138 @@ body {
   }
 }
 
-.waving-hand {
-  animation-name: wave-animation;
-  animation-duration: 2.5s;
-  animation-iteration-count: infinite;
-  transform-origin: 70% 70%;
-  display: inline-block;
-}
+@layer utilities {
+  :root {
+    --about-bg: #161626;
+  }
 
-@keyframes wave-animation {
-  0% {
-    transform: rotate(0deg);
+  * {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
   }
-  15% {
-    transform: rotate(14deg);
+
+  @media screen and (max-width: 767px) {
+    :root {
+      font-size: 14px;
+    }
   }
-  30% {
-    transform: rotate(-8deg);
-  }
-  40% {
-    transform: rotate(14deg);
-  }
-  50% {
-    transform: rotate(-4deg);
-  }
-  60% {
-    transform: rotate(10deg);
-  }
-  70% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
+
+  body {
+    font-family: var(--font-montserrat), Arial, Helvetica, sans-serif;
   }
 }
 
-.draw-logo {
-  animation: drawLogo 10s infinite linear;
-}
-
-@keyframes drawLogo {
-  0% {
-    stroke-dashoffset: 1633px;
-  }
-  6% {
-    stroke-dashoffset: 0px;
-  }
-  88% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
+@layer utilities {
+  a {
+    @apply focus-ring inline-block rounded;
   }
 }
 
-.draw-line {
-  animation: drawLine 3.6s 1 ease-out;
-}
-
-@keyframes drawLine {
-  0%,
-  50% {
-    stroke-dashoffset: 5000px;
+@layer utilities {
+  .waving-hand {
+    animation-name: wave-animation;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    transform-origin: 70% 70%;
+    display: inline-block;
   }
-  100% {
-    stroke-dashoffset: 0px;
+
+  @keyframes wave-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+    15% {
+      transform: rotate(14deg);
+    }
+    30% {
+      transform: rotate(-8deg);
+    }
+    40% {
+      transform: rotate(14deg);
+    }
+    50% {
+      transform: rotate(-4deg);
+    }
+    60% {
+      transform: rotate(10deg);
+    }
+    70% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
   }
-}
 
-.btn {
-  box-shadow:
-    inset 1px 1px 3px -2px #fffa,
-    -1px -1px 3px -2px #fffa,
-    inset -1px -1px 3px -1px #000,
-    1px 1px 3px -1px #000;
-  transition: all 0.01s ease-in-out;
-}
+  .draw-logo {
+    animation: drawLogo 10s infinite linear;
+  }
 
-.btn > span {
-  transform: translate(0, 0);
-  transition: all 0.01s ease-in-out;
-}
+  @keyframes drawLogo {
+    0% {
+      stroke-dashoffset: 1633px;
+    }
+    6% {
+      stroke-dashoffset: 0px;
+    }
+    88% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 
-.btn:active {
-  box-shadow:
-    inset 1px 1px 5px -2px #000,
-    -1px -1px 5px -2px #000,
-    inset -1px -1px 3px -1px #fff4,
-    1px 1px 3px -1px #fff4;
-}
+  .draw-line {
+    animation: drawLine 3.6s 1 ease-out;
+  }
 
-.btn:active > span {
-  transform: translate(2px, 2px);
-}
+  @keyframes drawLine {
+    0%,
+    50% {
+      stroke-dashoffset: 5000px;
+    }
+    100% {
+      stroke-dashoffset: 0px;
+    }
+  }
 
-#about > div {
-  background-color: var(--about-bg);
-  padding: 10%;
+  .btn {
+    box-shadow:
+      inset 1px 1px 3px -2px #fffa,
+      -1px -1px 3px -2px #fffa,
+      inset -1px -1px 3px -1px #000,
+      1px 1px 3px -1px #000;
+    transition: all 0.01s ease-in-out;
+  }
+
+  .btn > span {
+    transform: translate(0, 0);
+    transition: all 0.01s ease-in-out;
+  }
+
+  .btn:active {
+    box-shadow:
+      inset 1px 1px 5px -2px #000,
+      -1px -1px 5px -2px #000,
+      inset -1px -1px 3px -1px #fff4,
+      1px 1px 3px -1px #fff4;
+  }
+
+  .btn:active > span {
+    transform: translate(2px, 2px);
+  }
+
+  #about > div {
+    background-color: var(--about-bg);
+    padding: 10%;
+  }
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: #112;
+    --foreground: #f3f3f3;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
@@ -203,9 +276,10 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: #112;
+    --foreground: #eee;
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;

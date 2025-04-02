@@ -9,7 +9,7 @@ export const rules: Omit<
 > = {
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Invalid email address"),
-  message: z.string().nonempty("Message is required"),
+  message: z.string().nonempty("Message must not be empty"),
 };
 
 export const schema = z.object(rules);

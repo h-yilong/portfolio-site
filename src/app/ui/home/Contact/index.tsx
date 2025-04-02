@@ -4,6 +4,7 @@ import { createContactRequest, type State } from "@/app/lib/server-actions";
 import { useFormState, useFormStatus } from "react-dom";
 import { useEffect, useId, useRef } from "react";
 import Input from "@/app/components/primitive/Input";
+import ContactForm from "./ContactForm";
 
 const Form = ({ state }: { state: State }) => {
   const { pending } = useFormStatus();
@@ -77,7 +78,7 @@ export default function Contact() {
   return (
     <section className="max-width">
       <div className="my-24 overflow-hidden rounded-xl border border-white/10 bg-black/5" id="contact">
-        <div className="flex h-8 w-full items-center bg-gradient-to-r from-white/5 via-white/10 to-white/5">
+        <div className="flex h-8 w-full items-center bg-linear-to-r from-white/5 via-white/10 to-white/5">
           <div className="ml-4 h-3 w-3 rounded-full bg-white/30" />
           <div className="ml-2 h-3 w-3 rounded-full bg-white/30" />
           <div className="ml-2 h-3 w-3 rounded-full bg-white/30" />
@@ -85,6 +86,7 @@ export default function Contact() {
         <form ref={ref} action={dispatch} className="mx-auto flex w-full max-w-md flex-col gap-3 px-3 py-6 sm:px-0">
           <Form state={state} />
         </form>
+        <ContactForm />
       </div>
     </section>
   );

@@ -32,7 +32,7 @@ export default function Skills() {
         {SKILL_CAROUSEL_ITEMS.map((skill, index) => (
           <div
             key={index}
-            className="flex aspect-square flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-white/10 p-2"
+            className="flex aspect-square shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-white/10 p-2"
           >
             <img src={skill} alt={skill} loading="lazy" />
           </div>
