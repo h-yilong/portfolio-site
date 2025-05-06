@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Navbar from "@/app/components/Navbar";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const montserrat = localFont({
   // src: './fonts/GeistVF.woff',
@@ -34,6 +35,7 @@ export default async function RootLayout({
       <body className={`${montserrat.variable} ${geistMono.variable} dark max-w-full overflow-x-hidden antialiased`}>
         <Navbar />
         <main>{children}</main>
+        <Toaster richColors position="bottom-center" />
       </body>
     </html>
   );

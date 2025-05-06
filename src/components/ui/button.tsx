@@ -13,7 +13,7 @@ const buttonVariants = cva("", {
         "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
       outline:
         "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
-      secondary: "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
+      secondary: "from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700",
       ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
       link: "text-primary underline-offset-4 hover:underline",
     },
@@ -59,9 +59,13 @@ function Button({
       {...props}
     >
       {children}
-      {loading ? (
-        <Image src="/assets/images/loader.svg" width={14} height={14} alt="loader" className="size-3.5" />
-      ) : null}
+      <Image
+        src="/assets/images/loader.svg"
+        width={14}
+        height={14}
+        alt="loader"
+        className={cn("size-3.5", loading ? "" : "hidden")}
+      />
     </Comp>
   );
 }

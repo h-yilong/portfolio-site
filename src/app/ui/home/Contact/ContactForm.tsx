@@ -10,9 +10,9 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import InputFormField from "@/components/InputFormField";
 import TextareaFormField from "@/components/TextareaFormField";
-import { ContactMessage } from "@prisma/client";
 import { createContactRequest } from "./server-action";
 import { ContactFormData, schema } from "./rules-schema";
+import { toast } from "sonner";
 
 const ContactForm = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -41,7 +41,7 @@ const ContactForm = () => {
       const res = await createContactRequest(data);
 
       // todo: handle server form validation errors
-      if (res.status === "success") {
+      if (res === "success") {
         reset();
         // toast("Form submitted successfully.", {
         //   classNames: { title: "text-green-600 font-semibold" },
@@ -50,12 +50,13 @@ const ContactForm = () => {
         //   duration: 3000,
         //   icon: <CheckIcon className="stroke-green-600 stroke-[3]" />,
         // });
+        toast.success("Message sent successfully.");
         return;
       }
 
       // todo: toast error
     } catch (error) {
-      console.error("Error submitting form.", error);
+      console.error("Error submitting contact form.", error);
       // todo: toast error
     } finally {
       setSubmitting(false);
@@ -69,9 +70,11 @@ const ContactForm = () => {
           <div className="col-span-6">
             <InputFormField<ContactFormData>
               required
+              aria-required
+              disabled={submitting}
               name="name"
               label="Name"
-              placeholder="Student full legal name..."
+              placeholder="Your full name..."
               control={control}
             />
           </div>
@@ -80,38 +83,34 @@ const ContactForm = () => {
               name="email"
               label="Email"
               control={control}
+              placeholder="Your email address..."
               type="email"
               required
               aria-required
-              className="text-sm"
+              disabled={submitting}
             />
           </div>
 
           <div className="col-span-12">
             <TextareaFormField<ContactFormData>
               label="Message"
-              rows={5}
               control={control}
               name="message"
               className="resize-none"
               placeholder="Please leave your message here..."
               required
               aria-required
+              disabled={submitting}
               formDescription="Please leave your message here. The message must be less than 300 characters."
             />
           </div>
         </section>
 
         <div className="flex items-center justify-center gap-x-4">
-          <Button
-            disabled={submitting}
-            loading
-            // loading={submitting}
-            type="submit"
-          >
+          <Button disabled={submitting} loading={submitting} type="submit">
             {submitting ? "Submitting..." : "Submit"}
           </Button>
-          <Button type="reset" variant="secondary" onClick={() => reset()}>
+          <Button disabled={submitting} type="reset" variant="secondary" onClick={() => reset()}>
             Reset
           </Button>
         </div>

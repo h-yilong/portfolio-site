@@ -7,7 +7,7 @@ export const rules: Omit<
   },
   "id" | "createdAt" | "updatedAt" | "status"
 > = {
-  name: z.string().min(2, "Name is required"),
+  name: z.string().min(2, "Your name is required"),
   email: z.string().email("Invalid email address"),
   message: z.string().nonempty("Message must not be empty"),
 };

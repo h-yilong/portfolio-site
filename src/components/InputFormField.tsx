@@ -7,7 +7,6 @@ export default function InputFormField<T extends FieldValues>({
   label,
   name,
   control,
-
   required = false,
   formDescription = "",
   ...props
@@ -15,7 +14,6 @@ export default function InputFormField<T extends FieldValues>({
   label: string;
   control: Control<T, any>;
   name: Path<T>;
-
   formDescription?: string;
 }) {
   return (
@@ -26,10 +24,14 @@ export default function InputFormField<T extends FieldValues>({
         <FormItem>
           <FormLabel className="text-base font-semibold">
             {label}
-            {!required && <span className="ml-1 text-xs font-medium text-gray-500">(optional)</span>}
+            {required && <span className="mt-1.5 -ml-1 text-lg font-medium text-red-500">*</span>}
           </FormLabel>
           <FormControl>
-            <Input {...props} {...field} />
+            <Input
+              {...props}
+              className="dark:aria-invalid:ring-destructive/20 aria-invalid:ring-destructive/20 h-11 rounded-xl border-2 border-transparent bg-white/10 px-4 py-2 focus-visible:border-indigo-600 md:text-base dark:bg-white/10"
+              {...field}
+            />
           </FormControl>
           <FormMessage />
           {formDescription ? null : <FormDescription>{formDescription}</FormDescription>}
