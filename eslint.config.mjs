@@ -30,6 +30,7 @@ const eslintConfig = [
           varsIgnorePattern: "^_",
         },
       ],
+      "@typescript-eslint/no-namespace": 0,
       "no-param-reassign": 1,
       "no-console": "warn",
       "no-undef": "error",
@@ -42,21 +43,21 @@ const eslintConfig = [
       "@typescript-eslint/no-explicit-any": 1,
     },
   },
-  // {
-  //   files: ["**/*.cy.{js,ts,tsx,jsx}"],
-  //   rules: {
-  //     "no-undef": 0,
-  //     "no-param-reassign": 0,
-  //   },
-  // },
-  // {
-  //   files: ["cypress/support/*.ts"],
-  //   rules: {
-  //     "no-undef": 0,
-  //     "@typescript-eslint/no-namespace": 0,
-  //     "no-unused-vars": 0,
-  //   },
-  // },
+  {
+    files: ["**/*.cy.{js,ts,tsx,jsx}"],
+    rules: {
+      "no-undef": 0,
+      "no-param-reassign": 0,
+    },
+  },
+  {
+    files: ["cypress/support/*.ts"],
+    rules: {
+      "no-undef": 0,
+      // "@typescript-eslint/no-namespace": 0,
+      "no-unused-vars": 0,
+    },
+  },
 ];
 
 export default eslintConfig;

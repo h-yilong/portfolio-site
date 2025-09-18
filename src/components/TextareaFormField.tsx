@@ -1,4 +1,3 @@
-import { Textarea } from "@/components/ui/textarea";
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import React from "react";
 import { Control, FieldValues, Path } from "react-hook-form";
@@ -28,12 +27,13 @@ export default function TextareaFormField<T extends FieldValues>({
         <FormItem>
           <FormLabel className="text-base font-semibold">
             {label}
-            {!required && <span className="ml-1 text-xs font-medium text-gray-500">(optional)</span>}
+            {required && <span className="mt-1.5 -ml-1 text-lg font-medium text-red-500">*</span>}
           </FormLabel>
           <FormControl>
-            <Textarea
+            <textarea
+              data-slot="textarea"
               className={cn(
-                "dark:aria-invalid:ring-destructive/20 aria-invalid:ring-destructive/20 rounded-xl border-2 border-transparent bg-white/10 px-4 py-2 focus-visible:border-indigo-600 md:text-base dark:bg-white/10",
+                "focus-visible:border-ring aria-invalid:border-destructive rounded-xl border-2 border-transparent px-4 py-2 md:text-base",
                 className,
               )}
               {...props}

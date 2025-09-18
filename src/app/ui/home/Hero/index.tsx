@@ -39,7 +39,7 @@ const Hero = async () => {
         </div>
 
         <code className="my-4 bg-linear-to-r from-indigo-500 to-violet-600 bg-clip-text text-2xl font-semibold tracking-wide text-transparent">
-          &gt; Front-End Developer
+          &gt; Web Developer
         </code>
         <h2 className="my-4 text-xl text-slate-300">I love building cool stuff for the web!</h2>
         <div className="text-left">

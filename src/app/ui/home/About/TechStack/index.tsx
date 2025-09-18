@@ -53,7 +53,7 @@ export default function TechStack() {
           </div>
         </div>
       </div>
-      <article className="relative z-50">
+      <article className="relative z-50 mt-6">
         <h3 className="mb-2 text-lg leading-8 font-bold">Tech Stack</h3>
         <p>
           I specialize in a variety of languages, frameworks, and tools that allow me to build robust and scalable

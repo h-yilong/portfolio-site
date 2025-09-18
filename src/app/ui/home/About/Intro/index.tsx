@@ -38,11 +38,11 @@ export default function Intro() {
         <div className="col-span-2 h-full w-full rounded-lg" />
         <div className={`absolute inset-0 h-full w-full ${styles.radialBlend} z-30`} />
       </div>
-      <article className="relative z-50">
+      <article className="relative z-50 mt-6">
         <h3 className="mb-2 text-lg leading-8 font-bold">Hi, I&apos;m Yilong HUANG</h3>
         <p>
-          With more than 7 years of experience, I have honed my skills in both frontend and backend dev, creating
-          performant & responsive websites.
+          With more than 8 years of experience, I have honed my skills in both frontend and development, creating
+          performant & responsive web applications.
         </p>
       </article>
     </div>

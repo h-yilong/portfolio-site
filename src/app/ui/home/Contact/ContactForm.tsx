@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import InputFormField from "@/components/InputFormField";
 import TextareaFormField from "@/components/TextareaFormField";
 import { createContactRequest } from "./server-action";
-import { ContactFormData, schema } from "./rules-schema";
+import { type ContactFormData, schema } from "./rules-schema";
 import { toast } from "sonner";
 
 const ContactForm = () => {
@@ -19,8 +19,8 @@ const ContactForm = () => {
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(schema),
-    mode: "onTouched",
-    // mode: "onChange",
+    // mode: "onTouched",
+    mode: "onBlur",
     defaultValues: {
       name: "",
       email: "",
@@ -32,7 +32,7 @@ const ContactForm = () => {
     handleSubmit,
     reset,
     control,
-    formState: { errors },
+    // formState: { errors },
   } = form;
 
   const onSubmit = async (data: ContactFormData) => {
@@ -40,24 +40,17 @@ const ContactForm = () => {
       setSubmitting(true);
       const res = await createContactRequest(data);
 
-      // todo: handle server form validation errors
-      if (res === "success") {
+      if (res.status === "success") {
         reset();
-        // toast("Form submitted successfully.", {
-        //   classNames: { title: "text-green-600 font-semibold" },
-        //   description: "We will process your request as soon as possible.",
-        //   position: "bottom-center",
-        //   duration: 3000,
-        //   icon: <CheckIcon className="stroke-green-600 stroke-[3]" />,
-        // });
-        toast.success("Message sent successfully.");
+        toast.success(res.message || "Message sent successfully.");
         return;
       }
-
-      // todo: toast error
+      toast.error(res.message || "Error submitting contact form. Please try again.");
     } catch (error) {
       console.error("Error submitting contact form.", error);
-      // todo: toast error
+      if (error instanceof Error) {
+        toast.error(error.message || "Error submitting contact form. Please try again.");
+      }
     } finally {
       setSubmitting(false);
     }
@@ -65,7 +58,7 @@ const ContactForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit(onSubmit)} className="mx-auto mb-16 w-full max-w-2xl space-y-6 rounded p-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="mx-auto my-12 w-full max-w-2xl space-y-6 rounded p-6">
         <section role="table" className="grid w-full grid-cols-12 gap-4 rounded-md">
           <div className="col-span-6">
             <InputFormField<ContactFormData>
@@ -73,7 +66,8 @@ const ContactForm = () => {
               aria-required
               disabled={submitting}
               name="name"
-              label="Name"
+              label="Full Name"
+              autoComplete="name"
               placeholder="Your full name..."
               control={control}
             />
@@ -82,6 +76,7 @@ const ContactForm = () => {
             <InputFormField<ContactFormData>
               name="email"
               label="Email"
+              autoComplete="email"
               control={control}
               placeholder="Your email address..."
               type="email"
@@ -94,6 +89,7 @@ const ContactForm = () => {
           <div className="col-span-12">
             <TextareaFormField<ContactFormData>
               label="Message"
+              autoComplete="off"
               control={control}
               name="message"
               className="resize-none"

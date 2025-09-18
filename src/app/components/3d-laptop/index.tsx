@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 // Add this at the top of the file to declare the JSX namespace for Three.js elements
@@ -13,8 +14,8 @@ declare global {
   }
 }
 
-import { type ReactNode, Suspense, useEffect, useRef, useState } from "react";
-import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber";
+import { type ReactNode, Suspense, useEffect, useState } from "react";
+import { Canvas, type ThreeEvent } from "@react-three/fiber";
 
 import { useSpring } from "@react-spring/core";
 import { animated } from "@react-spring/three";

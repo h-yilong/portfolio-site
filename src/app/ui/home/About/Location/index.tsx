@@ -21,8 +21,7 @@ export default function Location() {
       <article className="relative z-50 xl:mt-12">
         <h3 className="mb-2 text-lg leading-8 font-bold">I&apos;m based in Sydney, Australia</h3>
         <p>
-          With 7+ years of experience, I have honed my skills in both frontend and backend dev, creating performant &
-          responsive websites.
+          Based in Sydney, Australia. I am highly flexible and open to onsite, remote, or hybrid working arrangements.
         </p>
       </article>
     </div>

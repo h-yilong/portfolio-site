@@ -30,10 +30,7 @@ export default function Skills() {
     >
       <div className={clsx("flex w-fit", styles.carousel)}>
         {SKILL_CAROUSEL_ITEMS.map((skill, index) => (
-          <div
-            key={index}
-            className="flex aspect-square shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-white/10 p-2"
-          >
+          <div key={index} className="skill-card">
             <img src={skill} alt={skill} loading="lazy" />
           </div>
         ))}

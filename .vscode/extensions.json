@@ -4,23 +4,24 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "usernamehw.errorlens",
+    "bradlc.vscode-tailwindcss"
 
     // Testing
-    "orta.vscode-jest",
+    // "orta.vscode-jest",
 
     // PR management / Reviewing
-    "github.vscode-pull-request-github",
+    // "github.vscode-pull-request-github",
 
     // Showing todo comments
-    "gruntfuggly.todo-tree",
+    // "gruntfuggly.todo-tree",
 
     // Collaborating
-    "ms-vsliveshare.vsliveshare",
+    // "ms-vsliveshare.vsliveshare",
 
     // Debugging
-    "ms-vscode.vscode-js-profile-flame",
+    // "ms-vscode.vscode-js-profile-flame",
 
     // MDX Authoring
-    "unifiedjs.vscode-mdx"
+    // "unifiedjs.vscode-mdx"
   ]
 }

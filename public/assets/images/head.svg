@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="bomberman"
+  xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 64 64">
+  <circle cx="32" cy="17" r="9" style="fill: #f5a; stroke: #333; stroke-width: 2px;"/>
+  <rect x="5" y="15" width="54" height="40" rx="20" ry="20" style="fill: #fff; stroke: #333; stroke-miterlimit: 10; stroke-width: 2px;"/>
+  <rect x="14" y="21" width="36" height="25" rx="13" ry="13" style="fill: #fce9e3; stroke: #f65; stroke-miterlimit: 10; stroke-width: 3px;"/>
+  <rect x="25" y="29" width="3" height="9" rx="2" ry="2" style="fill: #333;"/>
+  <rect x="37" y="29" width="3" height="9" rx="2" ry="2" style="fill: #333;"/>
+</svg>

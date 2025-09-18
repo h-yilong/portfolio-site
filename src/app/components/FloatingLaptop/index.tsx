@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 // Add this at the top of the file to declare the JSX namespace for Three.js elements
