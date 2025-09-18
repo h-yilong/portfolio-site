@@ -25,6 +25,8 @@ jobs:
           command: yarn test:ci
           browser: chrome
           wait-on: "http://localhost:3000"
+      # https://vercel.com/guides/how-can-i-use-github-actions-with-vercel
+      # https://github.com/vercel/examples/tree/main/ci-cd/github-actions
       - name: Install Vercel CLI
         run: npm install --global vercel@canary
       - name: Pull Vercel Environment Information

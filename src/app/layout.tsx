@@ -3,12 +3,13 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Navbar from "@/app/components/Navbar";
 import "./globals.css";
+import { Toaster } from "sonner";
 
-const geistSans = localFont({
+const montserrat = localFont({
   // src: './fonts/GeistVF.woff',
   // src: './fonts/RandyVF.woff2',
   src: "./fonts/Montserrat.woff2",
-  variable: "--font-montserrat-sans",
+  variable: "--font-montserrat",
   weight: "100 900",
   display: "swap",
   style: "normal",
@@ -24,16 +25,17 @@ export const metadata: Metadata = {
   description: "Yilong HUANG's Personal Site",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} max-w-full overflow-x-hidden antialiased`}>
+      <body className={`${montserrat.variable} ${geistMono.variable} dark max-w-full overflow-x-hidden antialiased`}>
         <Navbar />
-        {children}
+        <main>{children}</main>
+        <Toaster richColors position="bottom-center" />
       </body>
     </html>
   );

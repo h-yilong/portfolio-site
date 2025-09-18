@@ -85,10 +85,30 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
     - <https://github.com/vercel/nextgram>
     - <https://nextjs.org/docs/app/building-your-application/routing/parallel-routes#modals>
 - i18n
+- reCAPTCHA
 - Support dark/light themes
 - Sentry
 - GA
+- logging
+- event tracking
+- [passing additional arguments in form submission](https://nextjs.org/docs/14/app/building-your-application/data-fetching/server-actions-and-mutations#passing-additional-arguments)
+- store contact requests into a DB
+  - update request email sending status
 
 ## References
 
 - <https://docs.cypress.io/faq/questions/using-cypress-faq#Can-I-test-Nextjs-sites-using-Cypress>
+- UI Design
+  - <https://bento.ui8.net/01/>
+  - <https://www.figma.com/community/file/1100794861710979147>
+  - <https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions>
+
+---
+
+## Showcase Points
+
+- Styling
+  - use css variables as design tokens
+  - Using utility classes as an API for your design tokens.
+  - Tailwind is a framework for building custom designs, and different designs need different typography, colors, shadows, breakpoints, and more.
+  - These low-level design decisions are often called design tokens, and in Tailwind projects you store those values in theme variables.

@@ -27,7 +27,7 @@ function Button({
       type={type}
       disabled={disabled || loading}
       className={clsx(
-        `btn focus-ring flex w-fit items-center gap-2 rounded-3xl bg-gradient-to-br px-6 py-4 font-semibold hover:text-white disabled:cursor-not-allowed`,
+        `btn focus-ring flex w-fit items-center gap-2 rounded-3xl bg-linear-to-br px-6 py-4 font-semibold hover:text-white disabled:cursor-not-allowed`,
         color,
       )}
     >

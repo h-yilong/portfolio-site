@@ -55,7 +55,7 @@ export default function CodingKeyboard() {
         </div>
       </div>
       <article className="relative z-50">
-        <h3 className="mb-2 text-lg font-bold leading-8">My Passion for Coding</h3>
+        <h3 className="mb-2 text-lg leading-8 font-bold">My Passion for Coding</h3>
         <p>
           I love solving problems and building things through code. Programming isn&apos;t just my profession —
           <b>
