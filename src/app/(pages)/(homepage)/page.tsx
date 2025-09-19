@@ -4,6 +4,7 @@ import Skills from "@/app/ui/home/Skills";
 import About from "@/app/ui/home/About";
 import Contact from "@/app/ui/home/Contact";
 import Footer from "@/app/ui/home/Footer";
+import Site from "./Site";
 
 const PRELOAD_OPTIONS: PreloadOptions = {
   as: "image",
@@ -25,6 +26,7 @@ export default function Home() {
       <main className="overflow-x-hidden">
         <Hero />
         <Skills />
+        <Site />
         <About />
         <Contact />
         <Footer />

@@ -17,10 +17,10 @@ const navLinks = [
     name: "Contact",
     href: "/#contact",
   },
-  {
-    name: "Posts",
-    href: "/posts",
-  },
+  // {
+  //   name: "Posts",
+  //   href: "/posts",
+  // },
 ];
 
 const NavItems = ({ onClick = () => {} }) => (
