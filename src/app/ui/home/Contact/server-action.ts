@@ -12,7 +12,7 @@ export type Response = {
 
 export async function createContactRequest(formData: ContactFormData): Promise<Response> {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 3_000));
+    // await new Promise((resolve) => setTimeout(resolve, 3_000));
     // if (Math.random() < 1) {
     //   throw new Error("Intentional fake unexpected error."); // Will be caught by error.ts
     // }
