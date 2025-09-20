@@ -5,6 +5,7 @@ import About from "@/app/ui/home/About";
 import Contact from "@/app/ui/home/Contact";
 import Footer from "@/app/ui/home/Footer";
 import Site from "./Site";
+import { YHScene } from "./lusion/YHScene";
 
 const PRELOAD_OPTIONS: PreloadOptions = {
   as: "image",
@@ -26,6 +27,7 @@ export default function Home() {
       <main className="overflow-x-hidden">
         <Hero />
         <Skills />
+        <YHScene />
         <Site />
         <About />
         <Contact />
