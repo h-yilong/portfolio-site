@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { to } from "../../lib/to";
 import { describe, it, expect } from "vitest";
 
@@ -38,6 +39,7 @@ describe("Await to test", async () => {
     let user: { name: string };
     let err: Error;
 
+    // eslint-disable-next-line prefer-const, no-unused-vars, @typescript-eslint/no-unused-vars
     [err, user] = await to(Promise.resolve({ name: "123" }));
 
     expect(user.name).toEqual("123");
