@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1440 1440">
+  <defs>
+    <linearGradient id="linear-gradient" x1="-51.43" y1="193.35" x2="1465.77" y2="193.35" gradientTransform="translate(0 1440) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a2c9ff"/>
+      <stop offset=".37" stop-color="#0a87ea"/>
+      <stop offset=".66" stop-color="#256af4"/>
+      <stop offset="1" stop-color="#4548ff"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient" r="30" gradientUnits="userSpaceOnUse">
+      <stop offset=".4" stop-color="#fff"/>
+      <stop offset=".5" stop-color="#fff5f5"/>
+      <stop offset=".6" stop-color="#ffffdc" stop-opacity="0.6"/>
+      <stop offset=".7" stop-color="#c2daff" stop-opacity="0.6"/>
+      <stop offset=".8" stop-color="#e5efff" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#fff0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path fill="none" stroke="url(#linear-gradient)" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1px" d="M-56.6,1090.97c364.96,409.15,1194.72,397.69,1525.31,67.1"/>
+  <circle fill="url(#radial-gradient)" r="25">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M-56.6,1090.97c364.96,409.15,1194.72,397.69,1525.31,67.1" />
+  </circle>
+</svg>

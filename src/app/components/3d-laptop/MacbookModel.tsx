@@ -2,11 +2,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useFrame, type ThreeEvent } from "@react-three/fiber";
-import {
-  useGLTF,
-  useTexture,
-  // OrbitControls,
-} from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 import { type Group, MathUtils } from "three";
 import { animated } from "@react-spring/three";
 

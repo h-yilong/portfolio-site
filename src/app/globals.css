@@ -131,8 +131,16 @@
 }
 
 @layer components {
+  .parallax-wrapper {
+    @apply h-screen w-screen overflow-x-hidden overflow-y-scroll perspective-dramatic [&>div]:transform-3d;
+  }
   .skill-card {
     @apply flex aspect-square shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-white/10 p-2;
+  }
+  .custom-cursor {
+    cursor:
+      url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4KICA8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmYSIgc3Ryb2tlLXdpZHRoPSI0Ii8+CiAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iNSIgZmlsbD0iI2ZmZmEiLz4KPC9zdmc+),
+      auto;
   }
 }
 
@@ -259,7 +267,41 @@
   }
 
   .draw-logo {
-    animation: drawLogo 10s infinite linear;
+    animation: drawLogo 10s infinite ease-in-out;
+  }
+
+  @keyframes _spark {
+    0%,
+    48%,
+    50%,
+    98%,
+    100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    49%,
+    99% {
+      opacity: 1;
+      transform: scale(8);
+    }
+  }
+
+  @keyframes __spark {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    30%,
+    70% {
+      opacity: 0.1;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .spark {
+    animation: __spark 17s infinite linear;
   }
 
   @keyframes drawLogo {

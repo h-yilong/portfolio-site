@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1440 1440">
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: url(#linear-gradient);
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 16px;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="-30.14" y1="161.59" x2="1464.65" y2="161.59" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a2c9ff"/>
+      <stop offset=".37" stop-color="#0a87ea"/>
+      <stop offset=".66" stop-color="#256af4"/>
+      <stop offset="1" stop-color="#4548ff"/>
+    </linearGradient>
+  </defs>
+  <path class="st0" d="M-28.22,68.15c232.81,57.5,322.25,174.12,276.75,383s-179,126-199,79c-19.85-46.65-8.59-101.06,48-126,59-26,134.69,22.22,149,151.55,14.31,129.33,66.66,185.58,194.78,244.95,128.12,59.37,312.5,3.12,621.88,142.19s343.12,298.44,397.34,392.19"/>
+</svg>

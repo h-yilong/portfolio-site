@@ -31,7 +31,7 @@ export default async function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html data-scroll-behavior="smooth" lang="en">
       <body className={`${montserrat.variable} ${geistMono.variable} dark max-w-full overflow-x-hidden antialiased`}>
         <Navbar />
         <main>{children}</main>

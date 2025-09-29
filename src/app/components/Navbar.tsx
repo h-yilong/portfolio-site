@@ -2,7 +2,7 @@
 import { useState } from "react";
 import MenuButton from "./MenuButton";
 import Link from "next/link";
-import { clsx } from "../lib/utils";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   {
@@ -17,10 +17,14 @@ const navLinks = [
     name: "Contact",
     href: "/#contact",
   },
-  // {
-  //   name: "Posts",
-  //   href: "/posts",
-  // },
+  {
+    name: "Posts",
+    href: "/posts/design/3d",
+  },
+  {
+    name: "Playground",
+    href: "/playground",
+  },
 ];
 
 const NavItems = ({ onClick = () => {} }) => (
@@ -75,10 +79,7 @@ const Navbar = () => {
       </div>
 
       <div
-        className={clsx(
-          `overflow-hidden transition-all duration-300 ease-in-out sm:hidden`,
-          isOpen ? "h-screen" : "h-0",
-        )}
+        className={cn(`overflow-hidden transition-all duration-300 ease-in-out sm:hidden`, isOpen ? "h-screen" : "h-0")}
       >
         <nav className="py-5">
           <NavItems onClick={closeMenu} />

@@ -32,96 +32,115 @@ const shuffle = (accent = 0) => [
 ];
 
 // Main component that wraps the 3D scene in a styled container
-export const YHScene = () => (
-  <section className="mx-auto aspect-[1.8] max-w-3xl overflow-hidden rounded-3xl">
-    <Scene />
-  </section>
-);
-
-// Main 3D scene component that sets up the Canvas and all 3D elements
-function Scene(props) {
+export const YHScene = () => {
+  const ref = useRef(null);
   // State management for accent color cycling - increments on each click
   const [accent, click] = useReducer((state) => ++state % accents.length, 0);
   // Memoized array of connector properties - regenerates when accent changes
   const connectors = useMemo(() => shuffle(accent), [accent]);
 
   return (
-    <Canvas
-      onClick={click} // Click handler to cycle through accent colors
-      shadows // Enable shadow rendering
-      dpr={[1, 1.5]} // Device pixel ratio for crisp rendering
-      gl={{ antialias: false }} // Disable antialiasing for performance
-      camera={{ position: [0, 0, 15], fov: 20, near: 1, far: 20 }} // Camera setup
-      {...props}
+    <section
+      onClick={click}
+      ref={ref}
+      className="custom-cursor relative mx-auto aspect-[1.5] max-w-5xl overflow-hidden rounded-3xl"
     >
-      {/* Background color - dark blue-gray */}
-      <color attach="background" args={["#223"]} />
+      <div className="absolute inset-0 z-20 flex flex-col items-center p-8 text-center text-[5vw] leading-[1] font-extrabold opacity-90">
+        <p>Yilong</p>
+        <p>Huang</p>
+        <p>Dolor</p>
+        <p>Sit</p>
+      </div>
+      <Canvas
+        onClick={click} // Click handler to cycle through accent colors
+        // frameloop="demand"
+        shadows // Enable shadow rendering
+        dpr={[1, 1.5]} // Device pixel ratio for crisp rendering
+        gl={{ antialias: false }} // Disable antialiasing for performance
+        camera={{ position: [0, 0, 15], fov: 20, near: 1, far: 100 }} // Camera setup
+        eventSource={ref}
+        className="h-full w-full"
+        // eventPrefix="offset"
+      >
+        {/* Background color - dark blue-gray */}
+        <color attach="background" args={["#223"]} />
 
-      {/* Ambient light for overall scene illumination */}
-      <ambientLight intensity={0.8} />
+        {/* Ambient light for overall scene illumination */}
+        <ambientLight intensity={0.8} />
 
-      {/* Spotlight for dramatic lighting and shadows */}
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} castShadow />
+        {/* Spotlight for dramatic lighting and shadows */}
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} castShadow />
 
-      {/* Physics simulation with zero gravity for floating objects */}
-      <Physics /*debug*/ gravity={[0, 0, 0]}>
-        {/* Mouse pointer that interacts with physics objects */}
-        <Pointer />
+        {/* Physics simulation with zero gravity for floating objects */}
+        <Physics /*debug*/ gravity={[0, 0, 0]}>
+          {/* Mouse pointer that interacts with physics objects */}
+          <Pointer />
 
-        <Letter position={[10, 10, 5]}>
-          <LetterModel letter="Y">
-            <MeshTransmissionMaterial
-              clearcoat={1} // Glass-like clear coating
-              thickness={0.1} // Material thickness for refraction
-              anisotropicBlur={0.1} // Blur effect for realism
-              chromaticAberration={0.1} // Color separation effect
-              samples={8} // Quality of transmission effect
-              resolution={512} // Resolution of transmission calculations
-            />
-          </LetterModel>
-        </Letter>
-        {/* Generate multiple connector objects with different properties */}
-        {connectors.map((props, i) => (
-          <Fragment key={i}>
-            <Letter {...props} letter="Y" />
-            <Letter {...props} letter="H" />
-          </Fragment>
-        ))}
+          <Letter position={[10, 10, 5]}>
+            <LetterModel letter="Y">
+              <MeshTransmissionMaterial
+                clearcoat={1} // Glass-like clear coating
+                thickness={0.1} // Material thickness for refraction
+                anisotropicBlur={0.1} // Blur effect for realism
+                chromaticAberration={0.1} // Color separation effect
+                samples={8} // Quality of transmission effect
+                resolution={512} // Resolution of transmission calculations
+              />
+            </LetterModel>
+          </Letter>
+          {/* Generate multiple connector objects with different properties */}
+          {connectors.map((props, i) => (
+            <Fragment key={i}>
+              <Letter {...props} letter="Y" />
+              <Letter {...props} letter="H" />
+            </Fragment>
+          ))}
 
-        {/* Special connector with glass-like transmission material */}
-        <Letter position={[10, 10, 5]}>
-          <LetterModel letter="H">
-            <MeshTransmissionMaterial
-              clearcoat={1} // Glass-like clear coating
-              thickness={0.1} // Material thickness for refraction
-              anisotropicBlur={0.1} // Blur effect for realism
-              chromaticAberration={0.1} // Color separation effect
-              samples={8} // Quality of transmission effect
-              resolution={512} // Resolution of transmission calculations
-            />
-          </LetterModel>
-        </Letter>
-      </Physics>
+          {/* Special connector with glass-like transmission material */}
+          <Letter position={[10, 10, 5]}>
+            <LetterModel letter="H">
+              <MeshTransmissionMaterial
+                clearcoat={1} // Glass-like clear coating
+                thickness={0.1} // Material thickness for refraction
+                anisotropicBlur={0.1} // Blur effect for realism
+                chromaticAberration={0.1} // Color separation effect
+                samples={8} // Quality of transmission effect
+                resolution={512} // Resolution of transmission calculations
+              />
+            </LetterModel>
+          </Letter>
+        </Physics>
 
-      {/* Post-processing effects for enhanced visual quality */}
-      <EffectComposer disableNormalPass multisampling={8}>
-        {/* Ambient occlusion for realistic shadowing */}
-        <N8AO distanceFalloff={1} aoRadius={1} intensity={4} />
-      </EffectComposer>
+        {/* Post-processing effects for enhanced visual quality */}
+        <EffectComposer disableNormalPass multisampling={8}>
+          {/* Ambient occlusion for realistic shadowing */}
+          <N8AO distanceFalloff={1} aoRadius={1} intensity={4} />
+        </EffectComposer>
 
-      {/* Environment lighting setup with multiple light sources */}
-      <Environment resolution={256}>
-        <group rotation={[-Math.PI / 3, 0, 1]}>
-          {/* Various lightformers positioned around the scene for realistic lighting */}
-          <Lightformer form="circle" intensity={4} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={2} />
-          <Lightformer form="circle" intensity={2} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={2} />
-          <Lightformer form="circle" intensity={2} rotation-y={Math.PI / 2} position={[-5, -1, -1]} scale={2} />
-          <Lightformer form="circle" intensity={2} rotation-y={-Math.PI / 2} position={[10, 1, 0]} scale={8} />
-        </group>
-      </Environment>
-    </Canvas>
+        {/* Environment lighting setup with multiple light sources */}
+        <Environment resolution={256}>
+          <group rotation={[-Math.PI / 3, 0, 1]}>
+            {/* Various lightformers positioned around the scene for realistic lighting */}
+            <Lightformer form="circle" intensity={4} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={2} />
+            <Lightformer form="circle" intensity={2} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={2} />
+            <Lightformer form="circle" intensity={2} rotation-y={Math.PI / 2} position={[-5, -1, -1]} scale={2} />
+            <Lightformer form="circle" intensity={2} rotation-y={-Math.PI / 2} position={[10, 1, 0]} scale={8} />
+          </group>
+        </Environment>
+      </Canvas>
+    </section>
   );
-}
+};
+
+const Text = () => {
+  return (
+    <div className="absolute inset-0 z-20 flex items-center justify-center p-8 text-center text-2xl font-extrabold opacity-60">
+      "But afterwards there occurred violent earthquakes and floods; and in a single day and night of rain all your
+      warlike men in a body sank into the earth, and the island of Atlantis in like manner disappeared, and was sunk
+      beneath the sea."
+    </div>
+  );
+};
 
 // Connector component that represents a physics-enabled 3D object
 function Letter({

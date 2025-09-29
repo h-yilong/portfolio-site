@@ -1,3 +1,5 @@
+import FloatCard from "../playground/FloatCard";
+
 const TECHS = [
   {
     title: "Main TechStack",
@@ -57,19 +59,18 @@ export default function Site() {
         </article>
         <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {TECHS.map((tech) => (
-            <article
-              className="cursor-default rounded-xl border border-white/10 bg-[var(--about-bg)] p-4 text-center shadow-indigo-500/5 transition-all duration-200 hover:shadow-xl"
-              key={tech.title}
-            >
-              <h3 className="my-2 bg-linear-to-r from-indigo-500 to-violet-600 bg-clip-text text-lg font-bold tracking-wide text-transparent">
-                {tech.title}
-              </h3>
-              <ul className="space-y-1.5 font-medium">
-                {tech.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
+            <FloatCard key={tech.title} className="[&>div]:h-full">
+              <article className="h-full cursor-default rounded-xl border border-white/10 bg-[var(--about-bg)] p-4 text-center shadow-indigo-500/15 transition-all duration-100 hover:border-white/20 hover:shadow-2xl">
+                <h3 className="my-2 bg-linear-to-r from-indigo-500 to-violet-600 bg-clip-text text-lg font-bold tracking-wide text-transparent">
+                  {tech.title}
+                </h3>
+                <ul className="space-y-1.5 font-medium">
+                  {tech.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            </FloatCard>
           ))}
         </div>
       </div>
