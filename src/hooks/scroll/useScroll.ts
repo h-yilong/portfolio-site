@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 /**
  * Configuration options for the useScroll hook
@@ -154,9 +154,11 @@ export const useScroll = (options: ScrollOptions = {}): UseScrollReturn => {
     trackVelocity = false,
     trackAcceleration = false,
     element = null,
-    trackX = true,
-    trackY = true,
+    // trackX = true,
+    // trackY = true,
   } = options;
+
+  // console.log("element", element);
 
   // State for scroll position
   const [position, setPosition] = useState<ScrollPosition>({
@@ -194,8 +196,8 @@ export const useScroll = (options: ScrollOptions = {}): UseScrollReturn => {
 
   // Refs for performance optimization
   const rafIdRef = useRef<number | null>(null);
-  const throttleTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const scrollEndTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const throttleTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scrollEndTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastUpdateTimeRef = useRef<number>(0);
   const lastVelocityRef = useRef<ScrollVelocity | null>(null);
   const lastAccelerationRef = useRef<ScrollAcceleration | null>(null);
@@ -254,7 +256,7 @@ export const useScroll = (options: ScrollOptions = {}): UseScrollReturn => {
         isSignificant: magnitude > 0.1, // Threshold for significant movement
       };
     },
-    []
+    [],
   );
 
   /**
@@ -270,7 +272,7 @@ export const useScroll = (options: ScrollOptions = {}): UseScrollReturn => {
 
       return { x: accX, y: accY, magnitude };
     },
-    []
+    [],
   );
 
   /**
@@ -344,7 +346,15 @@ export const useScroll = (options: ScrollOptions = {}): UseScrollReturn => {
     scrollEndTimeoutRef.current = setTimeout(() => {
       setIsScrolling(false);
     }, 150); // Consider scrolling ended after 150ms of inactivity
-  }, [getScrollPosition, getMaxScrollPosition, trackDirection, trackVelocity, trackAcceleration, calculateVelocity, calculateAcceleration]);
+  }, [
+    getScrollPosition,
+    getMaxScrollPosition,
+    trackDirection,
+    trackVelocity,
+    trackAcceleration,
+    calculateVelocity,
+    calculateAcceleration,
+  ]);
 
   /**
    * Throttled scroll handler that uses requestAnimationFrame for optimal performance

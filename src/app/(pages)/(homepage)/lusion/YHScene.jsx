@@ -40,29 +40,18 @@ export const YHScene = () => {
   const connectors = useMemo(() => shuffle(accent), [accent]);
 
   return (
-    <section
-      onClick={click}
-      ref={ref}
-      className="custom-cursor relative mx-auto aspect-[1.5] max-w-5xl overflow-hidden rounded-3xl"
-    >
-      <div className="absolute inset-0 z-20 flex flex-col items-center p-8 text-center text-[5vw] leading-[1] font-extrabold opacity-90">
-        <p>Yilong</p>
-        <p>Huang</p>
-        <p>Dolor</p>
-        <p>Sit</p>
-      </div>
+    <section onClick={click} ref={ref} className="custom-cursor max-width relative mx-auto overflow-hidden rounded-3xl">
       <Canvas
-        onClick={click} // Click handler to cycle through accent colors
+        // onClick={click} // Click handler to cycle through accent colors
         // frameloop="demand"
         shadows // Enable shadow rendering
         dpr={[1, 1.5]} // Device pixel ratio for crisp rendering
         gl={{ antialias: false }} // Disable antialiasing for performance
         camera={{ position: [0, 0, 15], fov: 20, near: 1, far: 100 }} // Camera setup
         eventSource={ref}
-        className="h-full w-full"
+        className="aspect-[2] w-1/2"
         // eventPrefix="offset"
       >
-        {/* Background color - dark blue-gray */}
         <color attach="background" args={["#223"]} />
 
         {/* Ambient light for overall scene illumination */}
@@ -129,16 +118,6 @@ export const YHScene = () => {
         </Environment>
       </Canvas>
     </section>
-  );
-};
-
-const Text = () => {
-  return (
-    <div className="absolute inset-0 z-20 flex items-center justify-center p-8 text-center text-2xl font-extrabold opacity-60">
-      "But afterwards there occurred violent earthquakes and floods; and in a single day and night of rain all your
-      warlike men in a body sank into the earth, and the island of Atlantis in like manner disappeared, and was sunk
-      beneath the sea."
-    </div>
   );
 };
 

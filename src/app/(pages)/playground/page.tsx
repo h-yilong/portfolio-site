@@ -4,61 +4,21 @@ import AnimatedText2 from "@/components/AnimatedText2";
 import { App as CardsApp } from "@/app/(pages)/(homepage)/3d/cards/App";
 import { App as ShoesApp } from "@/app/(pages)/(homepage)/3d/shoes/App";
 import { LetterYApp } from "@/app/(pages)/(homepage)/lusion/LetterY";
-import WorkCard from "./WorkCard";
-import artImg from "./art.jpeg";
-import appDesign from "./app-design.png";
-import img3 from "./original-d6ce2b3a5a21c4b59f1e4cb7beabf003.jpg";
+
 import AnimatedCharacters from "@/components/AnimatedCharacters";
 import { useScroll } from "@/hooks/scroll/useScroll";
 import { useRef } from "react";
-import SintRobot from "@/components/3d/SintRobot";
 import { Canvas } from "@react-three/fiber";
 import { MeshDistortMaterial, Sphere } from "@react-three/drei";
 
-const media = [
-  {
-    title: "Art: Conceptual Design",
-    description: "web • design • development • 3d  • illustration",
-    image: artImg,
-    link: "/posts/design/3d",
-  },
-  {
-    title: "Art: Conceptual Design",
-    description: "web • design • development • 3d  • illustration",
-    video: "/assets/videos/video-design.mp4",
-    link: "/posts/design/3d",
-  },
-  {
-    title: "Art: Conceptual Design",
-    description: "web • design • development • 3d  • illustration",
-    image: appDesign.src,
-    link: "/posts/design/3d",
-  },
-  {
-    title: "Art: Conceptual Design",
-    description: "web • design • development • 3d  • illustration",
-    video: "/assets/videos/kpop_30s.mp4",
-    link: "/posts/design/3d",
-  },
-  {
-    title: "Art: Conceptual Design",
-    description: "web • design • development • 3d  • illustration",
-    image: img3,
-    link: "/posts/design/3d",
-  },
-  {
-    title: "Art: Conceptual Design",
-    description: "web • design • development • 3d  • illustration",
-    video: "/assets/videos/framer_.mp4",
-    link: "/posts/design/3d",
-  },
-];
+
 
 export default function PlaygroundPage() {
   const scrollContainerRef = useRef(null);
   // Use the scroll hook to track scroll progress
   const { position } = useScroll({
-    throttle: 120,
+    throttle: 50,
+    useRAF: false,
     element: scrollContainerRef.current,
   });
 
@@ -86,10 +46,7 @@ export default function PlaygroundPage() {
       <div ref={scrollContainerRef} id="playground-page" className="parallax-wrapper mt-20 pt-16">
         <div>
           <h1 className="text-center text-[5vw] font-bold">Playground</h1>
-          <svg
-            className="absolute top-[500px] left-0 -z-10 w-full -translate-z-16 scale-165 transition-all duration-300"
-            viewBox="0 0 1440 1440"
-          >
+          <svg className="absolute top-[500px] left-0 -z-10 w-full -translate-z-16 scale-165" viewBox="0 0 1440 1440">
             <defs>
               <linearGradient
                 id="linear-gradient"
@@ -106,6 +63,7 @@ export default function PlaygroundPage() {
               </linearGradient>
             </defs>
             <path
+              className="transition-all duration-500 ease-in-out"
               fill="none"
               stroke="url(#linear-gradient)"
               strokeMiterlimit="10"
@@ -117,12 +75,26 @@ export default function PlaygroundPage() {
             />
           </svg>
 
-          <div className="max-width relative mx-auto grid grid-cols-3 gap-8">
-            {media.map((item, index) => (
-              <WorkCard key={index} flip={index % 2 === 0} {...item} />
-            ))}
+          <div className="mx-auto h-52 w-fit snap-y snap-mandatory gap-2 overflow-y-auto scroll-smooth">
+            <div className="snap-start">
+              <div className="h-40 w-60 bg-indigo-500" />
+            </div>
+            <div className="snap-start">
+              <div className="h-40 w-60 bg-rose-500" />
+            </div>
+            <div className="snap-start">
+              <div className="h-40 w-60 bg-blue-500" />
+            </div>
+            <div className="snap-start">
+              <div className="h-40 w-60 bg-amber-500" />
+            </div>
+            <div className="snap-start">
+              <div className="h-40 w-60 bg-green-500" />
+            </div>
+            <div className="snap-start">
+              <div className="h-40 w-60 bg-purple-500" />
+            </div>
           </div>
-          <SintRobot />
           <section className="max-width mx-auto h-[500px]">
             <Canvas camera={{ position: [5, 5, 5], fov: 30, near: 1, far: 100 }}>
               <Sphere args={[1, 100, 200]} scale={1.8}>

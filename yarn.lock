@@ -1609,12 +1609,12 @@
   dependencies:
     undici-types "~7.12.0"
 
-"@types/node@^24.5.2":
-  version "24.5.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.5.2.tgz#52ceb83f50fe0fcfdfbd2a9fab6db2e9e7ef6446"
-  integrity sha512-FYxk1I7wPv3K2XBaoyH2cTnocQEu8AOZ60hPbsyukMPLv5/5qr7V1i8PLHdl6Zf87I+xZXFvPCXYjiTFq+YSDQ==
+"@types/node@^24.6.0":
+  version "24.6.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.6.0.tgz#5dd8d4eca0bba7dd81d853e7fadc96b322ff84f6"
+  integrity sha512-F1CBxgqwOMc4GKJ7eY22hWhBVQuMYTtqI8L0FcszYcpYX0fzfDGpez22Xau8Mgm7O9fI+zA/TYIdq3tGWfweBA==
   dependencies:
-    undici-types "~7.12.0"
+    undici-types "~7.13.0"
 
 "@types/offscreencanvas@^2019.6.4":
   version "2019.7.3"
@@ -1636,10 +1636,10 @@
   resolved "https://registry.yarnpkg.com/@types/react-reconciler/-/react-reconciler-0.32.1.tgz#6cb1d9bf85449a357517daf975d3d32149c1b2a7"
   integrity sha512-RsqPttsBQ+6af0nATFXJJpemYQH7kL9+xLNm1z+0MjQFDKBZDM2R6SBrjdvRmHu9i9fM6povACj57Ft+pKRNOA==
 
-"@types/react@^19.1.14":
-  version "19.1.14"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-19.1.14.tgz#154e157c014cb02b90201250b009ecad28fbad9f"
-  integrity sha512-ukd93VGzaNPMAUPy0gRDSC57UuQbnH9Kussp7HBjM06YFi9uZTFhOvMSO2OKqXm1rSgzOE+pVx1k1PYHGwlc8Q==
+"@types/react@^19.1.16":
+  version "19.1.16"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-19.1.16.tgz#6329b1c17a5de624439eae673f86a2c5569a42be"
+  integrity sha512-WBM/nDbEZmDUORKnh5i1bTnAz6vTohUf9b8esSMu+b24+srbaxa04UbJgWx78CVfNXA20sNu0odEIluZDFdCog==
   dependencies:
     csstype "^3.0.2"
 
@@ -7494,6 +7494,11 @@ undici-types@~7.12.0:
   version "7.12.0"
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-7.12.0.tgz#15c5c7475c2a3ba30659529f5cdb4674b622fafb"
   integrity sha512-goOacqME2GYyOZZfb5Lgtu+1IDmAlAEu5xnD3+xTzS10hT0vzpf0SPjkXwAw9Jm+4n/mQGDP3LO8CPbYROeBfQ==
+
+undici-types@~7.13.0:
+  version "7.13.0"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-7.13.0.tgz#a20ba7c0a2be0c97bd55c308069d29d167466bff"
+  integrity sha512-Ov2Rr9Sx+fRgagJ5AX0qvItZG/JKKoBRAVITs1zk7IqZGTJUwgUr7qoYBpWwakpWilTZFM98rG/AFRocu10iIQ==
 
 unicorn-magic@^0.3.0:
   version "0.3.0"

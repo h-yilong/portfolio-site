@@ -33,8 +33,8 @@ export default async function RootLayout({
   return (
     <html data-scroll-behavior="smooth" lang="en">
       <body className={`${montserrat.variable} ${geistMono.variable} dark max-w-full overflow-x-hidden antialiased`}>
-        <Navbar />
-        <main>{children}</main>
+        {/* <Navbar /> */}
+        {children}
         <Toaster richColors position="bottom-center" />
       </body>
     </html>

@@ -14,24 +14,28 @@ A high-performance React hook for detecting scroll events and position with adva
 ## Performance Optimizations
 
 ### 1. RequestAnimationFrame Integration
+
 ```tsx
 // Uses RAF for smooth 60fps updates
 const { position } = useScroll({ useRAF: true });
 ```
 
 ### 2. Throttling
+
 ```tsx
 // Throttle to 120fps for high-performance animations
 const { position } = useScroll({ throttle: 8 });
 ```
 
 ### 3. Passive Event Listeners
+
 ```tsx
 // Automatically uses passive listeners for better performance
 const { position } = useScroll();
 ```
 
 ### 4. Selective Tracking
+
 ```tsx
 // Only track what you need to minimize overhead
 const { position } = useScroll({
@@ -47,7 +51,7 @@ The hooks are available in your project at `src/hooks/scroll/`.
 ## Basic Usage
 
 ```tsx
-import { useScroll } from './hooks/scroll';
+import { useScroll } from "./hooks/scroll";
 
 function MyComponent() {
   const { position, direction, isScrolling } = useScroll();
@@ -55,8 +59,8 @@ function MyComponent() {
   return (
     <div>
       <p>Scroll Position: {position.y}px</p>
-      <p>Direction: {direction.y === 1 ? 'Down' : 'Up'}</p>
-      <p>Scrolling: {isScrolling ? 'Yes' : 'No'}</p>
+      <p>Direction: {direction.y === 1 ? "Down" : "Up"}</p>
+      <p>Scrolling: {isScrolling ? "Yes" : "No"}</p>
     </div>
   );
 }
@@ -68,31 +72,31 @@ function MyComponent() {
 
 #### Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `enabled` | `boolean` | `true` | Whether to track scroll events |
-| `throttle` | `number` | `16` | Throttle interval in milliseconds (16ms = 60fps) |
-| `useRAF` | `boolean` | `true` | Use requestAnimationFrame for better performance |
-| `trackDirection` | `boolean` | `true` | Track scroll direction |
-| `trackVelocity` | `boolean` | `false` | Track scroll velocity |
-| `trackAcceleration` | `boolean` | `false` | Track scroll acceleration |
-| `element` | `HTMLElement \| Window \| null` | `null` | Custom element to track (defaults to window) |
-| `trackX` | `boolean` | `true` | Track horizontal scroll |
-| `trackY` | `boolean` | `true` | Track vertical scroll |
+| Option              | Type                            | Default | Description                                      |
+| ------------------- | ------------------------------- | ------- | ------------------------------------------------ |
+| `enabled`           | `boolean`                       | `true`  | Whether to track scroll events                   |
+| `throttle`          | `number`                        | `16`    | Throttle interval in milliseconds (16ms = 60fps) |
+| `useRAF`            | `boolean`                       | `true`  | Use requestAnimationFrame for better performance |
+| `trackDirection`    | `boolean`                       | `true`  | Track scroll direction                           |
+| `trackVelocity`     | `boolean`                       | `false` | Track scroll velocity                            |
+| `trackAcceleration` | `boolean`                       | `false` | Track scroll acceleration                        |
+| `element`           | `HTMLElement \| Window \| null` | `null`  | Custom element to track (defaults to window)     |
+| `trackX`            | `boolean`                       | `true`  | Track horizontal scroll                          |
+| `trackY`            | `boolean`                       | `true`  | Track vertical scroll                            |
 
 #### Returns
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `position` | `ScrollPosition` | Current scroll position and metadata |
-| `direction` | `ScrollDirection` | Current scroll direction |
-| `velocity` | `ScrollVelocity \| null` | Current scroll velocity (if enabled) |
+| Property       | Type                         | Description                              |
+| -------------- | ---------------------------- | ---------------------------------------- |
+| `position`     | `ScrollPosition`             | Current scroll position and metadata     |
+| `direction`    | `ScrollDirection`            | Current scroll direction                 |
+| `velocity`     | `ScrollVelocity \| null`     | Current scroll velocity (if enabled)     |
 | `acceleration` | `ScrollAcceleration \| null` | Current scroll acceleration (if enabled) |
-| `isScrolling` | `boolean` | Whether the user is currently scrolling |
-| `isAtBottom` | `boolean` | Whether scrolled to the bottom |
-| `isAtTop` | `boolean` | Whether scrolled to the top |
-| `isAtLeft` | `boolean` | Whether scrolled to the left |
-| `isAtRight` | `boolean` | Whether scrolled to the right |
+| `isScrolling`  | `boolean`                    | Whether the user is currently scrolling  |
+| `isAtBottom`   | `boolean`                    | Whether scrolled to the bottom           |
+| `isAtTop`      | `boolean`                    | Whether scrolled to the top              |
+| `isAtLeft`     | `boolean`                    | Whether scrolled to the left             |
+| `isAtRight`    | `boolean`                    | Whether scrolled to the right            |
 
 ## Specialized Hooks
 
@@ -101,7 +105,7 @@ function MyComponent() {
 Optimized for scroll-triggered animations with high frame rates.
 
 ```tsx
-import { useScrollAnimation } from './hooks/scroll';
+import { useScrollAnimation } from "./hooks/scroll";
 
 function AnimatedComponent() {
   const { position, isScrolling } = useScrollAnimation({
@@ -112,7 +116,7 @@ function AnimatedComponent() {
     <div
       style={{
         transform: `translateY(${position.y * 0.5}px)`,
-        transition: isScrolling ? 'none' : 'transform 0.3s ease-out',
+        transition: isScrolling ? "none" : "transform 0.3s ease-out",
       }}
     >
       Parallax content
@@ -126,7 +130,7 @@ function AnimatedComponent() {
 Optimized for scroll-based navigation logic.
 
 ```tsx
-import { useScrollNavigation } from './hooks/scroll';
+import { useScrollNavigation } from "./hooks/scroll";
 
 function NavigationComponent() {
   const { direction, isScrolling } = useScrollNavigation({
@@ -136,11 +140,7 @@ function NavigationComponent() {
   // Hide navigation when scrolling down
   const showNav = direction.y !== 1;
 
-  return (
-    <nav className={showNav ? 'visible' : 'hidden'}>
-      Navigation content
-    </nav>
-  );
+  return <nav className={showNav ? "visible" : "hidden"}>Navigation content</nav>;
 }
 ```
 
@@ -149,7 +149,7 @@ function NavigationComponent() {
 Optimized for scroll-based analytics tracking.
 
 ```tsx
-import { useScrollAnalytics } from './hooks/scroll';
+import { useScrollAnalytics } from "./hooks/scroll";
 
 function AnalyticsComponent() {
   const { position, velocity, isScrolling } = useScrollAnalytics({
@@ -160,7 +160,7 @@ function AnalyticsComponent() {
   useEffect(() => {
     if (isScrolling) {
       // Track scroll events
-      analytics.track('scroll', {
+      analytics.track("scroll", {
         position: position.y,
         velocity: velocity?.magnitude,
       });
@@ -179,11 +179,8 @@ function AnalyticsComponent() {
 const { position } = useScroll();
 
 return (
-  <div className="fixed top-0 left-0 right-0 h-1 bg-gray-200">
-    <div
-      className="h-full bg-blue-500 transition-all duration-100"
-      style={{ width: `${position.progressY * 100}%` }}
-    />
+  <div className="fixed left-0 right-0 top-0 h-1 bg-gray-200">
+    <div className="h-full bg-blue-500 transition-all duration-100" style={{ width: `${position.progressY * 100}%` }} />
   </div>
 );
 ```
@@ -199,7 +196,7 @@ return (
   <div
     style={{
       transform: `translateY(${position.y * 0.5}px)`,
-      transition: isScrolling ? 'none' : 'transform 0.3s ease-out',
+      transition: isScrolling ? "none" : "transform 0.3s ease-out",
     }}
   >
     Parallax content
@@ -246,13 +243,14 @@ const { position, velocity, acceleration } = useScroll({
 });
 
 // Monitor performance
-console.log('Velocity:', velocity?.magnitude);
-console.log('Acceleration:', acceleration?.magnitude);
+console.log("Velocity:", velocity?.magnitude);
+console.log("Acceleration:", acceleration?.magnitude);
 ```
 
 ## Performance Best Practices
 
 ### 1. Use Appropriate Throttling
+
 ```tsx
 // For animations (high frequency)
 const { position } = useScroll({ throttle: 8 }); // 120fps
@@ -262,6 +260,7 @@ const { position } = useScroll({ throttle: 100 }); // 10fps
 ```
 
 ### 2. Disable Unnecessary Tracking
+
 ```tsx
 // Only track what you need
 const { position } = useScroll({
@@ -272,6 +271,7 @@ const { position } = useScroll({
 ```
 
 ### 3. Use Specialized Hooks
+
 ```tsx
 // For animations
 const { position } = useScrollAnimation();
@@ -284,6 +284,7 @@ const { position } = useScrollAnalytics();
 ```
 
 ### 4. Custom Element Tracking
+
 ```tsx
 // Track specific elements instead of window
 const { position } = useScroll({

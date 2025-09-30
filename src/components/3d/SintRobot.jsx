@@ -9,6 +9,8 @@ import { Canvas } from "@react-three/fiber";
 import { useGLTF, useAnimations, PerspectiveCamera } from "@react-three/drei";
 // Math utilities for smooth animations and transitions
 import CanvasLoader from "@/app/components/Loading";
+import PixelHeart from "../PixelHeart";
+import Link from "next/link";
 
 // todo: load transformed(compressed) glb first(if low speed), and then load the original glb?
 
@@ -18,52 +20,62 @@ export default function SintRobot() {
   const ref = useRef();
 
   return (
-    <section ref={ref} className="relative mt-16 aspect-[16/9] w-full rounded-2xl">
-      <div
-        className="spark absolute top-6 left-6 z-50 size-1 rounded-full bg-white"
-        style={{ boxShadow: "0 0 5px 1px #fff" }}
-      />
-      <svg className="absolute top-6 left-0 z-20 w-full" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-        <path fill="none" stroke="#fff0" strokeWidth="0.1" d="M20,50 C20,-50 180,150 180,50 C180-50 20,150 20,50 z" />
-
-        <circle r="0.3" className="spark" fill="white">
-          <animateMotion
-            dur="13s"
-            repeatCount="indefinite"
-            path="M20,50 C20,-50 180,150 180,50 C180-50 20,150 20,50 z"
-          />
-        </circle>
-      </svg>
-      <div className="absolute top-6 left-0 aspect-[1.3] h-full rounded-full bg-radial from-indigo-500/60 from-5% via-indigo-700/5 via-50% to-transparent to-80% opacity-50" />
-      <div className="absolute z-10 flex h-full w-full items-center justify-center">
-        <h2
-          className="text-center text-[8vw] leading-[1.1] font-light tracking-tight text-white opacity-90"
-          style={{ textShadow: "0 0 8px #fff" }}
-        >
-          {/* <h2 className="bg-linear-to-r from-violet-200 to-blue-200 bg-clip-text text-center text-[8vw] leading-[1.1] font-light tracking-tight text-transparent opacity-80"> */}
-          Building
-          <br />
-          Cool Things
-        </h2>
+    <>
+      <div className="relative h-0 w-full translate-z-6 scale-75">
+        <div className="absolute top-[85vh] z-10 flex h-full w-full flex-col items-center justify-center">
+          <h1
+            className="pointer-events-none rounded-3xl bg-black/35 px-[3vw] py-[2vw] text-center leading-[1.1] font-light tracking-tight text-white opacity-90"
+            style={{ textShadow: "0 0 8px #fff" }}
+          >
+            <div className="mb-[2vw] text-[10vw] tracking-tighter xl:text-9xl">
+              Hi, I'm <span className="font-medium">Yilong</span>
+            </div>
+            <div className="flex items-center justify-center gap-[1vw] text-[7.5vw] xl:text-8xl">
+              <span>I</span>
+              <PixelHeart />
+              <span>Building</span>
+            </div>
+            <div className="text-[7.5vw] xl:text-8xl">Cool Things</div>
+          </h1>
+        </div>
       </div>
-      <Canvas
-        shadows // Enable shadow rendering
-        dpr={[1, 1.5]} // Device pixel ratio for crisp rendering
-        gl={{ antialias: false }} // Disable antialiasing for performance
-        camera={{ position: [1.5, -2, 8], fov: 8, near: 0.1, far: 100 }} // Camera setup
-        eventSource={ref}
-      >
-        {/* <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={8} near={0.1} far={100} /> */}
-        <ambientLight intensity={5} color="#fdd" />
-        <directionalLight position={[2, 5, 2]} intensity={3} color="#1af" />
-        <directionalLight position={[-2, 0, -0.3]} intensity={6} color="#fff" />
+      <section ref={ref} className="relative h-[calc(100vh-64px)] w-full backdrop-blur-[2px]">
+        <div
+          className="spark absolute top-6 left-6 z-50 size-1 rounded-full bg-white"
+          style={{ boxShadow: "0 0 5px 1px #fff" }}
+        />
+        <svg className="absolute top-6 left-0 z-20 w-full" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+          <path fill="none" stroke="#fff0" strokeWidth="0.1" d="M20,50 C20,-50 180,150 180,50 C180-50 20,150 20,50 z" />
 
-        <Suspense fallback={<CanvasLoader />}>
-          <Model scale={0.02} position={[0, -2.8, 0]} />
-        </Suspense>
-        <Rig />
-      </Canvas>
-    </section>
+          <circle r="0.3" className="spark" fill="white">
+            <animateMotion
+              dur="13s"
+              repeatCount="indefinite"
+              path="M20,50 C20,-50 180,150 180,50 C180-50 20,150 20,50 z"
+            />
+          </circle>
+        </svg>
+        <div className="absolute top-6 left-0 aspect-[1.3] h-full rounded-full bg-radial from-indigo-500/60 from-5% via-indigo-700/5 via-50% to-transparent to-80% opacity-50" />
+        <Canvas
+          shadows // Enable shadow rendering
+          dpr={[1, 1.5]} // Device pixel ratio for crisp rendering
+          gl={{ antialias: false }} // Disable antialiasing for performance
+          camera={{ position: [1.5, -2, 8], fov: 8, near: 0.1, far: 100 }} // Camera setup
+          eventSource={ref}
+        >
+          {/* <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={8} near={0.1} far={100} /> */}
+          <ambientLight intensity={5} color="#fdd" />
+          <directionalLight position={[2, 5, 2]} intensity={3} color="#1af" />
+          <directionalLight position={[-2, 0, -0.3]} intensity={6} color="#fff" />
+
+          <Suspense fallback={null}>
+            <Model scale={0.02} position={[0, -2.8, 0]} />
+          </Suspense>
+          <Rig />
+        </Canvas>
+        <div className="h-[1px] w-full bg-linear-to-r from-transparent from-10% via-white/30 to-transparent to-90%" />
+      </section>
+    </>
   );
 }
 

@@ -5,7 +5,7 @@ import MyName from "./MyName";
 
 const Hero = async () => {
   return (
-    <section className="max-width relative" id="home">
+    <section className="max-width relative snap-start" id="home">
       <div className="relative z-20 mx-auto w-fit pt-28 text-center md:ml-0 md:text-left">
         <p className="text-lg font-medium">
           Hi there<span className="waving-hand">👋</span>, I am
