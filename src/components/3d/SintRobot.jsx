@@ -1,6 +1,6 @@
 "use client";
 import * as THREE from "three";
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import React, { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { useGraph, useFrame } from "@react-three/fiber";
 import { SkeletonUtils } from "three-stdlib";
 // React Three Fiber for React integration with Three.js
@@ -15,23 +15,58 @@ import PixelHeart from "../PixelHeart";
 
 // todo: load transformed(compressed) glb first(if low speed), and then load the original glb?
 
-const scale = Array.from({ length: 50 }, () => 0.6 + Math.random() * 12);
+const scale = Array.from({ length: 50 }, () => 1 + Math.random() * 12);
 
 // tips: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/animateMotion
 // Main component that wraps the 3D scene in a styled container
 export default function SintRobot() {
-  const ref = useRef();
+  const containerRef = useRef();
+  const gradientRef1 = useRef();
+  const gradientRef2 = useRef();
+  const animationFrameId = useRef(null);
+  const currentPositionRef = useRef({ x: 0, y: 0 });
+
+  const handleMouseMove = useCallback((e) => {
+    // Cancel any pending animation frame
+    if (animationFrameId.current) {
+      cancelAnimationFrame(animationFrameId.current);
+    }
+
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+
+    const targetX = (mouseX - window.innerWidth / 2) * 0.15;
+    const targetY = (mouseY - window.innerHeight / 2) * 0.1;
+
+    // Schedule the DOM update using requestAnimationFrame
+    animationFrameId.current = requestAnimationFrame(() => {
+      if (gradientRef1.current && gradientRef2.current) {
+        const dx = targetX - currentPositionRef.current.x;
+        const dy = targetY - currentPositionRef.current.y;
+
+        gradientRef1.current.style.transform = `translate(${dx}px, ${dy}px)`;
+        gradientRef2.current.style.transform = `translate(${-dx}px, ${-dy}px)`;
+      }
+    });
+  }, []);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
+    };
+  }, []);
+
+  console.log("render sint robot");
 
   return (
     <>
-      <div className="relative h-0 w-full translate-z-6 scale-75">
-        <div className="absolute top-12 left-12">
-          <p className="text-4xl leading-[1] font-bold tracking-tight text-white">Yilong HUANG</p>
-          <p className="text-4xl leading-[1] font-bold tracking-tight text-white">Sydney, Australia</p>
-        </div>
+      <div className="pointer-events-none relative z-50 h-0 w-full translate-z-6 scale-75">
         <div className="absolute top-[85vh] z-10 flex h-full w-full flex-col items-center justify-center">
           <h1
-            className="pointer-events-none rounded-3xl bg-black/35 px-[3vw] py-[2vw] text-center leading-[1.1] font-light tracking-tight text-white opacity-90"
+            className="rounded-3xl bg-black/35 px-[3vw] py-[2vw] text-center leading-[1.1] font-light tracking-tight text-white opacity-90"
             style={{ textShadow: "0 0 8px #fff" }}
           >
             <div className="mb-[2vw] text-[10vw] tracking-tighter xl:text-9xl">
@@ -46,14 +81,35 @@ export default function SintRobot() {
           </h1>
         </div>
       </div>
-      <section ref={ref} className="relative h-[calc(100vh-64px)] w-full backdrop-blur-[2px]">
-        <div className="absolute top-6 left-0 aspect-[1.3] h-full rounded-full bg-radial from-indigo-500/60 from-5% via-indigo-700/5 via-50% to-transparent to-80% opacity-50" />
+      <section
+        onMouseMove={handleMouseMove}
+        ref={containerRef}
+        className="relative h-[calc(100vh-64px)] w-full backdrop-blur-[2px]"
+      >
+        <div className="pointer-events-none absolute top-36 left-12 z-50">
+          <p className="text-4xl leading-[1.6] font-bold tracking-tight text-white">Yilong HUANG</p>
+          <p className="text-3xl leading-[1] font-light tracking-tight text-white">Sydney, Australia</p>
+        </div>
+
+        <div
+          className="pointer-events-none absolute right-[5%] bottom-1/12 aspect-[1.5] w-2/3 opacity-25 duration-200 ease-out"
+          ref={gradientRef1}
+        >
+          <div className="h-full w-full bg-radial-[50%_50%_at_50%_50%] from-indigo-600/90 from-10% via-violet-700/60 via-30% to-transparent" />
+        </div>
+        <div
+          className="pointer-events-none absolute top-[15%] left-[8%] z-2 aspect-[1.5] w-1/2 opacity-60 duration-200 ease-out"
+          ref={gradientRef2}
+        >
+          <div className="h-full w-full bg-radial-[50%_50%_at_50%_50%] from-[rgba(69,53,211,0.9)] from-10% via-[rgba(70,55,209,0.6)] via-30% to-transparent" />
+        </div>
+
         <Canvas
           shadows // Enable shadow rendering
           dpr={[1, 1.5]} // Device pixel ratio for crisp rendering
           gl={{ antialias: false }} // Disable antialiasing for performance
           camera={{ position: [1.5, -2, 8], fov: 8, near: 0.1, far: 100 }} // Camera setup
-          eventSource={ref}
+          eventSource={containerRef}
         >
           {/* <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={8} near={0.1} far={100} /> */}
           <ambientLight intensity={6} color="#fee" />
@@ -118,8 +174,8 @@ function Rig({ radius = 10 }) {
 
 export function Model(props) {
   const group = React.useRef();
-  const { scene, animations } = useGLTF("/assets/models/robot_2-transformed.glb");
-  // const { scene, animations } = useGLTF("/assets/models/robot_2.glb");
+  // const { scene, animations } = useGLTF("/assets/models/robot_2-transformed.glb");
+  const { scene, animations } = useGLTF("/assets/models/robot_2.glb");
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
   const { actions } = useAnimations(animations, group);
@@ -184,5 +240,5 @@ export function Model(props) {
   );
 }
 
-useGLTF.preload("/assets/models/robot_2-transformed.glb");
-// useGLTF.preload("/assets/models/robot_2.glb");
+// useGLTF.preload("/assets/models/robot_2-transformed.glb");
+useGLTF.preload("/assets/models/robot_2.glb");
