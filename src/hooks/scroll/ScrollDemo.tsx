@@ -32,7 +32,7 @@ export const ScrollDemo: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-purple-50">
       {/* Fixed Progress Bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-gray-200">
+      <div className="fixed top-0 right-0 left-0 z-50 h-1 bg-gray-200">
         <div
           className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-100"
           style={{ width: `${position.progressY * 100}%` }}
@@ -41,7 +41,7 @@ export const ScrollDemo: React.FC = () => {
 
       {/* Smart Navigation */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-sm shadow-lg transition-transform duration-300 ${
+        className={`fixed top-0 right-0 left-0 z-40 bg-white/90 shadow-lg backdrop-blur-sm transition-transform duration-300 ${
           navDirection.y === 1 && isNavScrolling ? "-translate-y-full" : "translate-y-0"
         }`}
       >
@@ -88,7 +88,9 @@ export const ScrollDemo: React.FC = () => {
               <div className="rounded-lg bg-gray-50 p-6">
                 <h3 className="mb-4 text-xl font-semibold">Basic Scroll Data</h3>
                 <div className="space-y-2">
-                  <p>Position: ({Math.round(position.x)}, {Math.round(position.y)})</p>
+                  <p>
+                    Position: ({Math.round(position.x)}, {Math.round(position.y)})
+                  </p>
                   <p>Progress: {(position.progressY * 100).toFixed(1)}%</p>
                   <p>Direction: {direction.y === 1 ? "↓ Down" : direction.y === -1 ? "↑ Up" : "— None"}</p>
                   <p>Scrolling: {isScrolling ? "Yes" : "No"}</p>
@@ -116,19 +118,20 @@ export const ScrollDemo: React.FC = () => {
               <h3 className="mb-4 text-xl font-semibold">Container Scroll Data</h3>
               <div className="mb-4 grid grid-cols-2 gap-4">
                 <div>
-                  <p>Position: ({Math.round(containerPosition.x)}, {Math.round(containerPosition.y)})</p>
+                  <p>
+                    Position: ({Math.round(containerPosition.x)}, {Math.round(containerPosition.y)})
+                  </p>
                   <p>Progress: {(containerPosition.progressY * 100).toFixed(1)}%</p>
                 </div>
                 <div>
-                  <p>Max: ({Math.round(containerPosition.maxX)}, {Math.round(containerPosition.maxY)})</p>
+                  <p>
+                    Max: ({Math.round(containerPosition.maxX)}, {Math.round(containerPosition.maxY)})
+                  </p>
                 </div>
               </div>
 
               {/* Scrollable Container */}
-              <div
-                ref={containerRef}
-                className="h-64 overflow-y-auto rounded-lg border-2 border-gray-300 p-4"
-              >
+              <div ref={containerRef} className="h-64 overflow-y-auto rounded-lg border-2 border-gray-300 p-4">
                 <div className="h-32 bg-blue-100 p-4">Content 1</div>
                 <div className="h-32 bg-green-100 p-4">Content 2</div>
                 <div className="h-32 bg-yellow-100 p-4">Content 3</div>
@@ -161,7 +164,7 @@ export const ScrollDemo: React.FC = () => {
         <footer className="bg-gray-800 py-16 text-white">
           <div className="mx-auto max-w-4xl px-6 text-center">
             <h2 className="mb-4 text-3xl font-bold">Scroll Demo Complete!</h2>
-            <p className="text-lg">You've seen all the scroll detection features in action.</p>
+            <p className="text-lg">You&apos;ve seen all the scroll detection features in action.</p>
           </div>
         </footer>
       </div>

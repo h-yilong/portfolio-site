@@ -1,17 +1,12 @@
 "use client";
 import AnimatedText1 from "@/components/AnimatedText1";
 import AnimatedText2 from "@/components/AnimatedText2";
-import { App as CardsApp } from "@/app/(pages)/(homepage)/3d/cards/App";
-import { App as ShoesApp } from "@/app/(pages)/(homepage)/3d/shoes/App";
 import { LetterYApp } from "@/app/(pages)/(homepage)/lusion/LetterY";
-
 import AnimatedCharacters from "@/components/AnimatedCharacters";
 import { useScroll } from "@/hooks/scroll/useScroll";
 import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { MeshDistortMaterial, Sphere } from "@react-three/drei";
-
-
 
 export default function PlaygroundPage() {
   const scrollContainerRef = useRef(null);
@@ -118,8 +113,6 @@ export default function PlaygroundPage() {
             </AnimatedCharacters>
 
             <LetterYApp />
-            <ShoesApp />
-            <CardsApp />
           </div>
         </div>
       </div>

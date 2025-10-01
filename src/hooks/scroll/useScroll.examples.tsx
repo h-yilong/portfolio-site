@@ -117,7 +117,7 @@ export const ScrollNavigationExample: React.FC = () => {
 
       {/* Navigation Bar */}
       <div
-        className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-lg transition-transform duration-300 ${
+        className={`fixed top-0 right-0 left-0 z-50 bg-white shadow-lg transition-transform duration-300 ${
           showNav ? "translate-y-0" : "-translate-y-full"
         }`}
       >
@@ -244,10 +244,7 @@ export const CustomElementScrollExample: React.FC = () => {
       <h2 className="mb-4 text-2xl font-bold">Custom Element Scroll Tracking</h2>
       <p className="mb-4">This tracks scroll within the container below, not the window.</p>
 
-      <div
-        ref={containerRef}
-        className="h-64 overflow-y-auto rounded-lg border-2 border-gray-300 p-4"
-      >
+      <div ref={containerRef} className="h-64 overflow-y-auto rounded-lg border-2 border-gray-300 p-4">
         <div className="h-32 bg-blue-100 p-4">Content 1</div>
         <div className="h-32 bg-green-100 p-4">Content 2</div>
         <div className="h-32 bg-yellow-100 p-4">Content 3</div>
@@ -295,7 +292,7 @@ export const PerformanceScrollExample: React.FC = () => {
   useEffect(() => {
     if (isScrolling) {
       const now = performance.now();
-      const delta = now - lastFrameTime;
+      const _delta = now - lastFrameTime;
       setFrameCount((prev) => prev + 1);
       setLastFrameTime(now);
     }
@@ -311,7 +308,9 @@ export const PerformanceScrollExample: React.FC = () => {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <h4 className="font-semibold text-gray-700">Scroll Data</h4>
-            <p>Position: ({Math.round(position.x)}, {Math.round(position.y)})</p>
+            <p>
+              Position: ({Math.round(position.x)}, {Math.round(position.y)})
+            </p>
             <p>Progress: {(position.progressY * 100).toFixed(1)}%</p>
             <p>Scrolling: {isScrolling ? "Yes" : "No"}</p>
           </div>
@@ -335,7 +334,7 @@ export const PerformanceScrollExample: React.FC = () => {
  * This example shows a scroll progress bar
  */
 export const ScrollProgressExample: React.FC = () => {
-  const { position, isScrolling } = useScroll();
+  const { position, isScrolling: _isScrolling } = useScroll();
 
   return (
     <div className="p-8">
@@ -343,7 +342,7 @@ export const ScrollProgressExample: React.FC = () => {
       <div className="mb-4 h-96 bg-gray-200">Scroll to see the progress bar</div>
 
       {/* Progress Bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-gray-200">
+      <div className="fixed top-0 right-0 left-0 z-50 h-1 bg-gray-200">
         <div
           className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-100"
           style={{ width: `${position.progressY * 100}%` }}

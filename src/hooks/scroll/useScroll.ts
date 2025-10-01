@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 /**
  * Configuration options for the useScroll hook
  */
-interface ScrollOptions {
+export interface ScrollOptions {
   /** Whether to track scroll events. Defaults to true. */
   enabled?: boolean;
   /** Throttle scroll events to improve performance. Defaults to 16ms (60fps). */
@@ -27,7 +27,7 @@ interface ScrollOptions {
 /**
  * Scroll position and metadata
  */
-interface ScrollPosition {
+export interface ScrollPosition {
   /** Current scroll position on X axis */
   x: number;
   /** Current scroll position on Y axis */
@@ -49,7 +49,7 @@ interface ScrollPosition {
 /**
  * Scroll direction information
  */
-interface ScrollDirection {
+export interface ScrollDirection {
   /** Current scroll direction on X axis (-1, 0, 1) */
   x: -1 | 0 | 1;
   /** Current scroll direction on Y axis (-1, 0, 1) */
@@ -65,7 +65,7 @@ interface ScrollDirection {
 /**
  * Scroll velocity information
  */
-interface ScrollVelocity {
+export interface ScrollVelocity {
   /** Current velocity on X axis (pixels per frame) */
   x: number;
   /** Current velocity on Y axis (pixels per frame) */
@@ -79,7 +79,7 @@ interface ScrollVelocity {
 /**
  * Scroll acceleration information
  */
-interface ScrollAcceleration {
+export interface ScrollAcceleration {
   /** Current acceleration on X axis */
   x: number;
   /** Current acceleration on Y axis */
@@ -91,7 +91,7 @@ interface ScrollAcceleration {
 /**
  * Return type for the useScroll hook
  */
-interface UseScrollReturn {
+export interface UseScrollReturn {
   /** Current scroll position and metadata */
   position: ScrollPosition;
   /** Current scroll direction */
@@ -389,7 +389,7 @@ export const useScroll = (options: ScrollOptions = {}): UseScrollReturn => {
     const scrollElement = targetElement === window ? window : (targetElement as HTMLElement);
 
     // Use passive event listeners for better performance
-    const options: AddEventListenerOptions = {
+    const options = {
       passive: true,
       capture: false,
     };

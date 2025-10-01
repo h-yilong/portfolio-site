@@ -8,9 +8,9 @@ const withBundleAnalyzer = nextBundleAnalyzer({
 });
 
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true, // ! WARN: Dangerous
-  },
+  // typescript: {
+  //   ignoreBuildErrors: true,
+  // },
   // Configure `pageExtensions` to include markdown and MDX files
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 };

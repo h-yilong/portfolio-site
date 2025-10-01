@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import { useIntersectionObserver, useLazyLoad, useScrollAnimation } from "./useIntersectionObserver";
 

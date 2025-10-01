@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import Navbar from "@/app/components/Navbar";
+// import Navbar from "@/app/components/Navbar";
 import "./globals.css";
 import { Toaster } from "sonner";
 
