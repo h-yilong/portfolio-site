@@ -60,7 +60,7 @@ export default function Site() {
         <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {TECHS.map((tech) => (
             <FloatCard key={tech.title} className="[&>div]:h-full">
-              <article className="h-full cursor-default rounded-xl border border-white/10 bg-[var(--about-bg)] p-4 text-center shadow-indigo-500/15 transition-all duration-100 hover:border-white/20 hover:shadow-2xl">
+              <article className="h-full cursor-default rounded-xl border border-white/10 bg-[var(--about-bg)]/90 p-4 text-center shadow-indigo-500/15 hover:border-white/20 hover:shadow-2xl">
                 <h3 className="my-2 bg-linear-to-r from-indigo-500 to-violet-600 bg-clip-text text-lg font-bold tracking-wide text-transparent">
                   {tech.title}
                 </h3>

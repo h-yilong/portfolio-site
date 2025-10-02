@@ -50,7 +50,6 @@ export default function FloatCard({ children, className }: { children: ReactNode
       <div
         ref={cardRef}
         style={{ transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)` }}
-        className="transition-all duration-75"
         onMouseMove={handleMouseMove}
       >
         {children}

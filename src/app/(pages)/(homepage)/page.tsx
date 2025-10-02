@@ -1,14 +1,16 @@
 import { preload, type PreloadOptions } from "react-dom";
+import HeroSection from "./HeroSection";
 import Hero from "@/app/ui/home/Hero";
 import About from "@/app/ui/home/About";
 import Contact from "@/app/ui/home/Contact";
 import Footer from "@/app/ui/home/Footer";
 import Site from "./Site";
 import { YHScene } from "./lusion/YHScene";
-import SintRobot from "@/components/3d/SintRobot";
 import AnimatedLine from "./AnimatedLine";
 import FeaturedPosts from "./FeaturedPosts";
 import AnimatedLine2 from "./AnimatedLine2";
+import ImaginationText from "./ImaginationText";
+import ImaginationText2 from "@/app/(pages)/react-spring/ImaginationText";
 
 const PRELOAD_OPTIONS: PreloadOptions = {
   as: "image",
@@ -34,25 +36,11 @@ export default function Home() {
         }}
         className="parallax-wrapper overflow-x-hidden overflow-y-auto scroll-smooth"
       >
-        <div className="snap-y snap-mandatory">
-          <SintRobot />
+        <div>
+          <ImaginationText />
+          <ImaginationText2 />
+          <HeroSection />
           <AnimatedLine />
-          <section className="h-16 w-full text-center backdrop-blur-[2px]">
-            <p className="text-2xl leading-16">+ Scroll to explore more +</p>
-          </section>
-          <section className="max-width relative mx-auto my-16 w-full">
-            <h2 className="text-[10vw] font-semibold tracking-tighter *:leading-[1] xl:text-9xl">
-              <p>
-                <span>Never</span>&nbsp;
-                <span>Limit</span>
-              </p>
-              <p>
-                <span>Your</span>&nbsp;
-                <span>Imagination</span>
-              </p>
-            </h2>
-          </section>
-
           <YHScene />
           <FeaturedPosts />
           <AnimatedLine2 />
