@@ -7,6 +7,10 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 
 // todo: load transformed(compressed) glb first(if low speed), and then load the original glb?
 
+// todo: 1. try removing all texture images in the model file(use .gltf instead?)
+// todo: 2. try loading model and apply compressed material/images
+// todo: 3. load the HD webp images and then replaced the compressed images?
+
 // const maskMaterial = new THREE.MeshStandardMaterial({
 //   color: "#fff",
 //   roughness: 0.3,
@@ -18,7 +22,10 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 export default function SintRobotModel() {
   const group = useRef(null);
   // const { scene, animations } = useGLTF("/assets/models/robot_2-transformed.glb");
-  const { scene, animations } = useGLTF("/assets/models/robot_2.glb");
+  // const { scene, animations } = useGLTF("/assets/models/robot_2.glb");
+  // const { scene, animations } = useGLTF("/assets/compressed/robot.gltf");
+  // const { scene, animations } = useGLTF("/assets/models/robot-original/robot.gltf");
+  const { scene, animations } = useGLTF("/assets/t-2048/robot.gltf");
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
   const { actions } = useAnimations(animations, group);
@@ -46,11 +53,12 @@ export default function SintRobotModel() {
         <skinnedMesh
           name="mask"
           geometry={nodes.mask.geometry}
-          // material={materials["Transparency_shader.001"]}
+          opacity={0.5}
+          material={materials["Transparency_shader.001"]}
           // material={maskMaterial}
           skeleton={nodes.mask.skeleton}
         >
-          <meshStandardMaterial color="#fff" roughness={0.8} metalness={0.8} transparent opacity={0.5} />
+          {/* <meshStandardMaterial color="#fff" roughness={0.8} metalness={0.8} transparent opacity={0.5} /> */}
         </skinnedMesh>
         <group name="shoulder001">
           <skinnedMesh
@@ -84,4 +92,6 @@ export default function SintRobotModel() {
 }
 
 // useGLTF.preload("/assets/models/robot_2-transformed.glb");
-useGLTF.preload("/assets/models/robot_2.glb");
+// useGLTF.preload("/assets/models/robot_2.glb");
+// useGLTF.preload("/assets/compressed/robot.gltf");
+// useGLTF.preload("/assets/models/robot-original/robot.gltf");

@@ -1,6 +1,7 @@
 /* tips: default layer order */
 /* @layer theme, base, components, utilities; */
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -386,4 +387,8 @@
 
 #about {
   background-image: radial-gradient(circle at center, #1d1d37, transparent 75%);
+}
+
+.prose {
+  max-width: 80ch;
 }

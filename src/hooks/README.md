@@ -5,11 +5,12 @@ A versatile React hook that utilizes the IntersectionObserver API to track when 
 ## Features
 
 - 🎯 **Simple API** - Easy to use with comprehensive TypeScript support
-- 🚀 **Performance Optimized** - Built-in options for performance optimization
+- 🚀 **Performance Optimized** - Optimized callback dependencies and single cleanup effect
 - 🔧 **Highly Configurable** - Supports all IntersectionObserver options
 - 📱 **Responsive** - Works with custom root elements and margins
-- 🎨 **Animation Ready** - Perfect for scroll-triggered animations
+- 🎨 **Animation Ready** - Perfect for scroll-triggered animations with continuous tracking
 - 📊 **Analytics Friendly** - Built-in tracking capabilities
+- ⚡ **Memory Efficient** - Automatic cleanup and optimized re-renders
 
 ## Installation
 
@@ -72,7 +73,7 @@ function LazyImage({ src, alt }) {
 
 ### useScrollAnimation(options?)
 
-Optimized for scroll-triggered animations.
+Optimized for scroll-triggered animations. **Note**: This hook uses `freezeOnceVisible: true` by default, which means it stops tracking after the element becomes visible. For animations that need to reverse when scrolling away, use `useIntersectionObserver` instead.
 
 ```tsx
 import { useScrollAnimation } from "./hooks/useIntersectionObserver";
@@ -96,6 +97,30 @@ function AnimatedCard() {
 }
 ```
 
+**For reversible animations**, use the base hook:
+
+```tsx
+import { useIntersectionObserver } from "./hooks/useIntersectionObserver";
+
+function ReversibleAnimation() {
+  const { ref, isIntersecting } = useIntersectionObserver({
+    threshold: 0.3,
+    rootMargin: "0px 0px -50px 0px",
+  });
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-1000 ${
+        isIntersecting ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+      }`}
+    >
+      This animation reverses when scrolling away
+    </div>
+  );
+}
+```
+
 ## Common Use Cases
 
 ### 1. Lazy Loading Images
@@ -109,8 +134,19 @@ const { ref, isIntersecting } = useLazyLoad({
 
 ### 2. Scroll-triggered Animations
 
+**For one-time animations** (freezes after first visibility):
+
 ```tsx
 const { ref, isIntersecting } = useScrollAnimation({
+  threshold: 0.3,
+  rootMargin: "0px 0px -50px 0px",
+});
+```
+
+**For reversible animations** (tracks enter/exit):
+
+```tsx
+const { ref, isIntersecting } = useIntersectionObserver({
   threshold: 0.3,
   rootMargin: "0px 0px -50px 0px",
 });
@@ -174,10 +210,22 @@ yarn add intersection-observer
 ## Performance Tips
 
 1. **Use `triggerOnce`** for elements that only need to be tracked once
-2. **Use `freezeOnceVisible`** for performance optimization
-3. **Set appropriate thresholds** to avoid unnecessary callbacks
-4. **Use `rootMargin`** to trigger before elements are fully visible
-5. **Disconnect observers** when components unmount (handled automatically)
+2. **Use `freezeOnceVisible`** for performance optimization (stops tracking after first visibility)
+3. **Use `useScrollAnimation`** for one-time animations that don't need to reverse
+4. **Use `useIntersectionObserver`** for reversible animations that track enter/exit
+5. **Set appropriate thresholds** to avoid unnecessary callbacks
+6. **Use `rootMargin`** to trigger before elements are fully visible
+7. **Disconnect observers** when components unmount (handled automatically)
+8. **Optimized callback dependencies** - the hook uses minimal dependencies to prevent unnecessary re-renders
+
+## Recent Optimizations
+
+The hook has been optimized for better performance:
+
+- **Reduced callback dependencies**: The `handleIntersection` callback now uses minimal dependencies `[triggerOnce, freezeOnceVisible]` instead of including `hasBeenVisible`
+- **Single cleanup effect**: Removed duplicate cleanup effects for better memory management
+- **Optimized state updates**: Simplified intersection logic to prevent unnecessary state updates
+- **Better animation support**: Clear distinction between one-time animations (`useScrollAnimation`) and reversible animations (`useIntersectionObserver`)
 
 ## TypeScript Support
 

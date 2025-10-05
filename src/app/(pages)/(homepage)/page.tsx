@@ -9,7 +9,6 @@ import { YHScene } from "./lusion/YHScene";
 import AnimatedLine from "./AnimatedLine";
 import FeaturedPosts from "./FeaturedPosts";
 import AnimatedLine2 from "./AnimatedLine2";
-import ImaginationText from "./ImaginationText";
 import ImaginationText2 from "@/app/(pages)/react-spring/ImaginationText";
 
 const PRELOAD_OPTIONS: PreloadOptions = {
@@ -37,9 +36,8 @@ export default function Home() {
         className="parallax-wrapper overflow-x-hidden overflow-y-auto scroll-smooth"
       >
         <div>
-          <ImaginationText />
-          <ImaginationText2 />
           <HeroSection />
+          <ImaginationText2 />
           <AnimatedLine />
           <YHScene />
           <FeaturedPosts />

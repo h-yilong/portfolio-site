@@ -10,10 +10,8 @@ interface IntersectionObserverOptions {
   rootMargin?: string;
   /** Either a single number or an array of numbers which indicate at what percentage of the target's visibility the observer's callback should be executed. If you only want to detect when visibility passes the 50% mark, you can use a value of 0.5. If you want the callback to run every time visibility passes another 25%, you would use the array [0, 0.25, 0.5, 0.75, 1]. The default is 0 (meaning as soon as even one pixel is visible, the callback will be run). A value of 1.0 means that the threshold isn't considered passed until every pixel is visible. */
   threshold?: number | number[];
-  /** Whether to trigger the callback immediately when the hook is first used. Defaults to false. */
+  /** for elements that only need to be tracked/triggered once */
   triggerOnce?: boolean;
-  /** Whether to freeze the observer after the first intersection. Useful for performance optimization. Defaults to false. */
-  freezeOnceVisible?: boolean;
 }
 
 /**
@@ -50,7 +48,7 @@ interface UseIntersectionObserverReturn {
  *   triggerOnce: true
  * });
  *
- * @example
+ * @exampleF
  * // For lazy loading images
  * const { ref, isIntersecting } = useIntersectionObserver({
  *   threshold: 0.1,
@@ -65,7 +63,7 @@ interface UseIntersectionObserverReturn {
  * });
  */
 export const useIntersectionObserver = (options: IntersectionObserverOptions = {}): UseIntersectionObserverReturn => {
-  const { root = null, rootMargin = "0px", threshold = 0, triggerOnce = false, freezeOnceVisible = false } = options;
+  const { root = null, rootMargin = "0px", threshold = 0, triggerOnce = false } = options;
 
   // State to track intersection status
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -81,6 +79,7 @@ export const useIntersectionObserver = (options: IntersectionObserverOptions = {
 
   /**
    * Callback function that gets called when intersection changes
+   * Optimized to prevent unnecessary recreations
    */
   const handleIntersection = useCallback(
     (entries: IntersectionObserverEntry[]) => {
@@ -92,7 +91,7 @@ export const useIntersectionObserver = (options: IntersectionObserverOptions = {
       setEntry(intersectionEntry);
 
       // Track if element has ever been visible
-      if (intersectionEntry.isIntersecting && !hasBeenVisible) {
+      if (intersectionEntry.isIntersecting) {
         setHasBeenVisible(true);
       }
 
@@ -103,20 +102,13 @@ export const useIntersectionObserver = (options: IntersectionObserverOptions = {
           observerRef.current = null;
         }
       }
-
-      // If freezeOnceVisible is enabled and element has been visible, disconnect observer
-      if (freezeOnceVisible && hasBeenVisible) {
-        if (observerRef.current) {
-          observerRef.current.disconnect();
-          observerRef.current = null;
-        }
-      }
     },
-    [triggerOnce, freezeOnceVisible, hasBeenVisible],
+    [triggerOnce],
   );
 
   /**
    * Set up the IntersectionObserver
+   * Optimized with single cleanup effect
    */
   useEffect(() => {
     const element = ref.current;
@@ -137,7 +129,7 @@ export const useIntersectionObserver = (options: IntersectionObserverOptions = {
     observerRef.current = observer;
     observer.observe(element);
 
-    // Cleanup function
+    // Single cleanup function - no duplicate cleanup needed
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
@@ -145,18 +137,6 @@ export const useIntersectionObserver = (options: IntersectionObserverOptions = {
       }
     };
   }, [root, rootMargin, threshold, handleIntersection]);
-
-  /**
-   * Cleanup observer when component unmounts
-   */
-  useEffect(() => {
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-        observerRef.current = null;
-      }
-    };
-  }, []);
 
   return {
     ref,
@@ -183,26 +163,6 @@ export const useLazyLoad = (options: Omit<IntersectionObserverOptions, "triggerO
   return useIntersectionObserver({
     ...options,
     triggerOnce: true,
-    threshold: options.threshold || 0.1,
-  });
-};
-
-/**
- * A specialized hook for scroll-triggered animations
- *
- * @param options - Configuration options for the IntersectionObserver
- * @returns An object containing the ref and animation trigger state
- *
- * @example
- * const { ref, isIntersecting } = useScrollAnimation({
- *   threshold: 0.5,
- *   rootMargin: '0px 0px -100px 0px'
- * });
- */
-export const useScrollAnimation = (options: Omit<IntersectionObserverOptions, "freezeOnceVisible"> = {}) => {
-  return useIntersectionObserver({
-    ...options,
-    freezeOnceVisible: true,
     threshold: options.threshold || 0.1,
   });
 };

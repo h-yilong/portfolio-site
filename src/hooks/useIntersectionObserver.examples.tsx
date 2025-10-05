@@ -1,6 +1,9 @@
-// @ts-nocheck
+"use client";
 import React, { useState } from "react";
 import { useIntersectionObserver, useLazyLoad, useScrollAnimation } from "./useIntersectionObserver";
+
+// Type assertion helper for ref compatibility
+const asDivRef = (ref: React.RefObject<HTMLElement | null>) => ref as React.RefObject<HTMLDivElement>;
 
 /**
  * EXAMPLE 1: Basic Usage - Simple visibility tracking
@@ -10,21 +13,39 @@ export const BasicExample: React.FC = () => {
   const { ref, isIntersecting, intersectionRatio } = useIntersectionObserver();
 
   return (
-    <div className="p-8">
-      <h2 className="mb-4 text-2xl font-bold">Basic Visibility Tracking</h2>
-      <div className="mb-4 h-96 bg-gray-200">Scroll down to see the tracked element</div>
-
-      <div
-        ref={ref}
-        className={`rounded-lg p-6 transition-all duration-500 ${
-          isIntersecting ? "scale-105 transform bg-green-500 text-white" : "bg-gray-300 text-gray-700"
-        }`}
-      >
-        <h3 className="mb-2 text-xl font-semibold">{isIntersecting ? "Element is visible!" : "Element is hidden"}</h3>
-        <p>Intersection ratio: {(intersectionRatio * 100).toFixed(1)}%</p>
+    <div>
+      <div className="mb-6 flex items-center justify-between">
+        <h2 className="text-2xl font-bold">Basic Visibility Tracking</h2>
+        <div className="flex items-center gap-2">
+          <div className={`h-3 w-3 rounded-full ${isIntersecting ? "bg-green-500" : "bg-gray-400"}`}></div>
+          <span className="text-sm text-gray-600">
+            {isIntersecting ? "Visible" : "Hidden"} ({(intersectionRatio * 100).toFixed(1)}%)
+          </span>
+        </div>
       </div>
 
-      <div className="mt-4 h-96 bg-gray-200">More content below</div>
+      <div className="mb-4 flex h-96 items-center justify-center bg-gray-200">
+        <p className="text-gray-500">Scroll down to see the tracked element</p>
+      </div>
+
+      <div
+        ref={asDivRef(ref)}
+        className={`rounded-lg p-6 transition-all duration-500 ${
+          isIntersecting ? "scale-105 transform bg-green-500 text-white shadow-lg" : "bg-gray-300 text-gray-700"
+        }`}
+      >
+        <h3 className="mb-2 text-xl font-semibold">
+          {isIntersecting ? "🎉 Element is visible!" : "👁️ Element is hidden"}
+        </h3>
+        <p className="text-sm opacity-90">Intersection ratio: {(intersectionRatio * 100).toFixed(1)}%</p>
+        <p className="mt-2 text-xs opacity-75">
+          This element changes color and scale when it enters/exits the viewport
+        </p>
+      </div>
+
+      <div className="mt-4 flex h-96 items-center justify-center bg-gray-200">
+        <p className="text-gray-500">More content below</p>
+      </div>
     </div>
   );
 };
@@ -49,7 +70,7 @@ export const LazyImageExample: React.FC = () => {
       <h2 className="mb-4 text-2xl font-bold">Lazy Loading Images</h2>
       <div className="mb-4 h-96 bg-gray-200">Scroll down to load the image</div>
 
-      <div ref={ref} className="flex min-h-[400px] items-center justify-center">
+      <div ref={asDivRef(ref)} className="flex min-h-[400px] items-center justify-center">
         {isIntersecting && !imageLoaded ? (
           <div className="text-center">
             <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-blue-500"></div>
@@ -73,10 +94,10 @@ export const LazyImageExample: React.FC = () => {
 };
 
 /**
- * EXAMPLE 3: Scroll-triggered Animations
- * This example shows how to trigger animations when elements come into view
+ * EXAMPLE 3: One-time Scroll Animation (useScrollAnimation)
+ * This example shows how to trigger animations that freeze after first visibility
  */
-export const AnimationExample: React.FC = () => {
+export const OneTimeAnimationExample: React.FC = () => {
   const { ref, isIntersecting } = useScrollAnimation({
     threshold: 0.3,
     rootMargin: "0px 0px -50px 0px",
@@ -84,18 +105,54 @@ export const AnimationExample: React.FC = () => {
 
   return (
     <div className="p-8">
-      <h2 className="mb-4 text-2xl font-bold">Scroll-triggered Animations</h2>
+      <h2 className="mb-4 text-2xl font-bold">One-time Animation (useScrollAnimation)</h2>
+      <p className="mb-4 text-sm text-gray-600">
+        This animation freezes after first visibility - won&apos;t reverse when scrolling away
+      </p>
       <div className="mb-4 h-96 bg-gray-200">Scroll down to trigger animation</div>
 
       <div
-        ref={ref}
+        ref={asDivRef(ref)}
         className={`transition-all duration-1000 ease-out ${
           isIntersecting ? "translate-y-0 scale-100 opacity-100" : "translate-y-8 scale-95 opacity-0"
         }`}
       >
         <div className="rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 p-8 text-white shadow-lg">
-          <h3 className="mb-4 text-2xl font-bold">Animated Card</h3>
-          <p className="text-lg">This card animates in when it becomes visible in the viewport!</p>
+          <h3 className="mb-4 text-2xl font-bold">One-time Animated Card</h3>
+          <p className="text-lg">This card animates in when visible, but won&apos;t reverse when scrolling away!</p>
+        </div>
+      </div>
+
+      <div className="mt-4 h-96 bg-gray-200">More content below</div>
+    </div>
+  );
+};
+
+/**
+ * EXAMPLE 3B: Reversible Scroll Animation (useIntersectionObserver)
+ * This example shows how to trigger animations that reverse when scrolling away
+ */
+export const ReversibleAnimationExample: React.FC = () => {
+  const { ref, isIntersecting } = useIntersectionObserver({
+    threshold: 0.3,
+    rootMargin: "0px 0px -50px 0px",
+  });
+
+  return (
+    <div className="p-8">
+      <h2 className="mb-4 text-2xl font-bold">Reversible Animation (useIntersectionObserver)</h2>
+      <p className="mb-4 text-sm text-gray-600">This animation reverses when scrolling away from the element</p>
+      <div className="mb-4 h-96 bg-gray-200">Scroll down to trigger animation, then scroll back up</div>
+
+      <div
+        ref={asDivRef(ref)}
+        className={`transition-all duration-1000 ease-out ${
+          isIntersecting ? "translate-y-0 scale-100 opacity-100" : "translate-y-8 scale-95 opacity-0"
+        }`}
+      >
+        <div className="rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 p-8 text-white shadow-lg">
+          <h3 className="mb-4 text-2xl font-bold">Reversible Animated Card</h3>
+          <p className="text-lg">This card animates in when visible and reverses when scrolling away!</p>
         </div>
       </div>
 
@@ -120,7 +177,7 @@ export const AnalyticsExample: React.FC = () => {
     if (isIntersecting && !hasBeenVisible) {
       setViewCount((prev) => prev + 1);
       // In a real app, you would send this to your analytics service
-      console.log("Content viewed!", { timestamp: new Date().toISOString() });
+      // console.log("Content viewed!", { timestamp: new Date().toISOString() });
     }
   }, [isIntersecting, hasBeenVisible]);
 
@@ -129,7 +186,7 @@ export const AnalyticsExample: React.FC = () => {
       <h2 className="mb-4 text-2xl font-bold">Analytics Tracking</h2>
       <div className="mb-4 h-96 bg-gray-200">Scroll down to view tracked content</div>
 
-      <div ref={ref} className="rounded-lg bg-blue-500 p-8 text-white">
+      <div ref={asDivRef(ref)} className="rounded-lg bg-blue-500 p-8 text-white">
         <h3 className="mb-4 text-2xl font-bold">Tracked Content</h3>
         <p className="mb-4 text-lg">This content is tracked for analytics. View count: {viewCount}</p>
         <p className="text-sm opacity-75">
@@ -165,7 +222,7 @@ export const MultipleElementsExample: React.FC = () => {
       {cards.map((card, index) => (
         <div key={index} className="mb-8">
           <div
-            ref={card.ref}
+            ref={asDivRef(card.ref)}
             className={`${card.color} rounded-lg p-6 text-white transition-all duration-500 ${
               card.isIntersecting ? "scale-100 opacity-100" : "scale-95 opacity-50"
             }`}
@@ -197,7 +254,7 @@ export const PerformanceExample: React.FC = () => {
       <div className="mb-4 h-96 bg-gray-200">Scroll down to see the element</div>
 
       <div
-        ref={ref}
+        ref={asDivRef(ref)}
         className={`rounded-lg p-6 transition-all duration-500 ${
           isIntersecting ? "bg-green-500 text-white" : "bg-gray-300 text-gray-700"
         }`}
@@ -213,7 +270,113 @@ export const PerformanceExample: React.FC = () => {
 };
 
 /**
- * EXAMPLE 7: Custom Root Element
+ * EXAMPLE 6B: Optimized Performance Comparison
+ * This example demonstrates the performance optimizations in the current implementation
+ */
+export const OptimizedPerformanceExample: React.FC = () => {
+  const [renderCount, setRenderCount] = useState(0);
+
+  const { ref, isIntersecting } = useIntersectionObserver({
+    threshold: 0.3,
+    rootMargin: "0px 0px -50px 0px",
+  });
+
+  // Track render count to demonstrate optimization
+  React.useEffect(() => {
+    setRenderCount((prev) => prev + 1);
+  }, []);
+
+  return (
+    <div className="p-8">
+      <h2 className="mb-4 text-2xl font-bold">Optimized Performance Demo</h2>
+      <p className="mb-4 text-sm text-gray-600">
+        This example demonstrates the performance optimizations: reduced callback dependencies, single cleanup effect,
+        and optimized state updates.
+      </p>
+      <div className="mb-4 h-96 bg-gray-200">Scroll down to see the element</div>
+
+      <div
+        ref={asDivRef(ref)}
+        className={`rounded-lg p-6 transition-all duration-500 ${
+          isIntersecting ? "bg-blue-500 text-white" : "bg-gray-300 text-gray-700"
+        }`}
+      >
+        <h3 className="mb-2 text-xl font-bold">{isIntersecting ? "Element is visible!" : "Element is hidden"}</h3>
+        <p>Render count: {renderCount}</p>
+        <p className="mt-2 text-sm">
+          ✅ Optimized callback dependencies
+          <br />
+          ✅ Single cleanup effect
+          <br />✅ Minimal re-renders
+        </p>
+      </div>
+
+      <div className="mt-4 h-96 bg-gray-200">More content below</div>
+    </div>
+  );
+};
+
+/**
+ * EXAMPLE 7: React Spring Integration
+ * This example shows how to use the hook with React Spring for smooth animations
+ */
+export const ReactSpringExample: React.FC = () => {
+  const { ref, isIntersecting } = useIntersectionObserver({
+    threshold: 0.3,
+    rootMargin: "0px 0px -50px 0px",
+  });
+
+  return (
+    <div className="p-8">
+      <h2 className="mb-4 text-2xl font-bold">React Spring Integration</h2>
+      <p className="mb-4 text-sm text-gray-600">
+        This example shows how to integrate with React Spring for smooth, performant animations. The animation reverses
+        when scrolling away from the element.
+      </p>
+      <div className="mb-4 h-96 bg-gray-200">Scroll down to trigger animation, then scroll back up</div>
+
+      <div ref={asDivRef(ref)} className="relative">
+        <div
+          className={`transform transition-all duration-1000 ease-out ${
+            isIntersecting
+              ? "translate-y-0 scale-100 rotate-0 opacity-100"
+              : "translate-y-8 scale-95 rotate-2 opacity-0"
+          }`}
+        >
+          <div className="rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-8 text-white shadow-xl">
+            <h3 className="mb-4 text-2xl font-bold">React Spring Style Animation</h3>
+            <p className="text-lg">
+              This demonstrates smooth animations with the intersection observer. The animation uses CSS transitions
+              that are optimized for performance.
+            </p>
+            <div className="mt-4 flex space-x-2">
+              <div
+                className={`h-2 w-2 rounded-full transition-all duration-500 ${
+                  isIntersecting ? "bg-white" : "bg-gray-300"
+                }`}
+              ></div>
+              <div
+                className={`h-2 w-2 rounded-full transition-all duration-700 ${
+                  isIntersecting ? "bg-white" : "bg-gray-300"
+                }`}
+              ></div>
+              <div
+                className={`h-2 w-2 rounded-full transition-all duration-900 ${
+                  isIntersecting ? "bg-white" : "bg-gray-300"
+                }`}
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4 h-96 bg-gray-200">More content below</div>
+    </div>
+  );
+};
+
+/**
+ * EXAMPLE 8: Custom Root Element
  * This example shows how to observe elements within a specific container
  */
 export const CustomRootExample: React.FC = () => {
@@ -233,7 +396,7 @@ export const CustomRootExample: React.FC = () => {
         <div className="mb-4 h-32 bg-gray-200">More content</div>
 
         <div
-          ref={ref}
+          ref={asDivRef(ref)}
           className={`rounded-lg p-4 transition-all duration-500 ${
             isIntersecting ? "bg-green-500 text-white" : "bg-gray-300 text-gray-700"
           }`}
@@ -254,28 +417,83 @@ export const CustomRootExample: React.FC = () => {
  */
 export const IntersectionObserverExamples: React.FC = () => {
   return (
-    <div className="mx-auto max-w-4xl">
-      <h1 className="mb-8 text-center text-4xl font-bold">useIntersectionObserver Hook Examples</h1>
+    <div className="mx-auto max-w-6xl px-4 py-8">
+      <div className="mb-12 text-center">
+        <h1 className="mb-4 text-5xl font-bold text-gray-900">useIntersectionObserver Hook Examples</h1>
+        <p className="mb-6 text-xl text-gray-600">
+          Comprehensive examples showcasing the optimized useIntersectionObserver hook with performance improvements
+        </p>
+        <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
+          <span className="rounded-full bg-blue-100 px-3 py-1">🚀 Performance Optimized</span>
+          <span className="rounded-full bg-green-100 px-3 py-1">⚡ Memory Efficient</span>
+          <span className="rounded-full bg-purple-100 px-3 py-1">🎨 Animation Ready</span>
+          <span className="rounded-full bg-orange-100 px-3 py-1">📱 Responsive</span>
+        </div>
+      </div>
 
-      <BasicExample />
-      <hr className="my-12" />
+      <div className="space-y-16">
+        <div className="rounded-2xl bg-white p-8 shadow-lg">
+          <BasicExample />
+        </div>
 
-      <LazyImageExample />
-      <hr className="my-12" />
+        <div className="rounded-2xl bg-white p-8 shadow-lg">
+          <LazyImageExample />
+        </div>
 
-      <AnimationExample />
-      <hr className="my-12" />
+        <div className="rounded-2xl bg-white p-8 shadow-lg">
+          <OneTimeAnimationExample />
+        </div>
 
-      <AnalyticsExample />
-      <hr className="my-12" />
+        <div className="rounded-2xl bg-white p-8 shadow-lg">
+          <ReversibleAnimationExample />
+        </div>
 
-      <MultipleElementsExample />
-      <hr className="my-12" />
+        <div className="rounded-2xl bg-white p-8 shadow-lg">
+          <AnalyticsExample />
+        </div>
 
-      <PerformanceExample />
-      <hr className="my-12" />
+        <div className="rounded-2xl bg-white p-8 shadow-lg">
+          <MultipleElementsExample />
+        </div>
 
-      <CustomRootExample />
+        <div className="rounded-2xl bg-white p-8 shadow-lg">
+          <PerformanceExample />
+        </div>
+
+        <div className="rounded-2xl bg-white p-8 shadow-lg">
+          <OptimizedPerformanceExample />
+        </div>
+
+        <div className="rounded-2xl bg-white p-8 shadow-lg">
+          <ReactSpringExample />
+        </div>
+
+        <div className="rounded-2xl bg-white p-8 shadow-lg">
+          <CustomRootExample />
+        </div>
+      </div>
+
+      <div className="mt-16 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 p-8 text-white">
+        <h2 className="mb-4 text-3xl font-bold">Ready to Use in Your Project?</h2>
+        <p className="mb-6 text-lg opacity-90">
+          The useIntersectionObserver hook is optimized for performance and ready for production use. Check out the
+          source code and documentation for implementation details.
+        </p>
+        <div className="flex flex-wrap gap-4">
+          <a
+            href="/hooks/useIntersectionObserver.ts"
+            className="rounded-lg bg-white/20 px-4 py-2 text-sm font-medium transition-colors hover:bg-white/30"
+          >
+            📁 View Source Code
+          </a>
+          <a
+            href="/hooks/README.md"
+            className="rounded-lg bg-white/20 px-4 py-2 text-sm font-medium transition-colors hover:bg-white/30"
+          >
+            📚 Read Documentation
+          </a>
+        </div>
+      </div>
     </div>
   );
 };

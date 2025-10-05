@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber";
 // React Three Fiber for React integration with Three.js
 import { Canvas } from "@react-three/fiber";
 // Drei library for pre-built 3D components and utilities
-import { Sparkles } from "@react-three/drei";
+import { OrbitControls, Sparkles } from "@react-three/drei";
 // Math utilities for smooth animations and transitions
 import TextOverlay from "./TextOverlay";
 import SintRobotModel from "@/components/3d/SintRobot";
@@ -96,8 +96,8 @@ export default function HeroSection() {
           <Suspense fallback={null}>
             <SintRobotModel />
           </Suspense>
-          {/* <OrbitControls /> */}
-          <Rig />
+          <OrbitControls />
+          {/* <Rig /> */}
         </Canvas>
         <div className="h-[1px] w-full bg-linear-to-r from-transparent from-10% via-white/30 to-transparent to-90%" />
       </section>

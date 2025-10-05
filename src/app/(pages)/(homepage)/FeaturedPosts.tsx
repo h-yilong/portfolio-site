@@ -5,7 +5,7 @@ import img3 from "@/assets/images/original-d6ce2b3a5a21c4b59f1e4cb7beabf003.jpg"
 
 const POSTS = [
   {
-    title: "Art: Conceptual Design",
+    title: "3D Scenes WebGL",
     description: "web • design • development • 3d  • illustration",
     image: artImg,
     link: "/posts/design/3d",
