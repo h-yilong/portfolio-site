@@ -91,4 +91,4 @@ export function Model(props) {
   );
 }
 
-useGLTF.preload("/robot_2-transformed.glb");
+// useGLTF.preload("/robot_2-transformed.glb");

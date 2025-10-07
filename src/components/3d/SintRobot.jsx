@@ -1,7 +1,7 @@
 "use client";
-import * as THREE from "three";
+// import * as THREE from "three";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useGraph, useFrame } from "@react-three/fiber";
+import { useGraph } from "@react-three/fiber";
 import { SkeletonUtils } from "three-stdlib";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
@@ -21,68 +21,32 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 
 export default function SintRobotModel({ onLoadComplete }) {
   const group = useRef(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [_animationProgress, setAnimationProgress] = useState(0);
-  const animationStartTime = useRef(null);
-
   // const { scene, animations } = useGLTF("/assets/models/robot_2-transformed.glb");
   // const { scene, animations } = useGLTF("/assets/models/robot_2.glb");
-  // const { scene, animations } = useGLTF("/assets/compressed/robot.gltf");
-  // const { scene, animations } = useGLTF("/assets/models/robot-original/robot.gltf");
+  const [isLoaded, setIsLoaded] = useState(false);
   const { scene, animations } = useGLTF("/assets/t-2048/robot.gltf");
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
   const { actions } = useAnimations(animations, group);
 
-  // Ease-out function (cubic)
-  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-
   useEffect(() => {
     if (scene && !isLoaded) {
       setIsLoaded(true);
-      animationStartTime.current = Date.now();
       onLoadComplete?.();
     }
   }, [scene, isLoaded, onLoadComplete]);
 
   useEffect(() => {
     if (isLoaded && actions["idle"]) {
+      // actions["idle"].reset().fadeIn(1.5).play();
       actions["idle"].play();
     }
   }, [actions, isLoaded]);
 
-  // Animation frame for entrance animation
-  useFrame(() => {
-    if (!isLoaded || !animationStartTime.current) return;
-
-    const elapsed = Date.now() - animationStartTime.current;
-    const duration = 3000; // 3 seconds
-    const progress = Math.min(elapsed / duration, 1);
-    console.log("progress", progress);
-
-    // Apply ease-out timing
-    const easedProgress = easeOutCubic(progress);
-    setAnimationProgress(easedProgress);
-
-    if (group.current) {
-      // Scale from 0 to 0.02
-      const targetScale = 0.02;
-      group.current.scale.setScalar(targetScale * easedProgress);
-
-      // Rotate 5 full rotations (5 * 2π radians)
-      const totalRotation = 5 * Math.PI * 2;
-      group.current.rotation.y = totalRotation * easedProgress;
-    }
-
-    // 动画完成后停止执行
-    if (progress >= 1) {
-      animationStartTime.current = null; // 标记动画完成
-      return;
-    }
-  });
+  console.log("render sint robot");
 
   return (
-    <group ref={group} scale={0} position={[0, -2.8, 0]} dispose={null}>
+    <group ref={group} scale={0.02} position={[0, -2.8, 0]} dispose={null}>
       <group name="Scene">
         <group name="Armature">
           <primitive object={nodes.mixamorigHips} />
@@ -137,7 +101,4 @@ export default function SintRobotModel({ onLoadComplete }) {
   );
 }
 
-// useGLTF.preload("/assets/models/robot_2-transformed.glb");
-// useGLTF.preload("/assets/models/robot_2.glb");
-// useGLTF.preload("/assets/compressed/robot.gltf");
-// useGLTF.preload("/assets/models/robot-original/robot.gltf");
+useGLTF.preload("/assets/t-2048/robot.gltf");

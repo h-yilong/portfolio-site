@@ -86,4 +86,4 @@ export function Model(props) {
   );
 }
 
-useGLTF.preload("/assets/models/robot-transformed.glb");
+// useGLTF.preload("/assets/models/robot-transformed.glb");

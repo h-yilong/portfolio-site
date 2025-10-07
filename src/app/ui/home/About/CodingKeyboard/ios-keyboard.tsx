@@ -5,7 +5,7 @@ export default function CodingKeyboard() {
   return (
     <div className={`relative w-full ${styles.main}`}>
       <div className="mx-auto mb-16 w-full max-w-2xl">
-        <img src={iosKeyboard.src} alt="ios-keyboard" />
+        <img src={iosKeyboard.src} loading="lazy" alt="ios-keyboard" />
       </div>
       <article className="relative z-50">
         <h3 className="mb-2 text-lg leading-8 font-bold">My Passion for Coding</h3>

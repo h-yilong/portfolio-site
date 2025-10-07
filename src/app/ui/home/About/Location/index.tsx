@@ -6,7 +6,8 @@ export default function Location() {
       <div className="relative flex aspect-square w-full items-center justify-center">
         <img
           src="/assets/images/earth.webp"
-          alt="earth"
+          alt="Sydney, Australia marked on the earth"
+          loading="lazy"
           className={`aspect-square w-4/5 rounded-full shadow-lg ${styles.earth}`}
         />
         <span className="absolute bottom-[57%] left-[48.6%] inline-flex h-3 w-3">

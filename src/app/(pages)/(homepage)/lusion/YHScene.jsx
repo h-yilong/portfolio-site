@@ -215,5 +215,5 @@ function LetterModel({ letter = "Y", children, color = "white", roughness = 0, .
   );
 }
 
-useGLTF.preload("/assets/models/letter-Y-transformed.glb");
-useGLTF.preload("/assets/models/letter-H-transformed.glb");
+// useGLTF.preload("/assets/models/letter-Y-transformed.glb");
+// useGLTF.preload("/assets/models/letter-H-transformed.glb");

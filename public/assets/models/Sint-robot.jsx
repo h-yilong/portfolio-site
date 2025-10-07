@@ -61,4 +61,4 @@ export function Model(props) {
   );
 }
 
-useGLTF.preload("/sint-robot-transformed.glb");
+// useGLTF.preload("/sint-robot-transformed.glb");

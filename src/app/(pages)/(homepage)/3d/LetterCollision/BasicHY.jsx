@@ -40,4 +40,4 @@ function Model(props) {
   );
 }
 
-useGLTF.preload("/assets/models/scene-hy-transformed.glb");
+// useGLTF.preload("/assets/models/scene-hy-transformed.glb");

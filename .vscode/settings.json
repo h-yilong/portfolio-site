@@ -8,8 +8,5 @@
   },
   "svgPreview.autoOpen": false,
   "svgPreview.scaleToFit": false,
-  "cSpell.words": [
-    "lerp",
-    "metalness"
-  ]
+  "cSpell.words": ["lerp", "metalness"]
 }

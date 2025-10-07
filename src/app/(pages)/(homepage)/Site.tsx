@@ -48,7 +48,7 @@ export default function Site() {
         </svg>
         <article className="mx-auto my-4 max-w-2xl space-y-3 text-center leading-8">
           <p>
-            <span className="text-xl font-bold">The aim</span> of this site is to provide a overview of my skills and
+            <span className="text-xl font-bold">The aim</span> of this site is to provide an overview of my skills and
             understanding regarding web application development. This is a work in progress and will be updated as more
             content and explanations are added.
           </p>
