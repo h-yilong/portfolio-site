@@ -5,8 +5,8 @@ import { useScroll } from "@/hooks/scroll/useScroll";
 export default function AnimatedLine() {
   const targetRef = useRef<HTMLDivElement>(null);
   const { position } = useScroll({
-    throttle: 50,
-    useRAF: false,
+    // throttle: 50,
+    // useRAF: false,
     element: targetRef.current,
   });
 
@@ -39,7 +39,7 @@ export default function AnimatedLine() {
           </linearGradient>
         </defs>
         <path
-          className="stroke-[36px] transition-all duration-500 ease-in-out xl:stroke-[30px]"
+          className="stroke-[36px] xl:stroke-[30px]"
           fill="none"
           stroke="url(#linear-gradient)"
           strokeMiterlimit="10"

@@ -1,10 +1,12 @@
 /* tips: default layer order */
 /* @layer theme, base, components, utilities; */
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --about-bg: #161626;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -113,11 +115,19 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 box-border scroll-smooth;
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-montserrat), Arial, Helvetica, sans-serif;
   }
+
+  @media screen and (max-width: 767px) {
+    :root {
+      font-size: 14px;
+    }
+  }
+
   input,
   textarea {
     @apply focus-visible:ring-ring/50 border-input selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground focus-visible:border-ring aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 flex w-full rounded-md border bg-transparent text-base transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm;
@@ -127,6 +137,9 @@
   }
   textarea {
     @apply field-sizing-content min-h-24 px-3 py-2;
+  }
+  a {
+    @apply focus-ring inline-block rounded;
   }
 }
 
@@ -141,6 +154,51 @@
     cursor:
       url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIj4KICA8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmYSIgc3Ryb2tlLXdpZHRoPSI0Ii8+CiAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iNSIgZmlsbD0iI2ZmZmEiLz4KPC9zdmc+),
       auto;
+  }
+  .hero-gradient {
+    @apply pointer-events-none absolute aspect-[1.5] duration-500 ease-out;
+  }
+  .hero-gradient > div {
+    @apply h-full w-full bg-radial-[50%_50%_at_50%_50%] from-10% via-30% to-transparent;
+  }
+  .loading-bar {
+    @apply h-full w-full origin-center animate-[1s_ease-out_infinite_loading-bar] bg-linear-to-r from-transparent via-indigo-800 to-transparent;
+  }
+
+  @keyframes loading-bar {
+    0% {
+      transform: scaleX(0%);
+      opacity: 1;
+    }
+    80% {
+      transform: scaleX(100%);
+      opacity: 1;
+    }
+    100% {
+      transform: scaleX(100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 1;
+      rotate: 30deg;
+      transform: translateY(10vw);
+    }
+    to {
+      opacity: 1;
+      rotate: 0deg;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slide-right {
+    from {
+      transform: translateX(50%);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
 }
 
@@ -198,39 +256,19 @@
 }
 
 @layer utilities {
-  :root {
-    --about-bg: #161626;
-  }
-
-  * {
-    scroll-behavior: smooth;
-    box-sizing: border-box;
-  }
-
-  @media screen and (max-width: 767px) {
-    :root {
-      font-size: 14px;
-    }
-  }
-
-  body {
-    font-family: var(--font-montserrat), Arial, Helvetica, sans-serif;
-  }
-}
-
-@layer utilities {
-  a {
-    @apply focus-ring inline-block rounded;
-  }
-}
-
-@layer utilities {
   .waving-hand {
     animation-name: wave-animation;
     animation-duration: 2.5s;
     animation-iteration-count: infinite;
     transform-origin: 70% 70%;
     display: inline-block;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .flex-col-center {
+    @apply flex flex-col items-center justify-center;
   }
 
   @keyframes shimmer {
@@ -367,4 +405,8 @@
 
 #about {
   background-image: radial-gradient(circle at center, #1d1d37, transparent 75%);
+}
+
+.prose {
+  max-width: 80ch;
 }

@@ -19,37 +19,37 @@ export default function TechStack() {
         <div className={`absolute left-0 aspect-square w-full rounded-full ${styles.techStackBgMask}`} />
         <div className={`relative aspect-square w-1/5 ${styles.rotate}`}>
           <div className={`${styles.techStack} bg-aboutBg h-full w-full rounded-full p-2`}>
-            <img src="/assets/images/js2.svg" alt="" />
+            <img src="/assets/images/js2.svg" loading="lazy" alt="" />
           </div>
           <div
             className={`${styles.techStack} bg-aboutBg absolute inset-0 h-full w-full translate-x-[150%] rounded-full p-2`}
           >
-            <img src="/assets/images/react2.svg" alt="" />
+            <img src="/assets/images/react2.svg" loading="lazy" alt="" />
           </div>
           <div
             className={`${styles.techStack} bg-aboutBg absolute inset-0 h-full w-full -translate-x-[150%] rounded-full p-2`}
           >
-            <img src="/assets/images/next.svg" alt="" />
+            <img src="/assets/images/next.svg" loading="lazy" alt="" />
           </div>
           <div
             className={`${styles.techStack} bg-aboutBg absolute inset-0 h-full w-full translate-x-3/4 translate-y-[130%] rounded-full p-2`}
           >
-            <img src="/assets/images/nodejs2.svg" alt="" />
+            <img src="/assets/images/nodejs2.svg" loading="lazy" alt="" />
           </div>
           <div
             className={`${styles.techStack} bg-aboutBg absolute inset-0 h-full w-full translate-x-3/4 -translate-y-[130%] rounded-full p-2`}
           >
-            <img src="/assets/images/redux.svg" alt="" />
+            <img src="/assets/images/redux.svg" loading="lazy" alt="" />
           </div>
           <div
             className={`${styles.techStack} bg-aboutBg absolute inset-0 h-full w-full -translate-x-3/4 -translate-y-[130%] rounded-full p-2`}
           >
-            <img src="/assets/images/tailwind2.svg" alt="" />
+            <img src="/assets/images/tailwind2.svg" loading="lazy" alt="" />
           </div>
           <div
             className={`${styles.techStack} bg-aboutBg absolute inset-0 h-full w-full -translate-x-3/4 translate-y-[130%] rounded-full p-2`}
           >
-            <img src="/assets/images/graphql.svg" alt="" />
+            <img src="/assets/images/graphql.svg" loading="lazy" alt="" />
           </div>
         </div>
       </div>

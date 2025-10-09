@@ -2,11 +2,11 @@
 import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
-import * as THREE from "three";
+import { Shape, ExtrudeGeometry, Mesh } from "three";
 import { animated } from "@react-spring/three";
 
 function createRoundedBox(width: number, height: number, depth: number, radius: number, smoothness: number) {
-  const shape = new THREE.Shape();
+  const shape = new Shape();
   const eps = 0.00001;
   const radius0 = radius - eps;
 
@@ -15,7 +15,7 @@ function createRoundedBox(width: number, height: number, depth: number, radius: 
   shape.absarc(width - radius * 2, height - radius * 2, eps, Math.PI / 2, 0, true);
   shape.absarc(width - radius * 2, eps, eps, 0, -Math.PI / 2, true);
 
-  const geometry = new THREE.ExtrudeGeometry(shape, {
+  const geometry = new ExtrudeGeometry(shape, {
     depth: depth - radius * 2,
     bevelEnabled: true,
     bevelSegments: smoothness * 2,
@@ -51,7 +51,7 @@ const RoundedBox = ({
   scale?: [number, number, number];
   speed?: number;
 }) => {
-  const boxRef = useRef<THREE.Mesh>(null);
+  const boxRef = useRef<Mesh>(null);
   // 加载 logo 图片材质
   const texture = useTexture(image);
 

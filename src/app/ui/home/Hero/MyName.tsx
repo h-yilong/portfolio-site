@@ -9,7 +9,7 @@ function Yilong({ isVisible }: { isVisible: boolean }) {
     <div
       key={item}
       className={cn(
-        "transition-all -mx-0.5 duration-500 ease-[cubic-bezier(0,0,0.1,1)]",
+        "-mx-0.5 transition-all duration-500 ease-[cubic-bezier(0,0,0.1,1)]",
         isVisible ? "translate-y-0 rotate-0 opacity-100" : "translate-y-[70%] rotate-3 opacity-0",
       )}
       style={{ transitionDelay: `${index * 35}ms` }}
@@ -41,7 +41,7 @@ export default function MyName() {
       &nbsp;
       <div
         className={cn(
-          "transition-all delay-500 duration-600 tracking-tighter ease-in-out",
+          "tracking-tighter transition-all delay-500 duration-600 ease-in-out",
           isVisible ? "translate-x-0 opacity-100" : "-translate-x-3 opacity-0",
         )}
       >

@@ -31,7 +31,7 @@ export default function Skills() {
       <div className={clsx("flex w-fit", styles.carousel)}>
         {SKILL_CAROUSEL_ITEMS.map((skill, index) => (
           <div key={index} className="skill-card">
-            <img src={skill} alt={skill} loading="lazy" />
+            <img src={skill} loading="lazy" alt={skill} />
           </div>
         ))}
       </div>

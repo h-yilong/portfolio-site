@@ -2,7 +2,7 @@
 // https://lusion.co
 "use client";
 
-import * as THREE from "three";
+import { MathUtils, Vector3 } from "three";
 import { useRef, useReducer, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, MeshTransmissionMaterial, Environment, Lightformer } from "@react-three/drei";
@@ -37,7 +37,7 @@ function Scene(props) {
     <Canvas
       onClick={click}
       shadows
-      dpr={[1, 1.5]}
+      dpr={[1, 2]}
       gl={{ antialias: false }}
       camera={{ position: [0, 0, 15], fov: 17.5, near: 1, far: 20 }}
       {...props}
@@ -79,9 +79,9 @@ function Scene(props) {
 function Connector({
   position,
   children,
-  vec = new THREE.Vector3(),
+  vec = new Vector3(),
   scale,
-  r = THREE.MathUtils.randFloatSpread,
+  r = MathUtils.randFloatSpread,
   accent,
   ...props
 }) {
@@ -102,7 +102,7 @@ function Connector({
   );
 }
 
-function Pointer({ vec = new THREE.Vector3() }) {
+function Pointer({ vec = new Vector3() }) {
   const ref = useRef();
   useFrame(({ mouse, viewport }) => {
     ref.current?.setNextKinematicTranslation(

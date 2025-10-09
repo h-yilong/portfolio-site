@@ -7,6 +7,8 @@ import { useScroll } from "@/hooks/scroll/useScroll";
 import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { MeshDistortMaterial, Sphere } from "@react-three/drei";
+import CanvasVisibilityTest from "@/components/CanvasVisibilityTest";
+import CanvasPerformanceComparison from "@/components/CanvasPerformanceComparison";
 
 export default function PlaygroundPage() {
   const scrollContainerRef = useRef(null);
@@ -41,6 +43,16 @@ export default function PlaygroundPage() {
       <div ref={scrollContainerRef} id="playground-page" className="parallax-wrapper mt-20 pt-16">
         <div>
           <h1 className="text-center text-[5vw] font-bold">Playground</h1>
+
+          {/* Canvas Visibility Test */}
+          <div className="mx-auto mb-12 max-w-6xl px-4">
+            <CanvasVisibilityTest />
+          </div>
+
+          {/* Canvas Performance Comparison */}
+          <div className="mx-auto mb-12 max-w-6xl px-4">
+            <CanvasPerformanceComparison />
+          </div>
           <svg className="absolute top-[500px] left-0 -z-10 w-full -translate-z-16 scale-165" viewBox="0 0 1440 1440">
             <defs>
               <linearGradient

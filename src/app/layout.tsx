@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-// import Navbar from "@/app/components/Navbar";
+import Navbar from "@/app/components/Navbar";
 import "./globals.css";
 import { Toaster } from "sonner";
 
@@ -22,7 +22,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Hi, I'm Yilong",
-  description: "Yilong HUANG's Personal Site",
+  description:
+    "Yilong HUANG is a Sydney based Web Developer, with extensive experience in web application development.",
 };
 
 export default async function RootLayout({
@@ -33,7 +34,7 @@ export default async function RootLayout({
   return (
     <html data-scroll-behavior="smooth" lang="en">
       <body className={`${montserrat.variable} ${geistMono.variable} dark max-w-full overflow-x-hidden antialiased`}>
-        {/* <Navbar /> */}
+        <Navbar />
         {children}
         <Toaster richColors position="bottom-center" />
       </body>
