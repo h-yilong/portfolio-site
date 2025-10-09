@@ -35,9 +35,9 @@ export default function AnimatedText() {
       <Trail open={show}>
         <span
           style={{
-            "-webkit-text-stroke": "5px white",
+            WebkitTextStroke: "5px white",
             color: "#121221",
-            "-webkit-text-fill-color": "#121221",
+            WebkitTextFillColor: "#121221",
             paintOrder: "stroke fill",
           }}
         >

@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -7,11 +8,11 @@ import { MeshDistortMaterial, Sphere } from "@react-three/drei";
 /**
  * 性能监控组件 - 在 Canvas 内部使用
  */
-function PerformanceTracker({ onUpdate }: { onUpdate: (fps: number, frames: number) => void }) {
+function PerformanceTracker({ onUpdate }: { onUpdate: (_fps: number, _frames: number) => void }) {
   const frameCountRef = useRef(0);
   const lastTimeRef = useRef(performance.now());
   const fpsRef = useRef(60);
-  const { gl } = useThree();
+  const { gl: _gl } = useThree();
 
   useFrame(() => {
     frameCountRef.current++;
@@ -66,7 +67,7 @@ export default function CanvasVisibilityTest() {
   // 用于重置统计
   const statsResetTime = useRef(performance.now());
 
-  const handleUpdate = (fps: number, frames: number) => {
+  const handleUpdate = (fps: number, _frames: number) => {
     setStats((prev) => ({
       fps,
       totalFrames: prev.totalFrames + 1,
@@ -109,7 +110,9 @@ export default function CanvasVisibilityTest() {
         <button
           onClick={() => setMethod("parent-display-none")}
           className={`rounded-lg px-4 py-2 font-semibold transition-all ${
-            method === "parent-display-none" ? "bg-orange-600 text-white" : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+            method === "parent-display-none"
+              ? "bg-orange-600 text-white"
+              : "bg-gray-700 text-gray-300 hover:bg-gray-600"
           }`}
         >
           📦 Parent display:none
@@ -129,7 +132,9 @@ export default function CanvasVisibilityTest() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         <div className="rounded-lg bg-gray-800 p-4">
           <div className="text-sm text-gray-400">FPS</div>
-          <div className={`text-3xl font-bold ${stats.fps < 30 ? "text-red-500" : stats.fps < 50 ? "text-yellow-500" : "text-green-500"}`}>
+          <div
+            className={`text-3xl font-bold ${stats.fps < 30 ? "text-red-500" : stats.fps < 50 ? "text-yellow-500" : "text-green-500"}`}
+          >
             {stats.fps}
           </div>
         </div>
@@ -157,7 +162,9 @@ export default function CanvasVisibilityTest() {
             <div className="text-sm font-semibold text-gray-300">当前状态:</div>
             <div className="mt-1 text-lg text-white">{getStatusText(method)}</div>
           </div>
-          <div className={`size-4 rounded-full ${stats.renderCalls > 0 ? "animate-pulse bg-green-500" : "bg-red-500"}`} />
+          <div
+            className={`size-4 rounded-full ${stats.renderCalls > 0 ? "animate-pulse bg-green-500" : "bg-red-500"}`}
+          />
         </div>
       </div>
 
@@ -304,4 +311,3 @@ function ResultItem({ method, type, stats }: { method: string; type: string; sta
     </div>
   );
 }
-

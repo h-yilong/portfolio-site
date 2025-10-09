@@ -1,26 +1,31 @@
 import { preload, type PreloadOptions } from "react-dom";
 import dynamic from "next/dynamic";
 import HeroSection from "./HeroSection";
-import { OptimizedLoader, createTextComponent, createCardComponent, create3DComponent } from "./components/OptimizedLoader";
+import {
+  OptimizedLoader,
+  createTextComponent,
+  createCardComponent,
+  create3DComponent,
+} from "./components/OptimizedLoader";
 import { PerformanceMonitor } from "./components/PerformanceMonitor";
 
 // 使用 Next.js dynamic 创建优化的组件
 const ImaginationText2 = createTextComponent(() => import("@/app/(pages)/react-spring/ImaginationText"));
 const AnimatedLine = dynamic(() => import("./AnimatedLine"), {
-  loading: () => <div className="h-32 w-full animate-pulse bg-white/5 rounded-lg" />,
+  loading: () => <div className="h-32 w-full animate-pulse rounded-lg bg-white/5" />,
   ssr: false, // 动画组件不需要 SSR
 });
 const YHScene = create3DComponent(() => import("./lusion/YHScene"));
 const FeaturedPosts = createCardComponent(() => import("./FeaturedPosts"));
 const AnimatedLine2 = dynamic(() => import("./AnimatedLine2"), {
-  loading: () => <div className="h-32 w-full animate-pulse bg-white/5 rounded-lg" />,
+  loading: () => <div className="h-32 w-full animate-pulse rounded-lg bg-white/5" />,
   ssr: false,
 });
 const Site = createTextComponent(() => import("./Site"));
 const About = createCardComponent(() => import("@/app/ui/home/About"));
 const Hero = createTextComponent(() => import("@/app/ui/home/Hero"));
 const Contact = createTextComponent(() => import("@/app/ui/home/Contact"));
-const Footer = createTextComponent(() => import("@/app/ui/home/Footer"));
+// const Footer = createTextComponent(() => import("@/app/ui/home/Footer"));
 
 const PRELOAD_OPTIONS: PreloadOptions = {
   as: "image",
@@ -81,10 +86,6 @@ export default function HomeOptimized() {
 
           <OptimizedLoader priority="medium" preloadDistance={200} placeholderType="text" useSSR={true}>
             <Contact />
-          </OptimizedLoader>
-
-          <OptimizedLoader priority="low" placeholderType="text" useSSR={true}>
-            <Footer />
           </OptimizedLoader>
         </div>
 
