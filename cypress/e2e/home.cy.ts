@@ -4,9 +4,9 @@ describe("home page", () => {
     // cy.get("#__next").should("be.visible");
   });
 
-  context("Hero section", () => {
+  context("Homepage", () => {
     it("the h1 contains the correct text", () => {
-      cy.getByData("hero-heading").contains("Yilong HUANG");
+      cy.getByData("hero-heading").contains("Yilong");
     });
   });
 });

@@ -7,7 +7,7 @@ const AnimatedText = dynamic(() => import("./AnimatedText"));
 
 const Fallback = () => (
   <div>
-    <h1>Hi, I&apos;m Yilong Huang.</h1>
+    <h1 data-test="hero-heading">Hi, I&apos;m Yilong Huang.</h1>
     <h2>A Sydney based developer.</h2>
     <p>I love building cool things.</p>
   </div>

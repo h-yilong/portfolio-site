@@ -52,7 +52,7 @@ export default function AnimatedText() {
           >
             Hi, I&apos;m
           </span> */}
-          <span>Yilong</span>
+          <span data-test="hero-heading">Yilong</span>
           <span>Huang</span>
           <span className="text-6xl font-light">Sydney, Australia</span>
         </Trail>
