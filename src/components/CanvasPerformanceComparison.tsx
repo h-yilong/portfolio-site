@@ -30,8 +30,8 @@ export default function CanvasPerformanceComparison() {
 
       {/* 对比表格 */}
       <div className="overflow-x-auto">
-        <table className="w-full text-sm text-left text-gray-300">
-          <thead className="bg-gray-800 text-xs uppercase text-gray-400">
+        <table className="w-full text-left text-sm text-gray-300">
+          <thead className="bg-gray-800 text-xs text-gray-400 uppercase">
             <tr>
               <th className="px-4 py-3">方法</th>
               <th className="px-4 py-3">DOM 存在</th>
@@ -224,4 +224,3 @@ export default function CanvasPerformanceComparison() {
     </div>
   );
 }
-

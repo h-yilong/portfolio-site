@@ -134,7 +134,7 @@ export default function Home() {
           scrollbarWidth: "thin",
           scrollbarColor: "#98a6f3 transparent",
         }}
-        className="parallax-wrapper overflow-y-auto overflow-x-hidden scroll-smooth"
+        className="parallax-wrapper overflow-x-hidden overflow-y-auto scroll-smooth"
       >
         <div>
           <HeroSection />
@@ -308,7 +308,7 @@ export default function HeroSection() {
       >
         <div
           className={cn(
-            "hero-gradient bottom-0 right-[5%] w-2/3 transition-opacity delay-100 duration-1000 ease-out will-change-[opacity]",
+            "hero-gradient right-[5%] bottom-0 w-2/3 transition-opacity delay-100 duration-1000 ease-out will-change-[opacity]",
             modelLoaded ? "opacity-35" : "opacity-0",
           )}
           ref={gradientRef1}
@@ -317,7 +317,7 @@ export default function HeroSection() {
         </div>
         <div
           className={cn(
-            "hero-gradient z-2 left-[8%] top-[15%] w-1/2 transition-opacity delay-100 duration-100 ease-out will-change-[opacity]",
+            "hero-gradient top-[15%] left-[8%] z-2 w-1/2 transition-opacity delay-100 duration-100 ease-out will-change-[opacity]",
             modelLoaded ? "opacity-60" : "opacity-0",
           )}
           ref={gradientRef2}
@@ -325,11 +325,11 @@ export default function HeroSection() {
           <div className="from-[rgba(69,53,211,0.9)] via-[rgba(70,55,209,0.6)]" />
         </div>
 
-        <div className="pointer-events-none absolute left-12 top-36 z-50">
-          <p className="text-4xl font-bold leading-[1.6] tracking-tight text-white">
+        <div className="pointer-events-none absolute top-36 left-12 z-50">
+          <p className="text-4xl leading-[1.6] font-bold tracking-tight text-white">
             <span>Yilong HUANG</span>
           </p>
-          <p className="text-3xl font-light leading-[1] tracking-tight text-white">Sydney, Australia</p>
+          <p className="text-3xl leading-[1] font-light tracking-tight text-white">Sydney, Australia</p>
         </div>
 
         <Canvas
@@ -360,7 +360,7 @@ export default function HeroSection() {
           {/* <OrbitControls /> */}
           <Rig modelLoaded={modelLoaded} />
         </Canvas>
-        <div className="bg-linear-to-r h-[1px] w-full from-transparent from-10% via-white/30 to-transparent to-90%" />
+        <div className="h-[1px] w-full bg-linear-to-r from-transparent from-10% via-white/30 to-transparent to-90%" />
       </section>
     </>
   );
@@ -450,7 +450,7 @@ export default function Home() {
           scrollbarWidth: "thin",
           scrollbarColor: "#98a6f3 transparent",
         }}
-        className="parallax-wrapper overflow-y-auto overflow-x-hidden scroll-smooth"
+        className="parallax-wrapper overflow-x-hidden overflow-y-auto scroll-smooth"
       >
         <div>
           <HeroSection />
@@ -515,7 +515,7 @@ export default function Home() {
           scrollbarWidth: "thin",
           scrollbarColor: "#98a6f3 transparent",
         }}
-        className="parallax-wrapper overflow-y-auto overflow-x-hidden scroll-smooth"
+        className="parallax-wrapper overflow-x-hidden overflow-y-auto scroll-smooth"
       >
         <div>
           <HeroSection />
@@ -933,7 +933,7 @@ export default function Home() {
           scrollbarWidth: "thin",
           scrollbarColor: "#98a6f3 transparent",
         }}
-        className="parallax-wrapper overflow-y-auto overflow-x-hidden scroll-smooth"
+        className="parallax-wrapper overflow-x-hidden overflow-y-auto scroll-smooth"
       >
         <div>
           <HeroSection />
@@ -1035,7 +1035,7 @@ export default function Home() {
           scrollbarWidth: "thin",
           scrollbarColor: "#98a6f3 transparent",
         }}
-        className="parallax-wrapper overflow-y-auto overflow-x-hidden scroll-smooth"
+        className="parallax-wrapper overflow-x-hidden overflow-y-auto scroll-smooth"
       >
         <div>
           <HeroSection />
@@ -1179,7 +1179,7 @@ export function PerformanceMonitor() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 max-w-sm rounded-lg bg-black/80 p-4 font-mono text-sm text-white">
+    <div className="fixed right-4 bottom-4 z-50 max-w-sm rounded-lg bg-black/80 p-4 font-mono text-sm text-white">
       <div className="mb-2 font-bold">Performance Metrics</div>
       <div className="space-y-1">
         <div>Hero Load: {metrics.heroLoadTime.toFixed(0)}ms</div>
@@ -1240,7 +1240,7 @@ export default function Home() {
           scrollbarWidth: "thin",
           scrollbarColor: "#98a6f3 transparent",
         }}
-        className="parallax-wrapper overflow-y-auto overflow-x-hidden scroll-smooth"
+        className="parallax-wrapper overflow-x-hidden overflow-y-auto scroll-smooth"
       >
         <div>
           <HeroSection />
@@ -1340,7 +1340,7 @@ export default function Home() {
           scrollbarWidth: "thin",
           scrollbarColor: "#98a6f3 transparent",
         }}
-        className="parallax-wrapper overflow-y-auto overflow-x-hidden scroll-smooth"
+        className="parallax-wrapper overflow-x-hidden overflow-y-auto scroll-smooth"
       >
         <div>
           <HeroSection />
@@ -2171,7 +2171,7 @@ export default function HomeOptimized() {
           scrollbarWidth: "thin",
           scrollbarColor: "#98a6f3 transparent",
         }}
-        className="parallax-wrapper overflow-y-auto overflow-x-hidden scroll-smooth"
+        className="parallax-wrapper overflow-x-hidden overflow-y-auto scroll-smooth"
       >
         <div>
           <HeroSection />
@@ -2344,7 +2344,7 @@ export function PerformanceComparison() {
     dynamicMetrics.length > 0 ? dynamicMetrics.reduce((sum, m) => sum + m.loadTime, 0) / dynamicMetrics.length : 0;
 
   return (
-    <div className="fixed right-4 top-4 z-50 max-w-2xl rounded-lg bg-black/90 p-4 font-mono text-sm text-white">
+    <div className="fixed top-4 right-4 z-50 max-w-2xl rounded-lg bg-black/90 p-4 font-mono text-sm text-white">
       <div className="mb-4 flex items-center justify-between">
         <h3 className="font-bold">Performance Comparison</h3>
         <button onClick={() => setIsVisible(false)} className="text-xs text-gray-400 hover:text-white">
@@ -3119,7 +3119,7 @@ export default function Home() {
           scrollbarWidth: "thin",
           scrollbarColor: "#98a6f3 transparent",
         }}
-        className="parallax-wrapper overflow-y-auto overflow-x-hidden scroll-smooth"
+        className="parallax-wrapper overflow-x-hidden overflow-y-auto scroll-smooth"
       >
         <div>
           <HeroSection />
