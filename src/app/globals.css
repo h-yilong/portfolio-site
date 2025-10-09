@@ -161,6 +161,24 @@
   .hero-gradient > div {
     @apply h-full w-full bg-radial-[50%_50%_at_50%_50%] from-10% via-30% to-transparent;
   }
+  .loading-bar {
+    @apply h-full w-full origin-center animate-[1s_ease-out_infinite_loading-bar] bg-linear-to-r from-transparent via-indigo-800 to-transparent;
+  }
+
+  @keyframes loading-bar {
+    0% {
+      transform: scaleX(0%);
+      opacity: 1;
+    }
+    80% {
+      transform: scaleX(100%);
+      opacity: 1;
+    }
+    100% {
+      transform: scaleX(100%);
+      opacity: 0;
+    }
+  }
 
   @keyframes slide-up {
     from {

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useIntersectionObserver, useLazyLoad, useScrollAnimation } from "./useIntersectionObserver";
+import { useIntersectionObserver, useLazyLoad } from "./useIntersectionObserver";
 
 // Type assertion helper for ref compatibility
 const asDivRef = (ref: React.RefObject<HTMLElement | null>) => ref as React.RefObject<HTMLDivElement>;
@@ -98,7 +98,7 @@ export const LazyImageExample: React.FC = () => {
  * This example shows how to trigger animations that freeze after first visibility
  */
 export const OneTimeAnimationExample: React.FC = () => {
-  const { ref, isIntersecting } = useScrollAnimation({
+  const { ref, isIntersecting } = useIntersectionObserver({
     threshold: 0.3,
     rootMargin: "0px 0px -50px 0px",
   });
@@ -245,7 +245,7 @@ export const MultipleElementsExample: React.FC = () => {
 export const PerformanceExample: React.FC = () => {
   const { ref, isIntersecting, hasBeenVisible } = useIntersectionObserver({
     threshold: 0.1,
-    freezeOnceVisible: true, // This will disconnect the observer after first visibility
+    // freezeOnceVisible: true, // This will disconnect the observer after first visibility
   });
 
   return (

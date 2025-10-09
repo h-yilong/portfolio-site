@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { useTransition, animated } from "@react-spring/web";
 import { TimerId } from "@/types/general-types";
 import styles from "./styles.module.css";

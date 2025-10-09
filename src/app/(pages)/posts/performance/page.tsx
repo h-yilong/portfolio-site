@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Welcome from "@/app/markdown/welcome.md";
 
 export default function PerformancePage() {

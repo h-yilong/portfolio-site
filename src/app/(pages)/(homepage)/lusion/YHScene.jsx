@@ -1,7 +1,7 @@
 "use client";
 
 // Import Three.js core library for 3D math and utilities
-import * as THREE from "three";
+import { Vector3, MathUtils } from "three";
 // React hooks for state management and performance optimization
 import { useRef, useReducer, useMemo, Fragment } from "react";
 // React Three Fiber for React integration with Three.js
@@ -9,30 +9,30 @@ import { Canvas, useFrame } from "@react-three/fiber";
 // Drei library for pre-built 3D components and utilities
 import { useGLTF, MeshTransmissionMaterial, Environment, Lightformer } from "@react-three/drei";
 // Rapier physics engine for realistic physics simulation
-import { CuboidCollider, BallCollider, Physics, RigidBody } from "@react-three/rapier";
+import { BallCollider, Physics, RigidBody } from "@react-three/rapier";
 // Post-processing effects for enhanced visual quality
 import { EffectComposer, N8AO } from "@react-three/postprocessing";
 // Math utilities for smooth animations and transitions
 import { easing } from "maath";
 
 // Array of accent colors that can be cycled through on click
-const accents = ["#7f22fe", "#4f39f6", "#20ffa0"];
+const accents = ["#9333ea", "#4f39f6", "#20ffa0", "#ff4060", "#ffcc00"];
 
 // Function that generates an array of material properties for the 3D objects
 // Each object gets different colors and roughness values for visual variety
 const shuffle = (accent = 0) => [
-  { color: "#4f39f6", roughness: 0.8 },
+  { color: "#9333ea", roughness: 0.8 },
   { color: "#4f39f6", roughness: 0.1 },
-  { color: "#ff4060", roughness: 0.75 }, // Red, rough
-  { color: "#ffcc00", roughness: 0.75 }, // Yellow, rough
-  { color: "white", roughness: 0.75 }, // White, rough
-  { color: "white", roughness: 0.1 }, // White, smooth
+  { color: "#ff4060", roughness: 0.85 },
+  { color: "#ffcc00", roughness: 0.85 },
+  { color: "#fff", roughness: 0.85 },
+  { color: "#fff", roughness: 0.1 },
   { color: accents[accent], roughness: 0.1, accent: true }, // Accent color, smooth, with lighting
-  { color: accents[accent], roughness: 0.75, accent: true }, // Accent color, rough, with lighting
+  { color: accents[accent], roughness: 0.85, accent: true }, // Accent color, rough, with lighting
 ];
 
 // Main component that wraps the 3D scene in a styled container
-export const YHScene = () => {
+const YHScene = () => {
   const ref = useRef(null);
   // State management for accent color cycling - increments on each click
   const [accent, click] = useReducer((state) => ++state % accents.length, 0);
@@ -40,22 +40,21 @@ export const YHScene = () => {
   const connectors = useMemo(() => shuffle(accent), [accent]);
 
   return (
-    <section onClick={click} ref={ref} className="custom-cursor max-width relative mx-auto overflow-hidden rounded-3xl">
+    <div onClick={click} ref={ref} className="custom-cursor aspect-[1.6] w-2/3 overflow-hidden rounded-3xl">
       <Canvas
         // onClick={click} // Click handler to cycle through accent colors
         // frameloop="demand"
         shadows // Enable shadow rendering
-        dpr={[1, 1.5]} // Device pixel ratio for crisp rendering
+        dpr={[1, 2]} // Device pixel ratio for crisp rendering
         gl={{ antialias: false }} // Disable antialiasing for performance
         camera={{ position: [0, 0, 15], fov: 20, near: 1, far: 100 }} // Camera setup
         eventSource={ref}
-        className="aspect-[2] w-1/2"
         // eventPrefix="offset"
       >
         <color attach="background" args={["#223"]} />
 
         {/* Ambient light for overall scene illumination */}
-        <ambientLight intensity={0.8} />
+        <ambientLight intensity={1} />
 
         {/* Spotlight for dramatic lighting and shadows */}
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} castShadow />
@@ -64,7 +63,6 @@ export const YHScene = () => {
         <Physics /*debug*/ gravity={[0, 0, 0]}>
           {/* Mouse pointer that interacts with physics objects */}
           <Pointer />
-
           <Letter position={[10, 10, 5]}>
             <LetterModel letter="Y">
               <MeshTransmissionMaterial
@@ -107,17 +105,24 @@ export const YHScene = () => {
         </EffectComposer>
 
         {/* Environment lighting setup with multiple light sources */}
+
         <Environment resolution={256}>
           <group rotation={[-Math.PI / 3, 0, 1]}>
-            {/* Various lightformers positioned around the scene for realistic lighting */}
-            <Lightformer form="circle" intensity={4} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={2} />
-            <Lightformer form="circle" intensity={2} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={2} />
+            <Lightformer form="circle" intensity={3} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={2} />
             <Lightformer form="circle" intensity={2} rotation-y={Math.PI / 2} position={[-5, -1, -1]} scale={2} />
             <Lightformer form="circle" intensity={2} rotation-y={-Math.PI / 2} position={[10, 1, 0]} scale={8} />
+            <Lightformer
+              form="ring"
+              color="#4c1d95"
+              intensity={15}
+              onUpdate={(self) => self.lookAt(0, 0, 0)}
+              position={[5, 5, 10]}
+              scale={10}
+            />
           </group>
         </Environment>
       </Canvas>
-    </section>
+    </div>
   );
 };
 
@@ -125,9 +130,9 @@ export const YHScene = () => {
 function Letter({
   position, // Optional fixed position
   children, // Custom child components (like glass material)
-  vec = new THREE.Vector3(), // Reusable vector for calculations
+  vec = new Vector3(), // Reusable vector for calculations
   scale, // Optional scaling
-  r = THREE.MathUtils.randFloatSpread, // Random position generator function
+  r = MathUtils.randFloatSpread, // Random position generator function
   accent, // Whether this object should emit light
   ...props // Material properties (color, roughness, etc.)
 }) {
@@ -154,13 +159,13 @@ function Letter({
       {/* Render custom children or default Model component */}
       {children ? children : <LetterModel {...props} />}
       {/* Add point light for accent objects to make them glow */}
-      {accent && <pointLight intensity={1} distance={2.5} color={props.color} />}
+      {accent && <pointLight intensity={3} position={[-1, 0, 2]} distance={2.5} color={props.color} />}
     </RigidBody>
   );
 }
 
 // Pointer component that follows the mouse cursor and interacts with physics objects
-function Pointer({ vec = new THREE.Vector3() }) {
+function Pointer({ vec = new Vector3() }) {
   const ref = useRef(null);
 
   // Animation loop that updates the pointer position based on mouse movement
@@ -202,10 +207,10 @@ function LetterModel({ letter = "Y", children, color = "white", roughness = 0, .
       ref={ref} // Reference for material manipulation
       castShadow // This object casts shadows
       receiveShadow // This object receives shadows
-      scale={0.36} // Scale down the model to 36% of original size
+      scale={0.38} // Scale down the model to 36% of original size
       geometry={nodes.Capsule.geometry} // Use the geometry from the loaded model
       material={nodes.Capsule.material} // Use the material from the loaded model
-      position={[-2, 0, 0]} // Offset position to the left
+      position={[0, 0, 0]}
     >
       {/* Override material properties for customization */}
       <meshStandardMaterial metalness={0} roughness={roughness} />
@@ -217,3 +222,5 @@ function LetterModel({ letter = "Y", children, color = "white", roughness = 0, .
 
 // useGLTF.preload("/assets/models/letter-Y-transformed.glb");
 // useGLTF.preload("/assets/models/letter-H-transformed.glb");
+
+export default YHScene;

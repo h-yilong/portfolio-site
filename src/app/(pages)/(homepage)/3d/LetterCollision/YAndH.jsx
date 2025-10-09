@@ -20,7 +20,7 @@ function Scene(props) {
   return (
     <Canvas
       shadows // Enable shadow rendering
-      dpr={[1, 1.5]} // Device pixel ratio for crisp rendering
+      dpr={[1, 2]} // Device pixel ratio for crisp rendering
       gl={{ antialias: false }} // Disable antialiasing for performance
       camera={{ position: [0, 0, 15], fov: 13, near: 1, far: 20 }} // Camera setup
       {...props}

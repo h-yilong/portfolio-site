@@ -8,8 +8,8 @@ const yTransform = (value: number) => `${value}%`;
 export default function ImaginationText() {
   // Use intersection observer to track when component enters/exits viewport
   const { ref, isIntersecting } = useIntersectionObserver({
-    threshold: 0.36, // Trigger when 36% of the component is visible
-    rootMargin: "0px 0px -50px 0px", // Trigger 50px before the component enters viewport
+    threshold: [0, 0.36], // Track both at 0% (exit) and 36% (entry) visibility
+    rootMargin: "900px 0px 900px 0px", // Keep visible until 200px past leaving the viewport (top, right, bottom, left)
   });
 
   const trail = useTrail(2, {

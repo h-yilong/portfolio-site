@@ -1,5 +1,4 @@
 "use client";
-// import * as THREE from "three";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useGraph } from "@react-three/fiber";
 import { SkeletonUtils } from "three-stdlib";

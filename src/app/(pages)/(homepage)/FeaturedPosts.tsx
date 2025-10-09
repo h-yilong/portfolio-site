@@ -44,9 +44,9 @@ const POSTS = [
 
 export default function FeaturedPosts() {
   return (
-    <section className="max-width relative mx-auto my-8 w-full">
+    <section className="max-width relative mx-auto my-20 w-full">
       <h3 className="my-6 text-center text-[4vw] font-bold">Featured Posts</h3>
-      <div className="grid w-full grid-cols-3 gap-8">
+      <div className="grid w-full grid-cols-2 gap-8">
         {POSTS.map((item, index) => (
           <WorkCard key={index} flip={index % 2 === 0} {...item} />
         ))}

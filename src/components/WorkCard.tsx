@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { a, useTrail } from "@react-spring/web";
-import { ArrowRightIcon } from "lucide-react";
+// import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import { type ComponentProps, type ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 
@@ -10,7 +10,7 @@ export default function WorkCard({
   description,
   image,
   video,
-  link,
+  // link,
   className,
   flip = false,
 }: {
@@ -18,7 +18,7 @@ export default function WorkCard({
   description: string;
   image?: ComponentProps<typeof Image>["src"];
   video?: string;
-  link: string;
+  // link: string;
   className?: string;
   flip?: boolean;
 }) {
@@ -40,10 +40,11 @@ export default function WorkCard({
   const [trail2, _api2] = useTrail(
     characters.length,
     () => ({
-      config: { clamp: true, tension: 5000, friction: 150, mass: 1, precision: 2 },
+      config: { clamp: true, tension: 5000, friction: 120, mass: 1, precision: 2 },
       // config: { clamp: true, tension: 2000, friction: 90, mass: 1 },
       // config: { clamp: true, tension: 3000, friction: 90, mass: 2 },
       x: isHovering ? 32 : 0,
+      y: 48,
     }),
     [isHovering],
   );
@@ -135,7 +136,7 @@ export default function WorkCard({
       >
         {media}
       </div>
-      <p className="text-sm font-medium text-amber-400">{description}</p>
+      <p className="text-lg font-medium text-amber-400">{description}</p>
       <h4 className="flex h-6 items-center overflow-hidden text-2xl leading-[1] font-bold">
         {/* <ArrowRightIcon className="-translate-x-6 stroke-3 transition-all duration-100 ease-out group-hover:translate-x-0" /> */}
         {newTrail.map((style, index) => {
@@ -144,7 +145,7 @@ export default function WorkCard({
             character = <>&nbsp;</>;
           }
           return (
-            <a.div key={index} className="flex flex-col" style={{ ...trail2[index], ...style }}>
+            <a.div key={index} className="flex flex-col" style={{ ...style, ...trail2[index] }}>
               <span>{character}</span>
               <span>{character}</span>
               <span>{character}</span>

@@ -9,14 +9,14 @@ const navLinks = [
     name: "Home",
     href: "/",
   },
-  {
-    name: "About",
-    href: "/#about",
-  },
-  {
-    name: "Contact",
-    href: "/#contact",
-  },
+  // {
+  //   name: "About",
+  //   href: "/#about",
+  // },
+  // {
+  //   name: "Contact",
+  //   href: "/#contact",
+  // },
   {
     name: "Posts",
     href: "/posts/design/3d",
@@ -28,12 +28,12 @@ const navLinks = [
 ];
 
 const NavItems = ({ onClick = () => {} }) => (
-  <ul className="relative z-20 flex flex-col items-center gap-4 sm:flex-row md:gap-6">
+  <ul className="flex flex-col gap-1">
     {navLinks.map((item) => (
-      <li key={item.href} className="max-sm:hover:bg-black-500 max-sm:w-full max-sm:rounded-md max-sm:px-5">
+      <li key={item.href} className="w-full">
         <Link
           href={item.href}
-          className="p-2 text-lg font-semibold transition-colors hover:text-indigo-500 md:text-base"
+          className="block w-full p-2 text-lg font-semibold transition-colors hover:text-indigo-500 md:text-base"
           onClick={onClick}
         >
           {item.name}
@@ -55,13 +55,10 @@ const Navbar = () => {
           <Link aria-label="homepage" href="/" onClick={closeMenu}>
             <img src="/assets/images/yh-logo.svg" loading="eager" alt="logo" className="h-12 w-12" />
           </Link>
-          <nav className="hidden sm:flex">
-            <NavItems />
-          </nav>
           <MenuButton
             aria-label="Toggle menu"
             data-test="menu-button"
-            className="sm:hidden"
+            // className="sm:hidden"
             isOpen={isOpen}
             toggle={() => setIsOpen((prev) => !prev)}
           />
@@ -69,9 +66,14 @@ const Navbar = () => {
       </div>
 
       <div
-        className={cn(`overflow-hidden transition-all duration-300 ease-in-out sm:hidden`, isOpen ? "h-screen" : "h-0")}
+        className={cn(
+          `fixed top-16 right-6 rounded-lg border border-white/50 bg-[#223a] backdrop-blur-sm transition-all duration-200 ease-out`,
+          isOpen
+            ? "z-50 translate-y-0 rotate-0 opacity-100"
+            : "pointer-events-none -z-50 translate-y-8 rotate-2 opacity-0",
+        )}
       >
-        <nav className="py-5">
+        <nav className="p-4">
           <NavItems onClick={closeMenu} />
         </nav>
       </div>

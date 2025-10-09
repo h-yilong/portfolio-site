@@ -1,5 +1,5 @@
 "use client";
-import * as THREE from "three";
+import { MathUtils } from "three";
 import React, { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 // React Three Fiber for React integration with Three.js
@@ -124,7 +124,7 @@ export default function HeroSection() {
 
         <Canvas
           shadows // Enable shadow rendering
-          dpr={[1, 1.5]} // Device pixel ratio for crisp rendering
+          dpr={[1, 2]} // Device pixel ratio for crisp rendering
           gl={{ antialias: false }} // Disable antialiasing for performance
           camera={{ position: [1.5, -2, 8], fov: 18, near: 0.1, far: 100 }} // Camera setup
           eventSource={containerRef.current || undefined}
@@ -170,8 +170,8 @@ function Rig() {
     } = state;
     const { x, y } = position;
 
-    position.x = THREE.MathUtils.lerp(x, targetX, 0.1);
-    position.y = THREE.MathUtils.lerp(y, targetY, 0.1);
+    position.x = MathUtils.lerp(x, targetX, 0.1);
+    position.y = MathUtils.lerp(y, targetY, 0.1);
     // state.camera.lookAt(0, 0, 0);
   });
 }

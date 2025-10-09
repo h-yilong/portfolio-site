@@ -179,7 +179,7 @@ function AnalyticsComponent() {
 const { position } = useScroll();
 
 return (
-  <div className="fixed left-0 right-0 top-0 h-1 bg-gray-200">
+  <div className="fixed top-0 right-0 left-0 h-1 bg-gray-200">
     <div className="h-full bg-blue-500 transition-all duration-100" style={{ width: `${position.progressY * 100}%` }} />
   </div>
 );

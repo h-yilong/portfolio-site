@@ -41,3 +41,4 @@ next-env.d.ts
 cypress/screenshots
 cypress/e2e/examples
 
+cursor-chats

@@ -1,0 +1,15 @@
+# 3D Hero Section
+
+```sh
+# npx gltfjsx model.glb -T -b -m -t -R 2048
+npx gltfjsx model.glb -t -T
+
+npx gltf-pipeline -i ./model-transformed.glb -o model-transformed.gltf -t # convert glb to gltf, --separateTextures, -t	Write out separate textures only.
+npx gltf-pipeline -i ./model-transformed.gltf -o model-optimized.glb -b
+npx gltf-pipeline -i ./robot.gltf -o model-optimized.glb -b
+```
+
+- decide the tradeoff, try to take a simple but effective approach
+- remove some parts of the model in Blender
+  - beyond my capabilities
+- load compressed model for small screen, or uncompressed model for large screen

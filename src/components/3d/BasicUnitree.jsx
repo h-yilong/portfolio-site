@@ -22,7 +22,7 @@ function RobotScene(props) {
   return (
     <Canvas
       shadows // Enable shadow rendering
-      dpr={[1, 1.5]} // Device pixel ratio for crisp rendering
+      dpr={[1, 2]} // Device pixel ratio for crisp rendering
       gl={{ antialias: false }} // Disable antialiasing for performance
       camera={{ position: [0, 1, 5], fov: 8, near: 1, far: 30 }} // Camera setup
       {...props}
