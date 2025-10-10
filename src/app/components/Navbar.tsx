@@ -53,7 +53,13 @@ const Navbar = () => {
       <div className="px-6">
         <div className="flex w-full items-center justify-between py-3">
           <Link aria-label="homepage" href="/" onClick={closeMenu}>
-            <img src="/assets/images/yh-logo.svg" loading="eager" alt="logo" className="h-12 w-12" />
+            <img
+              src="/assets/images/yh-logo.svg"
+              fetchPriority="high"
+              loading="eager"
+              alt="Yilong Huang logo"
+              className="h-12 w-12"
+            />
           </Link>
           <MenuButton
             aria-label="Toggle menu"

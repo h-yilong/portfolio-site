@@ -7,7 +7,6 @@ import {
   createCardComponent,
   create3DComponent,
 } from "./components/OptimizedLoader";
-import { PerformanceMonitor } from "./components/PerformanceMonitor";
 
 // 使用 Next.js dynamic 创建优化的组件
 const ImaginationText2 = createTextComponent(() => import("@/app/(pages)/react-spring/ImaginationText"));
@@ -88,9 +87,6 @@ export default function HomeOptimized() {
             <Contact />
           </OptimizedLoader>
         </div>
-
-        {/* 性能监控（仅开发环境） */}
-        <PerformanceMonitor />
       </main>
     );
   } catch (error) {

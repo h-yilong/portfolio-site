@@ -18,6 +18,7 @@ import { easing } from "maath";
 import { cn } from "@/lib/utils";
 import LoadingBar from "./LoadingBar";
 import HiText from "./HiText";
+// import { ModelWithWorker } from "@/components/3d/robot/ModelWithWorker";
 
 const scale = Array.from({ length: 50 }, () => 1 + Math.random() * 15);
 const easeOutExpo = (x: number) => (x === 1 ? 1 : 1 - Math.pow(2, -10 * x));
@@ -31,6 +32,32 @@ export default function HeroSection() {
   const gradientRef2 = useRef<HTMLDivElement>(null);
   // const animationFrameId = useRef<number | null>(null);
   const [modelLoaded, setModelLoaded] = useState(false);
+  const [canvasReady, setCanvasReady] = useState(false); // 新增：控制 Canvas 初始化时机
+
+  // 🚀 关键优化：延迟 Canvas 初始化以实现 TBT = 0
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // 使用 requestIdleCallback 在浏览器空闲时初始化 Canvas
+    // 这确保在 FCP → TTI 窗口内不会有长任务阻塞主线程
+    if ("requestIdleCallback" in window) {
+      const idleId = requestIdleCallback(
+        () => {
+          setCanvasReady(true);
+          console.log("✅ Canvas initialization deferred to idle time");
+        },
+        { timeout: 300 }, // 最多延迟 300ms，确保用户体验
+      );
+      return () => cancelIdleCallback(idleId);
+    } else {
+      // 降级方案：在非支持浏览器中使用 setTimeout
+      const timerId = setTimeout(() => {
+        setCanvasReady(true);
+        console.log("✅ Canvas initialization deferred via setTimeout");
+      }, 100);
+      return () => clearTimeout(timerId);
+    }
+  }, []);
 
   // const handleMouseMove = useCallback(function (e: MouseEvent) {
   //   if (typeof window === "undefined") return;
@@ -153,43 +180,46 @@ export default function HeroSection() {
           <div className="from-[rgba(69,53,211,0.9)] via-[rgba(70,55,209,0.6)]" />
         </div>
 
-        <div
-          className={cn(
-            "h-full w-full transition-opacity duration-300 ease-out will-change-[opacity]",
-            modelLoaded ? "opacity-100" : "opacity-0",
-          )}
-        >
-          <Canvas
-            // shadows
-            // frameloop="demand"
-            dpr={[1, 2]}
-            gl={{ antialias: false }} // Disable antialiasing for performance
-            // camera={{ position: [1.5, -2, 8], fov: 8, near: 0.1, far: 100 }} // Camera setup
-            camera={{ position: [20, 12, -20], fov: 8, near: 0.1, far: 50 }} // Camera setup
-            // @ts-ignore
-            eventSource={containerRef}
-          >
-            {/* <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={8} near={0.1} far={100} /> */}
-            <ambientLight intensity={6} color="#fee" />
-            <directionalLight position={[2, 5, 2]} intensity={3.6} color="#1af" />
-            <directionalLight position={[-2, 0, -0.3]} intensity={6.8} color="#fff" />
-            {modelLoaded && (
-              <Sparkles
-                count={scale.length} // Number of sparkles to render
-                size={scale as unknown as number} // Size of each sparkle (can be a number or an array for per-sparkle sizes)
-                color="#fff"
-                position={[0, 0.1, 0]} // Center position of the sparkles group in 3D space: [x, y, z]
-                scale={[2, 1, 3]} // Spread/area the sparkles cover: [width, height, depth]
-                speed={0.3} // Animation speed of the sparkles
-              />
+        {/* 🎯 Canvas 只在空闲时初始化，避免阻塞 FCP → TTI */}
+        {canvasReady && (
+          <div
+            className={cn(
+              "h-full w-full transition-opacity duration-300 ease-out will-change-[opacity]",
+              modelLoaded ? "opacity-100" : "opacity-0",
             )}
-            <Suspense fallback={null}>
-              <SintRobotModel onLoadComplete={handleModelLoadComplete} />
-            </Suspense>
-            {/* <OrbitControls /> */}
-            <Rig modelLoaded={modelLoaded} />
-          </Canvas>
-        </div>
+          >
+            <Canvas
+              // shadows
+              // frameloop="demand"
+              dpr={[1, 2]}
+              gl={{ antialias: false }} // Disable antialiasing for performance
+              // camera={{ position: [1.5, -2, 8], fov: 8, near: 0.1, far: 100 }} // Camera setup
+              camera={{ position: [20, 12, -20], fov: 8, near: 0.1, far: 50 }} // Camera setup
+              // @ts-ignore
+              eventSource={containerRef}
+            >
+              {/* <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={8} near={0.1} far={100} /> */}
+              <ambientLight intensity={6} color="#fee" />
+              <directionalLight position={[2, 5, 2]} intensity={3.6} color="#1af" />
+              <directionalLight position={[-2, 0, -0.3]} intensity={6.8} color="#fff" />
+              {modelLoaded && (
+                <Sparkles
+                  count={scale.length} // Number of sparkles to render
+                  size={scale as unknown as number} // Size of each sparkle (can be a number or an array for per-sparkle sizes)
+                  color="#fff"
+                  position={[0, 0.1, 0]} // Center position of the sparkles group in 3D space: [x, y, z]
+                  scale={[2, 1, 3]} // Spread/area the sparkles cover: [width, height, depth]
+                  speed={0.3} // Animation speed of the sparkles
+                />
+              )}
+              <Suspense fallback={null}>
+                <SintRobotModel onLoadComplete={handleModelLoadComplete} />
+              </Suspense>
+              {/* <OrbitControls /> */}
+              <Rig modelLoaded={modelLoaded} />
+            </Canvas>
+          </div>
+        )}
         <div className="h-[1px] w-full bg-linear-to-r from-transparent from-10% via-white/30 to-transparent to-90%" />
       </section>
     </>
