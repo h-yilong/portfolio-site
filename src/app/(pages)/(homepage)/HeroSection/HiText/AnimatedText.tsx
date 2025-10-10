@@ -34,7 +34,7 @@ export default function AnimatedText() {
   useEffect(() => {
     const id = setTimeout(() => {
       setShow(true);
-    }, 1_600);
+    }, 900);
     return () => clearTimeout(id);
   }, []);
 

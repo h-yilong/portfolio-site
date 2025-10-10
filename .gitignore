@@ -42,3 +42,4 @@ cypress/screenshots
 cypress/e2e/examples
 
 cursor-chats
+docs/*.md

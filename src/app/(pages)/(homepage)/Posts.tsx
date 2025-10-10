@@ -1,11 +1,11 @@
-"use client";
+// "use client";
 
-import { useHeroSectionLoaded } from "@/components/LazyLoader";
-import dynamic from "next/dynamic";
+// import { useHeroSectionLoaded } from "@/components/LazyLoader";
+// import dynamic from "next/dynamic";
 
-const FeaturedPosts = dynamic(() => import("./FeaturedPosts"), {
-  ssr: true,
-});
+// const FeaturedPosts = dynamic(() => import("./FeaturedPosts"), {
+//   ssr: true,
+// });
 
 const Fallback = () => (
   <section className="my-20">
@@ -13,11 +13,11 @@ const Fallback = () => (
   </section>
 );
 
-export default function NeverLimitImagination() {
-  const heroLoaded = useHeroSectionLoaded();
+export default function Posts() {
+  // const heroLoaded = useHeroSectionLoaded();
 
-  if (heroLoaded) {
-    return <FeaturedPosts />;
-  }
+  // if (heroLoaded) {
+  //   return <FeaturedPosts />;
+  // }
   return <Fallback />;
 }

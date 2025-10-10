@@ -4,10 +4,10 @@ import AnimatedLine from "./AnimatedLine";
 import HeroSection from "./HeroSection";
 import NeverLimitImagination from "./NeverLimitImagination";
 import LetterCollision from "./LetterCollision";
-import Posts from "./Posts";
-import { PerformanceMonitor } from "./components/PerformanceMonitor";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
 import Footer from "@/components/Footer";
 import Contact from "@/app/ui/home/Contact";
+import FeaturedPosts from "./FeaturedPosts";
 // import dynamic from "next/dynamic";
 
 // const ImaginationText2 = dynamic(() => import("@/app/(pages)/react-spring/ImaginationText"));
@@ -41,7 +41,7 @@ export default function Home() {
           <NeverLimitImagination />
           <AnimatedLine />
           <LetterCollision />
-          <Posts />
+          <FeaturedPosts />
           <Contact />
           <Footer />
         </div>

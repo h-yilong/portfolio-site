@@ -13,7 +13,15 @@ const POSTS = [
   {
     title: "Art: Conceptual Design",
     description: "web • design • development • 3d  • illustration",
+    image: "/assets/images/hero.jpg",
     video: "/assets/videos/video-design.mp4",
+    link: "/posts/design/3d",
+  },
+  {
+    title: "Art: Conceptual Design",
+    description: "web • design • development • 3d  • illustration",
+    image: "/assets/images/hero.jpg",
+    video: "/assets/videos/kpop_30s.mp4",
     link: "/posts/design/3d",
   },
   {
@@ -25,18 +33,13 @@ const POSTS = [
   {
     title: "Art: Conceptual Design",
     description: "web • design • development • 3d  • illustration",
-    video: "/assets/videos/kpop_30s.mp4",
-    link: "/posts/design/3d",
-  },
-  {
-    title: "Art: Conceptual Design",
-    description: "web • design • development • 3d  • illustration",
     image: img3,
     link: "/posts/design/3d",
   },
   {
     title: "Art: Conceptual Design",
     description: "web • design • development • 3d  • illustration",
+    image: "/assets/images/hero.jpg",
     video: "/assets/videos/framer_.mp4",
     link: "/posts/design/3d",
   },
@@ -46,7 +49,7 @@ export default function FeaturedPosts() {
   return (
     <section className="max-width relative mx-auto my-20 w-full">
       <h3 className="my-6 text-center text-[4vw] font-bold">Featured Posts</h3>
-      <div className="grid w-full grid-cols-2 gap-8">
+      <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
         {POSTS.map((item, index) => (
           <WorkCard key={index} flip={index % 2 === 0} {...item} />
         ))}

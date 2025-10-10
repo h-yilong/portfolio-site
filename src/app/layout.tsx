@@ -8,14 +8,14 @@ import { Toaster } from "sonner";
 const montserrat = localFont({
   // src: './fonts/GeistVF.woff',
   // src: './fonts/RandyVF.woff2',
-  src: "./fonts/Montserrat.woff2",
+  src: "../../public/assets/fonts/Montserrat.woff2",
   variable: "--font-montserrat",
   weight: "100 900",
   display: "swap",
   style: "normal",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "../../public/assets/fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
@@ -33,6 +33,10 @@ export default async function RootLayout({
 }>) {
   return (
     <html data-scroll-behavior="smooth" lang="en">
+      <head>
+        <link rel="preload" href="/assets/fonts/GeistMonoVF.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+        <link rel="preload" href="/assets/fonts/Montserrat.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      </head>
       <body className={`${montserrat.variable} ${geistMono.variable} dark max-w-full overflow-x-hidden antialiased`}>
         <Navbar />
         {children}
