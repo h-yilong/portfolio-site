@@ -19,7 +19,7 @@ export default function ImaginationText() {
     y: isIntersecting ? 0 : 100,
   });
 
-  const transitions = useTransition(isIntersecting ? ["Your", "Imagination"] : [], {
+  const transitions = useTransition(isIntersecting ? ["Ideas", "Collide"] : [], {
     config: { clamp: true },
     trail: 200,
     from: { opacity: 0, y: -100, x: 72 },
@@ -32,10 +32,10 @@ export default function ImaginationText() {
       <h3 className="text-[10vw] font-semibold tracking-tighter *:leading-[1] xl:text-9xl">
         <div className="flex h-[10vw] overflow-hidden xl:h-32">
           <a.div style={{ ...trail[0], y: trail[0].y.to(yTransform) }} className="overflow-hidden">
-            Never
+            Let
           </a.div>
           &nbsp;
-          <a.div style={{ ...trail[1], y: trail[1].y.to(yTransform) }}>Limit</a.div>
+          <a.div style={{ ...trail[1], y: trail[1].y.to(yTransform) }}>The</a.div>
         </div>
         <div className="flex h-[10.6vw] overflow-hidden xl:h-[136px]">
           {transitions((style, item) => (

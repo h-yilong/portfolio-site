@@ -8,7 +8,7 @@ const ImaginationText = dynamic(() => import("@/app/(pages)/react-spring/Imagina
 const Fallback = () => (
   <section className="max-width relative mx-auto my-16 w-full">
     <h3 className="h-[20.6vw] text-[10vw] font-semibold tracking-tighter *:leading-[1] xl:h-[264px] xl:text-9xl">
-      Never Limit Your Imagination
+      Let The Ideas Collide
     </h3>
   </section>
 );

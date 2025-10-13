@@ -37,7 +37,7 @@ export default async function RootLayout({
         <link rel="preload" href="/assets/fonts/GeistMonoVF.woff" as="font" type="font/woff" crossOrigin="anonymous" />
         <link rel="preload" href="/assets/fonts/Montserrat.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
-      <body className={`${montserrat.variable} ${geistMono.variable} dark max-w-full overflow-x-hidden antialiased`}>
+      <body className={`${montserrat.variable} ${geistMono.variable} dark max-screen overflow-hidden antialiased`}>
         <Navbar />
         {children}
         <Toaster richColors position="bottom-center" />

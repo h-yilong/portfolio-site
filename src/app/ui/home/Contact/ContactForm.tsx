@@ -59,7 +59,7 @@ const ContactForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={handleSubmit(onSubmit)} className="mx-auto my-12 w-full max-w-2xl space-y-6 rounded p-6">
-        <section role="table" className="grid w-full grid-cols-12 gap-4 rounded-md">
+        <section className="grid w-full grid-cols-12 gap-4 rounded-md">
           <div className="col-span-6">
             <InputFormField<ContactFormData>
               required

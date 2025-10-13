@@ -1,9 +1,14 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import { type ComponentProps, useMemo } from "react";
 import { useHeroSectionLoaded } from "./LazyLoader";
+
+import dynamic from "next/dynamic";
+
+const PostTitle = dynamic(() => import("./PostTitle"), {
+  ssr: true,
+});
 
 export default function WorkCard({
   title,
@@ -41,11 +46,14 @@ export default function WorkCard({
           muted
           playsInline
           preload="none"
+          aria-label={`Video demonstration: ${title}`}
           className={cn(
             "h-full w-full translate-z-24 object-cover transition-all duration-500 ease-out group-hover:translate-z-0 group-hover:rotate-x-0 group-hover:rotate-y-0 group-hover:rotate-z-0",
             flip ? "-rotate-x-6 -rotate-y-6 -rotate-z-6" : "rotate-x-6 rotate-y-6 rotate-z-6",
           )}
-        />
+        >
+          <track kind="captions" />
+        </video>
       );
     }
     if (image) {
@@ -93,12 +101,7 @@ export default function WorkCard({
         {media}
       </div>
       <p className="text-lg font-medium text-amber-400">{description}</p>
-      <h4 className="flex h-6 items-center overflow-hidden text-2xl leading-[1] font-bold">
-        <ArrowRightIcon className="mr-2 size-6 -translate-x-3 stroke-3 opacity-0 duration-200 ease-out group-hover:translate-x-0 group-hover:opacity-100" />
-        <span className="-translate-x-8 transition-transform duration-300 ease-out group-hover:translate-x-0">
-          {title}
-        </span>
-      </h4>
+      <PostTitle className="text-2xl">{title}</PostTitle>
     </div>
   );
 }

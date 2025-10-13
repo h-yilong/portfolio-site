@@ -32,7 +32,7 @@ export default function HeroSection() {
   const gradientRef2 = useRef<HTMLDivElement>(null);
   // const animationFrameId = useRef<number | null>(null);
   const [modelLoaded, setModelLoaded] = useState(false);
-  const [canvasReady, setCanvasReady] = useState(false); // 新增：控制 Canvas 初始化时机
+  const [canvasReady, setCanvasReady] = useState(false);
 
   // 🚀 关键优化：延迟 Canvas 初始化以实现 TBT = 0
   useEffect(() => {
@@ -190,7 +190,7 @@ export default function HeroSection() {
           >
             <Canvas
               // shadows
-              // frameloop="demand"
+              // frameloop="always"
               dpr={[1, 2]}
               gl={{ antialias: false }} // Disable antialiasing for performance
               // camera={{ position: [1.5, -2, 8], fov: 8, near: 0.1, far: 100 }} // Camera setup

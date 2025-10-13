@@ -180,6 +180,26 @@
     }
   }
 
+  .slide-down-title {
+    animation: _slide-down-title 1s 1 0s forwards ease-out;
+  }
+
+  @keyframes _slide-down-title {
+    0%,
+    50% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(300%);
+    }
+  }
+
+  .hero-text-fadeIn {
+  }
+
+  @keyframes _hero-text-fadeIn {
+  }
+
   @keyframes slide-up {
     from {
       opacity: 1;

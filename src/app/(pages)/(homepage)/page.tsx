@@ -4,20 +4,9 @@ import AnimatedLine from "./AnimatedLine";
 import HeroSection from "./HeroSection";
 import NeverLimitImagination from "./NeverLimitImagination";
 import LetterCollision from "./LetterCollision";
-import PerformanceMonitor from "@/components/PerformanceMonitor";
 import Footer from "@/components/Footer";
 import Contact from "@/app/ui/home/Contact";
 import FeaturedPosts from "./FeaturedPosts";
-// import dynamic from "next/dynamic";
-
-// const ImaginationText2 = dynamic(() => import("@/app/(pages)/react-spring/ImaginationText"));
-// const NeverLimitImagination = dynamic(() => import("./NeverLimitImagination"));
-// const AnimatedLine = dynamic(() => import("./AnimatedLine"));
-// const LetterCollision = dynamic(() => import("./LetterCollision"));
-// const Posts = dynamic(() => import("./Posts"));
-
-// Lazy load components that are not immediately visible
-// const ImaginationText2 = lazy(() => import("@/app/(pages)/react-spring/ImaginationText"));
 
 // const PRELOAD_OPTIONS: PreloadOptions = {
 //   as: "image",
@@ -42,10 +31,14 @@ export default function Home() {
           <AnimatedLine />
           <LetterCollision />
           <FeaturedPosts />
+          <section className="max-width mx-auto my-16">
+            <h3 className="w-1/2 text-[4vw] leading-[1.1] font-bold">
+              Are you ready to build something cool and bring your ideas to life?
+            </h3>
+          </section>
           <Contact />
           <Footer />
         </div>
-        <PerformanceMonitor />
       </main>
     );
   } catch (error) {

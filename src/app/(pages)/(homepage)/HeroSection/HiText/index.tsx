@@ -3,7 +3,7 @@
 import { useHeroSectionLoaded } from "@/components/LazyLoader";
 import dynamic from "next/dynamic";
 
-const AnimatedText = dynamic(() => import("./AnimatedText"));
+const AnimatedText = dynamic(() => import("./CssAnimatedText"));
 
 const Fallback = () => (
   <div className="pointer-events-none absolute -z-10 text-7xl font-bold text-[var(--background)]">
