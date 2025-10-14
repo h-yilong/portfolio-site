@@ -18,6 +18,7 @@ import { easing } from "maath";
 import { cn } from "@/lib/utils";
 import LoadingBar from "./LoadingBar";
 import HiText from "./HiText";
+import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 // import { ModelWithWorker } from "@/components/3d/robot/ModelWithWorker";
 
 const scale = Array.from({ length: 50 }, () => 1 + Math.random() * 15);
@@ -27,12 +28,25 @@ const toPrecision = (x: number) => Math.round(x * 10) / 10;
 // tips: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/animateMotion
 
 export default function HeroSection() {
-  const containerRef = useRef<HTMLElement | null>(null);
+  const rootRef = useRef<HTMLElement | null>(null);
+  // const containerRef = useRef<HTMLElement | null>(null);
   const gradientRef1 = useRef<HTMLDivElement>(null);
   const gradientRef2 = useRef<HTMLDivElement>(null);
   // const animationFrameId = useRef<number | null>(null);
   const [modelLoaded, setModelLoaded] = useState(false);
   const [canvasReady, setCanvasReady] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      rootRef.current = document.querySelector(".parallax-wrapper");
+    }
+  }, []);
+
+  const { ref: containerRef, isIntersecting } = useIntersectionObserver({
+    root: rootRef.current,
+    threshold: 0,
+    rootMargin: "300px 0px 300px 0px",
+  });
 
   // 🚀 关键优化：延迟 Canvas 初始化以实现 TBT = 0
   useEffect(() => {
@@ -185,39 +199,41 @@ export default function HeroSection() {
           <div
             className={cn(
               "h-full w-full transition-opacity duration-300 ease-out will-change-[opacity]",
-              modelLoaded ? "opacity-100" : "opacity-0",
+              modelLoaded && isIntersecting ? "opacity-100" : "opacity-0",
             )}
           >
-            <Canvas
-              // shadows
-              // frameloop="always"
-              dpr={[1, 2]}
-              gl={{ antialias: false }} // Disable antialiasing for performance
-              // camera={{ position: [1.5, -2, 8], fov: 8, near: 0.1, far: 100 }} // Camera setup
-              camera={{ position: [20, 12, -20], fov: 8, near: 0.1, far: 50 }} // Camera setup
-              // @ts-ignore
-              eventSource={containerRef}
-            >
-              {/* <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={8} near={0.1} far={100} /> */}
-              <ambientLight intensity={6} color="#fee" />
-              <directionalLight position={[2, 5, 2]} intensity={3.6} color="#1af" />
-              <directionalLight position={[-2, 0, -0.3]} intensity={6.8} color="#fff" />
-              {modelLoaded && (
-                <Sparkles
-                  count={scale.length} // Number of sparkles to render
-                  size={scale as unknown as number} // Size of each sparkle (can be a number or an array for per-sparkle sizes)
-                  color="#fff"
-                  position={[0, 0.1, 0]} // Center position of the sparkles group in 3D space: [x, y, z]
-                  scale={[2, 1, 3]} // Spread/area the sparkles cover: [width, height, depth]
-                  speed={0.3} // Animation speed of the sparkles
-                />
-              )}
-              <Suspense fallback={null}>
-                <SintRobotModel onLoadComplete={handleModelLoadComplete} />
-              </Suspense>
-              {/* <OrbitControls /> */}
-              <Rig modelLoaded={modelLoaded} />
-            </Canvas>
+            {isIntersecting && (
+              <Canvas
+                // shadows
+                // frameloop="always"
+                dpr={[1, 2]}
+                gl={{ antialias: false }} // Disable antialiasing for performance
+                // camera={{ position: [1.5, -2, 8], fov: 8, near: 0.1, far: 100 }} // Camera setup
+                camera={{ position: [20, 12, -20], fov: 8, near: 0.1, far: 50 }} // Camera setup
+                // @ts-ignore
+                eventSource={containerRef}
+              >
+                {/* <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={8} near={0.1} far={100} /> */}
+                <ambientLight intensity={6} color="#fee" />
+                <directionalLight position={[2, 5, 2]} intensity={3.6} color="#1af" />
+                <directionalLight position={[-2, 0, -0.3]} intensity={6.8} color="#fff" />
+                {modelLoaded && (
+                  <Sparkles
+                    count={scale.length} // Number of sparkles to render
+                    size={scale as unknown as number} // Size of each sparkle (can be a number or an array for per-sparkle sizes)
+                    color="#fff"
+                    position={[0, 0.1, 0]} // Center position of the sparkles group in 3D space: [x, y, z]
+                    scale={[2, 1, 3]} // Spread/area the sparkles cover: [width, height, depth]
+                    speed={0.3} // Animation speed of the sparkles
+                  />
+                )}
+                <Suspense fallback={null}>
+                  <SintRobotModel onLoadComplete={handleModelLoadComplete} />
+                </Suspense>
+                {/* <OrbitControls /> */}
+                <Rig modelLoaded={modelLoaded} />
+              </Canvas>
+            )}
           </div>
         )}
         <div className="h-[1px] w-full bg-linear-to-r from-transparent from-10% via-white/30 to-transparent to-90%" />
