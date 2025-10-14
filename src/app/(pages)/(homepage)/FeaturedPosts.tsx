@@ -14,7 +14,7 @@ const POSTS = [
   {
     title: "Performance Optimisation",
     description: "Performance • Optimisation • Lighthouse",
-    image: "/assets/images/lighthouse.png",
+    image: "/assets/images/lighthouse.jpg",
     // video: "/assets/videos/kpop_30s.mp4",
     link: "/posts/design/3d",
   },
