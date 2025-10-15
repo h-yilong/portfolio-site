@@ -3,7 +3,7 @@
 import { useHeroSectionLoaded } from "@/components/LazyLoader";
 import dynamic from "next/dynamic";
 
-const ImaginationText = dynamic(() => import("@/app/(pages)/react-spring/ImaginationText"));
+const ImaginationText = dynamic(() => import("./LetIdeasCollide"));
 
 const Fallback = () => (
   <section className="max-width relative mx-auto my-16 w-full">
