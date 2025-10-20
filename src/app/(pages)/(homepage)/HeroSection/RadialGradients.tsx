@@ -75,25 +75,38 @@ function RadialGradients({
   }, [modelLoaded, containerRef, isMobile]);
 
   if (isMobile) {
-    return null;
+    return (
+      <>
+        <div
+          className={cn(
+            "hero-gradient top-1/2 right-0 aspect-[0.6] w-2/3 translate-x-1/2 -translate-y-1/4",
+            modelLoaded ? "opacity-60" : "opacity-0",
+          )}
+        >
+          <div className="from-indigo-600/90 via-violet-700/60" />
+        </div>
+        <div
+          className={cn(
+            "hero-gradient bottom-1/2 left-0 z-2 aspect-[0.6] w-1/2 -translate-x-1/3 translate-y-1/3",
+            modelLoaded ? "opacity-70" : "opacity-0",
+          )}
+        >
+          <div className="from-[rgba(69,53,211)] via-[rgba(70,55,209,0.7)]" />
+        </div>
+      </>
+    );
   }
 
   return (
     <>
       <div
-        className={cn(
-          "hero-gradient right-[5%] bottom-0 w-2/3 transition-opacity delay-100 duration-1000 ease-out will-change-[opacity]",
-          modelLoaded ? "opacity-60" : "opacity-0",
-        )}
+        className={cn("hero-gradient right-[5%] bottom-0 w-2/3", modelLoaded ? "opacity-60" : "opacity-0")}
         ref={gradientRef1}
       >
         <div className="from-indigo-600/90 via-violet-700/60" />
       </div>
       <div
-        className={cn(
-          "hero-gradient top-[15%] left-[8%] z-2 w-1/2 transition-opacity delay-100 duration-100 ease-out will-change-[opacity]",
-          modelLoaded ? "opacity-70" : "opacity-0",
-        )}
+        className={cn("hero-gradient top-[15%] left-[8%] z-2 w-1/2", modelLoaded ? "opacity-70" : "opacity-0")}
         ref={gradientRef2}
       >
         <div className="from-[rgba(69,53,211)] via-[rgba(70,55,209,0.7)]" />

@@ -97,7 +97,7 @@ export default function HeroSection() {
                 dpr={isMobile ? [1, 1.5] : [1, 2]}
                 gl={{ antialias: false }} // Disable antialiasing for performance
                 // camera={{ position: [1.5, -2, 8], fov: 8, near: 0.1, far: 100 }} // Camera setup
-                camera={{ position: [20, 12, -20], fov: 8, near: 0.1, far: 50 }} // Camera setup
+                camera={{ position: [20, 12, -20], fov: isMobile ? 10 : 8, near: 0.1, far: 50 }} // Camera setup
                 eventSource={containerRef as RefObject<HTMLElement>}
               >
                 {/* <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={8} near={0.1} far={100} /> */}

@@ -32,14 +32,14 @@ export default function InputFormField<T extends FieldValues>({
               {...props}
               data-slot="input"
               className={cn(
-                "aria-invalid:border-destructive focus-visible:border-ring h-11 rounded-xl border-2 border-transparent px-4 py-2 md:text-base",
+                "aria-invalid:border-destructive focus-visible:border-ring h-11 rounded-lg border-2 border-transparent bg-black/50 px-4 py-2 md:text-base",
                 className,
               )}
               {...field}
             />
           </FormControl>
           <FormMessage />
-          {formDescription ? null : <FormDescription>{formDescription}</FormDescription>}
+          <FormDescription>{formDescription}</FormDescription>
         </FormItem>
       )}
     />

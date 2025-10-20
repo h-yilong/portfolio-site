@@ -33,7 +33,7 @@ export default function TextareaFormField<T extends FieldValues>({
             <textarea
               data-slot="textarea"
               className={cn(
-                "focus-visible:border-ring aria-invalid:border-destructive rounded-xl border-2 border-transparent px-4 py-2 md:text-base",
+                "focus-visible:border-ring aria-invalid:border-destructive rounded-lg border-2 border-transparent bg-black/50 px-4 py-2 md:text-base",
                 className,
               )}
               {...props}

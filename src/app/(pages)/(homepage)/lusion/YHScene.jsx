@@ -186,11 +186,11 @@ function Pointer({ vec = new Vector3() }) {
   const ref = useRef(null);
 
   // Animation loop that updates the pointer position based on mouse movement
-  useFrame(({ mouse, viewport }) => {
-    // Convert mouse coordinates to 3D world coordinates
+  useFrame(({ pointer, viewport }) => {
+    // Convert pointer coordinates to 3D world coordinates
     // Mouse coordinates are normalized (-1 to 1), so we scale by viewport dimensions
     ref.current?.setNextKinematicTranslation(
-      vec.set((mouse.x * viewport.width) / 2, (mouse.y * viewport.height) / 2, 0),
+      vec.set((pointer.x * viewport.width) / 2, (pointer.y * viewport.height) / 2, 0),
     );
   });
 

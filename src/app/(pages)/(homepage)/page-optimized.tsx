@@ -23,7 +23,7 @@ const AnimatedLine2 = dynamic(() => import("./AnimatedLine2"), {
 const Site = createTextComponent(() => import("./Site"));
 const About = createCardComponent(() => import("@/app/ui/home/About"));
 const Hero = createTextComponent(() => import("@/app/ui/home/Hero"));
-const Contact = createTextComponent(() => import("@/app/ui/home/Contact"));
+const Contact = createTextComponent(() => import("@/app/(pages)/(homepage)/Contact"));
 // const Footer = createTextComponent(() => import("@/app/ui/home/Footer"));
 
 const PRELOAD_OPTIONS: PreloadOptions = {

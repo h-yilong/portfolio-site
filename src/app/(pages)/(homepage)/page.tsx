@@ -1,12 +1,13 @@
 // import { preload, type PreloadOptions } from "react-dom";
 
-import AnimatedLine from "./AnimatedLine";
+// import AnimatedLine from "./AnimatedLine";
 import HeroSection from "./HeroSection";
 import NeverLimitImagination from "./NeverLimitImagination";
 import LetterCollision from "./LetterCollision";
 import Footer from "@/components/Footer";
-import Contact from "@/app/ui/home/Contact";
+import Contact from "./Contact";
 import FeaturedPosts from "./FeaturedPosts";
+// import AnimatedLine3 from "./AnimatedLine3";
 
 // const PRELOAD_OPTIONS: PreloadOptions = {
 //   as: "image",
@@ -28,13 +29,14 @@ export default function Home() {
         <div>
           <HeroSection />
           <NeverLimitImagination />
-          <AnimatedLine />
           <LetterCollision />
-          <FeaturedPosts />
-          <section className="max-width mx-auto my-16">
-            <h3 className="w-1/2 text-[4vw] leading-[1.1] font-bold">
-              Are you ready to build something cool and bring your ideas to life?
-            </h3>
+          <section className="relative">
+            <img
+              src="/assets/images/line5.svg"
+              alt="line"
+              className="absolute inset-0 -z-10 h-full w-full object-cover object-left-top opacity-75"
+            />
+            <FeaturedPosts />
           </section>
           <Contact />
           <Footer />

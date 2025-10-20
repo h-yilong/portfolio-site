@@ -37,25 +37,6 @@ export default function WorkCard({
     if (!heroLoaded) {
       return null;
     }
-    if (video) {
-      return (
-        <video
-          src={video}
-          autoPlay // todo: autoplay when in viewport
-          loop
-          muted
-          playsInline
-          preload="none"
-          aria-label={`Video demonstration: ${title}`}
-          className={cn(
-            "h-full w-full translate-z-24 object-cover transition-all duration-500 ease-out group-hover:translate-z-0 group-hover:rotate-x-0 group-hover:rotate-y-0 group-hover:rotate-z-0",
-            flip ? "-rotate-x-6 -rotate-y-6 -rotate-z-6" : "rotate-x-6 rotate-y-6 rotate-z-6",
-          )}
-        >
-          <track kind="captions" />
-        </video>
-      );
-    }
     if (image) {
       return (
         <Image
@@ -66,15 +47,28 @@ export default function WorkCard({
           loading="lazy"
           src={image}
           alt={title}
-          className={cn(
-            "h-full w-full translate-z-24 object-cover transition-all duration-500 ease-out group-hover:translate-z-0 group-hover:rotate-x-0 group-hover:rotate-y-0 group-hover:rotate-z-0",
-            flip ? "-rotate-x-6 -rotate-y-6 -rotate-z-6" : "rotate-x-6 rotate-y-6 rotate-z-6",
-          )}
+          className="h-full w-full object-cover"
         />
       );
     }
+    if (video) {
+      return (
+        <video
+          src={video}
+          autoPlay={false}
+          loop
+          muted
+          playsInline
+          preload="none"
+          aria-label={`Video demonstration: ${title}`}
+          className="h-full w-full object-cover"
+        >
+          <track kind="captions" />
+        </video>
+      );
+    }
     return null;
-  }, [video, image, title, flip, heroLoaded]);
+  }, [video, image, title, heroLoaded]);
 
   if (!heroLoaded) {
     return (
@@ -88,17 +82,24 @@ export default function WorkCard({
   return (
     <div
       className={cn(
-        "group relative mx-auto w-full max-w-2xl space-y-2 rounded-lg p-3 backdrop-blur-[2px] perspective-midrange",
+        "group mx-auto w-full max-w-2xl space-y-2 rounded-lg p-3 backdrop-blur-[2px] perspective-midrange",
         className,
       )}
     >
       <div
         className={cn(
-          "aspect-[4/3] scale-90 overflow-hidden rounded-2xl transition-all duration-500 ease-out perspective-near group-hover:scale-100 group-hover:rotate-x-0 group-hover:rotate-y-0 group-hover:rotate-z-0",
-          flip ? "rotate-x-6 rotate-y-6 rotate-z-2" : "-rotate-x-6 -rotate-y-6 -rotate-z-2",
+          "aspect-[4/3] scale-90 overflow-hidden rounded-2xl transition-all duration-300 ease-out perspective-near transform-3d group-hover:scale-100 group-hover:rotate-x-0 group-hover:rotate-y-0 group-hover:rotate-z-0",
+          flip ? "rotate-x-3 rotate-y-3 rotate-z-2" : "-rotate-x-3 -rotate-y-3 -rotate-z-2",
         )}
       >
-        {media}
+        <div
+          className={cn(
+            "h-full w-full scale-130 object-cover transition-all duration-300 ease-out transform-3d group-hover:scale-100 group-hover:rotate-x-0 group-hover:rotate-y-0 group-hover:rotate-z-0",
+            flip ? "-rotate-x-3 -rotate-y-3 -rotate-z-6" : "rotate-x-3 rotate-y-3 rotate-z-6",
+          )}
+        >
+          {media}
+        </div>
       </div>
       <p className="text-lg font-medium text-amber-400">{description}</p>
       <PostTitle className="text-2xl">{title}</PostTitle>

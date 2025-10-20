@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1440 1014">
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: url(#linear-gradient);
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 32px;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="923.79" y1="-3474.45" x2="923.79" y2="-2479.5" gradientTransform="translate(0 -2464) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset=".2" stop-color="#fdba74"/>
+      <stop offset=".8" stop-color="#ff55a5"/>
+    </linearGradient>
+  </defs>
+  <path stroke-dasharray="3400px, 3400px" stroke-dashoffset="0" class="st0" d="M1444.22,112c-172-76-693.56-151.18-900.93-5.59-207.37,145.59-235.67,365.78-176.75,503.25s251.68,240.34,423.68-11.66c133.57-198,240-340,356-328s4,296,94.26,533.6c51.55,132.57,152.2,162.02,267.58,198.85"/>
+</svg>

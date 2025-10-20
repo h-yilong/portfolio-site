@@ -156,7 +156,7 @@
       auto;
   }
   .hero-gradient {
-    @apply pointer-events-none absolute aspect-[1.5] duration-500 ease-out;
+    @apply pointer-events-none absolute aspect-[1.5];
   }
   .hero-gradient > div {
     @apply h-full w-full bg-radial-[50%_50%_at_50%_50%] from-10% via-30% to-transparent;
@@ -194,24 +194,60 @@
     }
   }
 
-  .hero-text-fadeIn {
+  .home-text-1 {
+    animation: home-text-1 0.36s 1 0s forwards ease-out;
   }
 
-  @keyframes _hero-text-fadeIn {
+  @keyframes home-text-1 {
+    0% {
+      opacity: 0;
+      transform: translateY(0) rotate(8deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(-100%) rotate(0deg);
+    }
+  }
+
+  .home-text-2 {
+    animation:
+      home-text-2 0.5s 1 0s forwards ease-out,
+      home-text-3 0.3s 1 0.5s forwards ease-out;
+  }
+
+  @keyframes home-text-2 {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 100%);
+    }
+  }
+
+  @keyframes home-text-3 {
+    0% {
+      transform: translate(0, 100%);
+    }
+    100% {
+      transform: translate(-0.8em, 100%);
+    }
+  }
+
+  .slide-up {
+    animation: slide-up 350ms 1 ease-out;
   }
 
   @keyframes slide-up {
     from {
-      opacity: 1;
-      rotate: 30deg;
-      transform: translateY(10vw);
-    }
-    to {
-      opacity: 1;
-      rotate: 0deg;
       transform: translateY(0);
     }
+    to {
+      transform: translateY(-100%);
+    }
   }
+
   @keyframes slide-right {
     from {
       transform: translateX(50%);
