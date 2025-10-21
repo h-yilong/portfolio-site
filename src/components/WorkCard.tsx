@@ -70,22 +70,8 @@ export default function WorkCard({
     return null;
   }, [video, image, title, heroLoaded]);
 
-  if (!heroLoaded) {
-    return (
-      <div>
-        <h4>{title}</h4>
-        <p>{description}</p>
-      </div>
-    );
-  }
-
   return (
-    <div
-      className={cn(
-        "group mx-auto w-full max-w-2xl space-y-2 rounded-lg p-3 backdrop-blur-[2px] perspective-midrange",
-        className,
-      )}
-    >
+    <div className={cn("group mx-auto w-full max-w-2xl space-y-2 rounded-lg p-3 perspective-midrange", className)}>
       <div
         className={cn(
           "aspect-[4/3] scale-90 overflow-hidden rounded-2xl transition-all duration-300 ease-out perspective-near transform-3d group-hover:scale-100 group-hover:rotate-x-0 group-hover:rotate-y-0 group-hover:rotate-z-0",

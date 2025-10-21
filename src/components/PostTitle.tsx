@@ -10,7 +10,7 @@ const timingFunction = (t: number): number => Math.round(FACTOR * (t ** 2 / 8 + 
 export default function PostTitle({ children, className }: { children: string; className?: string }) {
   const [mounted, setMounted] = useState(false);
   const { ref, isIntersecting } = useIntersectionObserver({
-    threshold: [1],
+    threshold: 1,
     rootMargin: "0px 0px 0px 0px",
   });
 

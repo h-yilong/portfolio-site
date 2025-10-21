@@ -1,52 +1,34 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useScroll } from "@/hooks/scroll/useScroll";
 
 const totalLineLength = 2280;
 
-export default function AnimatedLine4() {
+export default function AnimatedLine() {
   const [startY, setStartY] = useState(10_000);
   const [endY, setEndY] = useState(10_000);
-  const targetRef = useRef<HTMLDivElement>(null);
-  const { position } = useScroll({
-    element: targetRef.current,
-  });
+
+  const { position } = useScroll();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      targetRef.current = document.querySelector(".parallax-wrapper");
-    }
-  }, []);
+    if (typeof window === "undefined") return;
 
-  useEffect(() => {
-    // Determine scroll position (top) and height of "section#contact" in ".parallax-wrapper"
-    const parallaxWrapper = document.querySelector<HTMLElement>(".parallax-wrapper");
+    const _sectionTop = window.scrollY + 200; // 200px is the rootMargin(top offset)
+    setStartY(_sectionTop + window.innerHeight / 3);
+
     const contactSection = document.querySelector<HTMLElement>("section#contact");
-    if (parallaxWrapper && contactSection) {
-      // Get bounding rects relative to viewport
+    const _sectionHeight = contactSection!.offsetHeight;
 
-      const contactRect = contactSection.getBoundingClientRect();
-
-      // Calculate scroll position (top of contact section relative to wrapper)
-      const scrollTop = contactRect.top - 0 + parallaxWrapper.scrollTop;
-      console.log("parallaxWrapper.scrollTop", parallaxWrapper.scrollTop);
-
-      // Height of "section#contact"
-      const contactHeight = contactSection.offsetHeight;
-
-      setStartY(scrollTop - contactHeight + (1 / 3) * window.innerHeight);
-      setEndY(scrollTop);
-    }
+    setEndY(_sectionTop + _sectionHeight);
   }, []);
 
-  console.log("position.y", position.y);
   const delta = position.y - startY;
   const strokeDashoffset = totalLineLength * (1 - delta / (endY - startY));
-  const translateY = delta > 0 ? -delta / 8 : 0;
+  const translateY = delta > 0 ? -delta / 6 : 0;
 
   return (
     <svg
-      className="absolute -top-6 right-0 -z-10 h-full max-w-[1436px] object-right-top opacity-50 sm:-top-24 sm:opacity-75"
+      className="absolute -top-4 right-0 -z-10 h-full max-w-[1436px] object-right-top opacity-50 sm:-top-8 sm:opacity-75"
       viewBox="0 0 1433 1118"
       style={{
         transform: `translateY(${translateY}px)`,

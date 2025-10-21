@@ -1,6 +1,6 @@
 "use client";
 
-import { type RefObject, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { type RefObject, Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Sparkles } from "@react-three/drei"; // Drei library for pre-built 3D components and utilities
 // import SintRobotModel from "@/components/3d/SintRobot-optimized";
@@ -17,19 +17,11 @@ import HiText from "./HiText";
 // tips: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/animateMotion
 
 export default function HeroSection() {
-  const rootRef = useRef<HTMLElement | null>(null);
   const [modelLoaded, setModelLoaded] = useState(false);
   const [canvasReady, setCanvasReady] = useState(false);
   const isMobile = useIsMobile();
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      rootRef.current = document.querySelector(".parallax-wrapper");
-    }
-  }, []);
-
   const { ref: containerRef, isIntersecting } = useIntersectionObserver({
-    root: rootRef.current,
     threshold: 0,
     rootMargin: "300px 0px 300px 0px",
   });
@@ -37,6 +29,7 @@ export default function HeroSection() {
   // 🚀 Key optimization: defer Canvas initialization to decrease TBT
   useEffect(() => {
     if (typeof window === "undefined") return;
+    window.scrollTo(0, 0);
 
     // use requestIdleCallback to initialize Canvas in browser idle time
     // this ensures that there will be no long tasks blocking the main thread in the FCP → TTI window

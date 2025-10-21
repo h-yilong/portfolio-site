@@ -21,7 +21,6 @@ const Word = ({ children, animateIndex, delay = 0 }: { children: string; animate
 
 export default function WorkTogether() {
   const { ref, isIntersecting } = useIntersectionObserver({
-    root: ".parallax-wrapper",
     threshold: 0,
     rootMargin: "200px 0px 200px 0px",
   });

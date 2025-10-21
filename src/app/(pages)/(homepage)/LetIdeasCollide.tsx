@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 export default function ImaginationText() {
   // Use intersection observer to track when component enters/exits viewport
   const { ref, isIntersecting } = useIntersectionObserver({
-    root: ".parallax-wrapper",
     threshold: 0.36,
     rootMargin: "100px 0px 0px 0px",
   });

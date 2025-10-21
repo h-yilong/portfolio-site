@@ -19,21 +19,13 @@ export default function Home() {
     // preload("/assets/images/react.svg", PRELOAD_OPTIONS);
 
     return (
-      <main
-        style={{
-          scrollbarWidth: "thin",
-          scrollbarColor: "#98a6f3 transparent",
-        }}
-        className="parallax-wrapper overflow-x-hidden overflow-y-auto scroll-smooth"
-      >
-        <div>
-          <HeroSection />
-          <NeverLimitImagination />
-          <LetterCollision />
-          <FeaturedPosts />
-          <Contact />
-          <Footer />
-        </div>
+      <main>
+        <HeroSection />
+        <NeverLimitImagination />
+        <LetterCollision />
+        <FeaturedPosts />
+        <Contact />
+        <Footer />
       </main>
     );
   } catch (error) {

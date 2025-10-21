@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 const CollisionScene = dynamic(() => import("./lusion/YHScene"));
 
 const Article = () => (
-  <article className="aspect-[1.6] w-full">
+  <article className="flex aspect-[1.6] w-full flex-col items-center justify-center opacity-0">
     <p>Hi There!</p>
     <p>I&apos;m Yilong, a Sydney based developer, with over 8 years of experience in web development.</p>
     <p>

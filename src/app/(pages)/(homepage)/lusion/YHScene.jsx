@@ -36,7 +36,6 @@ const shuffle = (accent = 0) => [
 // Main component that wraps the 3D scene in a styled container
 const YHScene = () => {
   const { ref, isIntersecting } = useIntersectionObserver({
-    root: document.querySelector(".parallax-wrapper"),
     threshold: 0,
     rootMargin: "200px 0px 200px 0px",
     // scrollMargin: "200px 0px 200px 0px",
