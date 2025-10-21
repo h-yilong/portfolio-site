@@ -30,6 +30,7 @@ export default function HeroSection() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     window.scrollTo(0, 0);
+    window.document.documentElement.style.overflow = "hidden";
 
     // use requestIdleCallback to initialize Canvas in browser idle time
     // this ensures that there will be no long tasks blocking the main thread in the FCP → TTI window
@@ -57,6 +58,7 @@ export default function HeroSection() {
     // Dispatch custom event to notify other components that HeroSection is loaded
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent("hero-section-loaded"));
+      window.document.documentElement.style.overflowY = "auto";
     }
   }, []);
 

@@ -4,10 +4,10 @@ import { useScroll } from "@/hooks/scroll/useScroll";
 
 const totalLineLength = 2350;
 
-// tips: we start the animation when the section takes up 1/3 of the viewport height, we need to take the rootMargin into account
-
 export default function AnimatedLine() {
+  // start animation of drawing line when scrollY is greater than startY
   const [startY, setStartY] = useState(10_000);
+  // finish animation of drawing the entire line(full totalLineLength) when scrollY reaches endY
   const [endY, setEndY] = useState(10_000);
 
   const { position } = useScroll();
@@ -15,12 +15,16 @@ export default function AnimatedLine() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const _sectionTop = window.scrollY + 200; // 200px is the rootMargin(top offset)
-    setStartY(_sectionTop + window.innerHeight / 3);
+    const { scrollY, innerHeight: _screenHeight } = window;
+    const featuredPostsSection = document.querySelector<HTMLElement>("section#featured-posts")!;
+    const { top, height: _sectionHeight } = featuredPostsSection.getBoundingClientRect();
 
-    const featuredPostsSection = document.querySelector<HTMLElement>("section#featured-posts");
-    const _sectionHeight = featuredPostsSection!.offsetHeight;
+    // if (top < 0) {
+    //   // scrolling up into the section
+    // }
 
+    const _sectionTop = scrollY + top - _screenHeight;
+    setStartY(_sectionTop + _screenHeight / 3);
     setEndY(_sectionTop + _sectionHeight);
   }, []);
 
@@ -31,7 +35,7 @@ export default function AnimatedLine() {
 
   return (
     <svg
-      className="absolute -top-12 left-0 -z-10 h-full object-left-top opacity-75 lg:-top-6"
+      className="absolute top-0 left-0 -z-10 h-full object-left-top opacity-75"
       viewBox="0 0 1433 1118"
       style={{
         transform: `translateY(${translateY}px)`,

@@ -5,7 +5,9 @@ import { useScroll } from "@/hooks/scroll/useScroll";
 const totalLineLength = 2280;
 
 export default function AnimatedLine() {
+  // start animation of drawing line when scrollY is greater than startY
   const [startY, setStartY] = useState(10_000);
+  // finish animation of drawing the entire line(full totalLineLength) when scrollY reaches endY
   const [endY, setEndY] = useState(10_000);
 
   const { position } = useScroll();
@@ -13,22 +15,27 @@ export default function AnimatedLine() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const _sectionTop = window.scrollY + 200; // 200px is the rootMargin(top offset)
-    setStartY(_sectionTop + window.innerHeight / 3);
+    const { scrollY, innerHeight: _screenHeight } = window;
+    const contactSection = document.querySelector<HTMLElement>("section#contact")!;
+    const { top, height: _sectionHeight } = contactSection.getBoundingClientRect();
 
-    const contactSection = document.querySelector<HTMLElement>("section#contact");
-    const _sectionHeight = contactSection!.offsetHeight;
+    // if (top < 0) {
+    //   // scrolling up into the section
+    // }
 
+    const _sectionTop = scrollY + top - _screenHeight;
+    setStartY(_sectionTop);
     setEndY(_sectionTop + _sectionHeight);
   }, []);
 
   const delta = position.y - startY;
   const strokeDashoffset = totalLineLength * (1 - delta / (endY - startY));
+  // const strokeDashoffset = totalLineLength - delta * 1.5;
   const translateY = delta > 0 ? -delta / 6 : 0;
 
   return (
     <svg
-      className="absolute -top-4 right-0 -z-10 h-full max-w-[1436px] object-right-top opacity-50 sm:-top-8 sm:opacity-75"
+      className="absolute top-0 right-0 -z-10 h-full max-w-[1436px] object-right-top opacity-50 sm:opacity-75"
       viewBox="0 0 1433 1118"
       style={{
         transform: `translateY(${translateY}px)`,
