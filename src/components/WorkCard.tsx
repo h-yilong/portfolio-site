@@ -101,8 +101,8 @@ export default function WorkCard({
           {media}
         </div>
       </div>
-      <p className="text-lg font-medium text-amber-400">{description}</p>
-      <PostTitle className="text-2xl">{title}</PostTitle>
+      <p className="text-center text-base font-medium text-amber-400 sm:text-lg lg:text-left">{description}</p>
+      <PostTitle className="justify-center text-xl sm:text-2xl lg:justify-start">{title}</PostTitle>
     </div>
   );
 }

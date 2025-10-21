@@ -8,5 +8,5 @@
       <stop offset="1" stop-color="#e694ff"/>
     </linearGradient>
   </defs>
-  <path stroke-dasharray="2350px, 10000px" opacity="0.75" stroke-dashoffset="20px" fill="none" stroke="url(#linear-gradient)" stroke-miterlimit="10" stroke-linecap="round" stroke-width="30px" class="cls-1" d="M-28.81,81.29c57.44-26.75,237.08-39.28,345.19,0,108.12,39.28,214.64,148.52,214.93,254.08s-57.32,163.25-151.1,149.75c-93.79-13.5-113.33-87.15-144.59-133.79-31.26-46.64-91.18-62.08-148.5-33.5-57.32,28.59-90.2,153.39-29.14,256.08,61.06,102.69,259.71,181.25,208.91,333.45s-297,177.42-560.13,182.61"/>
+  <path stroke-dasharray="2350px, 10000px" opacity="0.75" stroke-dashoffset="0" fill="none" stroke="url(#linear-gradient)" stroke-miterlimit="10" stroke-linecap="round" stroke-width="30px" class="cls-1" d="M-28.81,81.29c57.44-26.75,237.08-39.28,345.19,0,108.12,39.28,214.64,148.52,214.93,254.08s-57.32,163.25-151.1,149.75c-93.79-13.5-113.33-87.15-144.59-133.79-31.26-46.64-91.18-62.08-148.5-33.5-57.32,28.59-90.2,153.39-29.14,256.08,61.06,102.69,259.71,181.25,208.91,333.45s-297,177.42-560.13,182.61"/>
 </svg>

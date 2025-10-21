@@ -67,7 +67,7 @@ export default function WorkTogether() {
   return (
     <div
       ref={ref as RefObject<HTMLDivElement>}
-      className="mx-auto my-12 w-fit text-6xl leading-[1.2] font-bold select-none"
+      className="mx-auto my-12 w-fit text-5xl leading-[1.2] font-bold select-none md:text-6xl"
     >
       {content}
     </div>

@@ -8,5 +8,5 @@
       <stop offset="1" stop-color="#e694ff"/>
     </linearGradient>
   </defs>
-  <path stroke-dasharray="2280px, 10000px" opacity="0.75" stroke-dashoffset="-20px" fill="none" stroke="url(#linear-gradient)" stroke-miterlimit="10" stroke-linecap="round" stroke-width="40px" class="cls-1" d="M1457.14,81.29c-54.12-26.75-223.4-39.28-325.27,0s-202.25,148.52-202.53,254.08,54.01,163.25,142.38,149.75,106.79-87.15,136.25-133.79,85.92-62.08,139.93-33.5,85,153.39,27.46,256.08-244.72,181.25-196.85,333.45,279.86,177.42,527.8,182.61"/>
+  <path stroke-dasharray="2280px, 10000px" opacity="0.75" stroke-dashoffset="-20px" fill="none" stroke="url(#linear-gradient)" stroke-miterlimit="10" stroke-linecap="round" stroke-width="40px" d="M1457.14,81.29c-54.12-26.75-223.4-39.28-325.27,0s-202.25,148.52-202.53,254.08,54.01,163.25,142.38,149.75,106.79-87.15,136.25-133.79,85.92-62.08,139.93-33.5,85,153.39,27.46,256.08-244.72,181.25-196.85,333.45,279.86,177.42,527.8,182.61"/>
 </svg>

@@ -2,21 +2,13 @@
 
 import { Canvas } from "@react-three/fiber";
 // import { MeshDistortMaterial, Sphere } from "@react-three/drei";
-import { type RefObject, Suspense } from "react";
+import { Suspense } from "react";
 import EnergyRingSimplified from "@/components/3d/EnergyRingSimplified";
-import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import { cn } from "@/lib/utils";
 
-export default function Halo() {
-  const { ref, isIntersecting } = useIntersectionObserver({
-    root: ".parallax-wrapper",
-    threshold: 0,
-    rootMargin: "500px 0px 200px 0px",
-  });
-
+export default function Halo({ isIntersecting }: { isIntersecting: boolean }) {
   return (
     <div
-      ref={ref as RefObject<HTMLDivElement>}
       className={cn(
         "pointer-events-none absolute top-0 left-0 -z-10 h-full w-full transition-opacity delay-300 duration-750 ease-out will-change-[opacity]",
         isIntersecting ? "opacity-75" : "opacity-0",

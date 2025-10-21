@@ -30,14 +30,7 @@ export default function Home() {
           <HeroSection />
           <NeverLimitImagination />
           <LetterCollision />
-          <section className="relative">
-            <img
-              src="/assets/images/line5.svg"
-              alt="line"
-              className="absolute inset-0 -z-10 h-full w-full object-cover object-left-top opacity-75"
-            />
-            <FeaturedPosts />
-          </section>
+          <FeaturedPosts />
           <Contact />
           <Footer />
         </div>
