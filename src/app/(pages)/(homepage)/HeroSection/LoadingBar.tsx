@@ -4,7 +4,7 @@ export default function LoadingBar({ modelLoaded }: { modelLoaded: boolean }) {
   return (
     <div
       className={cn(
-        "absolute inset-0 z-50 flex flex-col items-center justify-center bg-[var(--background)] transition-opacity duration-750 ease-out",
+        "fixed inset-0 z-50 flex h-screen w-screen flex-col items-center justify-center bg-[var(--background)] transition-opacity duration-750 ease-out",
         modelLoaded ? "pointer-events-none opacity-0" : "pointer-events-auto opacity-100",
       )}
     >

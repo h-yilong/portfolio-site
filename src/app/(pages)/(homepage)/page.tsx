@@ -19,7 +19,7 @@ export default function Home() {
     // preload("/assets/images/react.svg", PRELOAD_OPTIONS);
 
     return (
-      <main>
+      <main className="overflow-x-hidden">
         <HeroSection />
         <NeverLimitImagination />
         <LetterCollision />

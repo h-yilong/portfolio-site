@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer className="w-full border-t border-t-white/5 bg-black/20 py-6">
       <div className="max-width flex flex-col items-center sm:flex-row sm:justify-between">
-        <p>&copy; {year}, Yilong HUANG</p>
+        <p className="font-medium">&copy; {year}, Yilong HUANG</p>
         <div className="mt-3 flex items-center gap-2 sm:mt-0">
           <Link aria-label="Github" target="_blank" href="https://github.com/h-yilong/portfolio-site">
             <svg width="32px" height="32px" className="fill-white hover:fill-indigo-600" viewBox="0 0 24 24">

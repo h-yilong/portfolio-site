@@ -30,7 +30,6 @@ export default function HeroSection() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     window.scrollTo(0, 0);
-    window.document.documentElement.style.overflow = "hidden";
 
     // use requestIdleCallback to initialize Canvas in browser idle time
     // this ensures that there will be no long tasks blocking the main thread in the FCP → TTI window
@@ -58,7 +57,6 @@ export default function HeroSection() {
     // Dispatch custom event to notify other components that HeroSection is loaded
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent("hero-section-loaded"));
-      window.document.documentElement.style.overflowY = "auto";
     }
   }, []);
 
@@ -68,12 +66,12 @@ export default function HeroSection() {
 
   return (
     <>
+      <LoadingBar modelLoaded={modelLoaded} />
       <section
         // onMouseMove={handleMouseMove as unknown as MouseEventHandler<HTMLElement>}
         ref={containerRef}
-        className="relative h-screen w-screen backdrop-blur-[2px]"
+        className="relative h-screen w-screen overflow-hidden"
       >
-        <LoadingBar modelLoaded={modelLoaded} />
         <HiText />
         <RadialGradients modelLoaded={modelLoaded} containerRef={containerRef} />
 
@@ -85,7 +83,7 @@ export default function HeroSection() {
               modelLoaded && isIntersecting ? "opacity-100" : "opacity-0",
             )}
           >
-            {isIntersecting && (
+            {(!modelLoaded || isIntersecting) && (
               <Canvas
                 // shadows
                 // frameloop="always"
@@ -118,8 +116,8 @@ export default function HeroSection() {
             )}
           </div>
         )}
-        <div className="h-[1px] w-full bg-linear-to-r from-transparent from-10% via-white/30 to-transparent to-90%" />
       </section>
+      <div className="h-[1px] w-screen bg-linear-to-r from-transparent from-10% via-white/30 to-transparent to-90%" />
     </>
   );
 }

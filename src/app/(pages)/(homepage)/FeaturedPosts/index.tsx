@@ -58,7 +58,7 @@ export default function FeaturedPosts() {
   });
 
   return (
-    <section id="featured-posts" ref={ref} className="relative">
+    <section id="featured-posts" ref={ref} className="relative w-full overflow-x-hidden">
       {isIntersecting && <AnimatedLine />}
       <div className="max-width relative mx-auto my-20 w-full">
         <h3 className="my-6 text-center text-4xl font-bold sm:text-5xl lg:text-6xl">Featured Posts</h3>
