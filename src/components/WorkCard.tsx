@@ -1,10 +1,13 @@
 "use client";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { type ComponentProps, useMemo } from "react";
+import { type ComponentProps, type RefObject, useMemo } from "react";
 import { useHeroSectionLoaded } from "./LazyLoader";
 
 import dynamic from "next/dynamic";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import Link from "next/link";
 
 const PostTitle = dynamic(() => import("./PostTitle"), {
   ssr: true,
@@ -15,7 +18,7 @@ export default function WorkCard({
   description,
   image,
   video,
-  // link,
+  link,
   className,
   flip = false,
 }: {
@@ -23,11 +26,16 @@ export default function WorkCard({
   description: string;
   image?: ComponentProps<typeof Image>["src"];
   video?: string;
-  // link: string;
+  link: string;
   className?: string;
   flip?: boolean;
 }) {
   const heroLoaded = useHeroSectionLoaded();
+  const isMobile = useIsMobile();
+  const { ref, isIntersecting } = useIntersectionObserver({
+    threshold: 0,
+    rootMargin: "-100px 0px -100px 0px",
+  });
 
   if (!video && !image) {
     throw new Error("Either image or video must be provided");
@@ -71,24 +79,31 @@ export default function WorkCard({
   }, [video, image, title, heroLoaded]);
 
   return (
-    <div className={cn("group mx-auto w-full max-w-2xl space-y-2 rounded-lg p-3 perspective-midrange", className)}>
+    <Link className="mx-auto block w-full max-w-2xl" href={link}>
       <div
-        className={cn(
-          "aspect-[4/3] scale-90 overflow-hidden rounded-2xl transition-all duration-300 ease-out perspective-near transform-3d group-hover:scale-100 group-hover:rotate-x-0 group-hover:rotate-y-0 group-hover:rotate-z-0",
-          flip ? "rotate-x-3 rotate-y-3 rotate-z-2" : "-rotate-x-3 -rotate-y-3 -rotate-z-2",
-        )}
+        ref={ref as RefObject<HTMLDivElement>}
+        className={cn("group w-full space-y-2 rounded-lg p-3 perspective-midrange", className)}
       >
         <div
           className={cn(
-            "h-full w-full scale-130 object-cover transition-all duration-300 ease-out transform-3d group-hover:scale-100 group-hover:rotate-x-0 group-hover:rotate-y-0 group-hover:rotate-z-0",
-            flip ? "-rotate-x-3 -rotate-y-3 -rotate-z-6" : "rotate-x-3 rotate-y-3 rotate-z-6",
+            "aspect-[4/3] scale-90 overflow-hidden rounded-2xl transition-all duration-300 ease-out perspective-near transform-3d group-hover:scale-100 group-hover:rotate-x-0 group-hover:rotate-y-0 group-hover:rotate-z-0",
+            flip ? "rotate-x-3 rotate-y-3 rotate-z-2" : "-rotate-x-3 -rotate-y-3 -rotate-z-2",
+            isIntersecting && isMobile && "scale-100 rotate-x-0 rotate-y-0 rotate-z-0",
           )}
         >
-          {media}
+          <div
+            className={cn(
+              "h-full w-full scale-130 object-cover transition-all duration-300 ease-out transform-3d group-hover:scale-100 group-hover:rotate-x-0 group-hover:rotate-y-0 group-hover:rotate-z-0",
+              flip ? "-rotate-x-3 -rotate-y-3 -rotate-z-6" : "rotate-x-3 rotate-y-3 rotate-z-6",
+              isIntersecting && isMobile && "scale-100 rotate-x-0 rotate-y-0 rotate-z-0",
+            )}
+          >
+            {media}
+          </div>
         </div>
+        <p className="text-center text-base font-medium text-amber-400 sm:text-lg lg:text-left">{description}</p>
+        <PostTitle className="justify-center text-xl sm:text-2xl lg:justify-start">{title}</PostTitle>
       </div>
-      <p className="text-center text-base font-medium text-amber-400 sm:text-lg lg:text-left">{description}</p>
-      <PostTitle className="justify-center text-xl sm:text-2xl lg:justify-start">{title}</PostTitle>
-    </div>
+    </Link>
   );
 }

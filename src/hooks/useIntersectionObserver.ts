@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, type RefObject } from "react";
 
 /**
  * Configuration options for the IntersectionObserver
@@ -19,7 +19,7 @@ interface IntersectionObserverOptions {
  */
 interface UseIntersectionObserverReturn {
   /** The ref to attach to the element you want to observe */
-  ref: React.RefObject<HTMLElement | null>;
+  ref: RefObject<HTMLElement | HTMLDivElement | null>;
   /** Whether the element is currently intersecting with the viewport */
   isIntersecting: boolean;
   /** The current intersection ratio (0 to 1) */
@@ -72,7 +72,7 @@ export const useIntersectionObserver = (options: IntersectionObserverOptions = {
   const [hasBeenVisible, setHasBeenVisible] = useState(false);
 
   // Ref for the element to observe
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLElement | HTMLDivElement | null>(null);
 
   // Ref for the observer instance
   const observerRef = useRef<IntersectionObserver | null>(null);

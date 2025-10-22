@@ -1,13 +1,12 @@
 "use client";
 
-import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import { cn } from "@/lib/utils";
-import { type RefObject, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const words = ["Let's", "work", "together!"];
 
-const Word = ({ children, animateIndex, delay = 0 }: { children: string; animateIndex: number; delay: number }) => {
-  return children.split("").map((letter, index) => (
+const Word = ({ children, animateIndex, delay = 0 }: { children: string; animateIndex: number; delay: number }) =>
+  children.split("").map((letter, index) => (
     <div
       key={index}
       className={cn("flex h-[1.2em] flex-col", animateIndex === index && "slide-up")}
@@ -17,14 +16,8 @@ const Word = ({ children, animateIndex, delay = 0 }: { children: string; animate
       <div>{letter}</div>
     </div>
   ));
-};
 
-export default function WorkTogether() {
-  const { ref, isIntersecting } = useIntersectionObserver({
-    threshold: 0,
-    rootMargin: "200px 0px 200px 0px",
-  });
-
+export default function WorkTogether({ isIntersecting = false }: { isIntersecting: boolean }) {
   const [indexes, setIndexes] = useState([1, 2, 3]);
 
   useEffect(() => {
@@ -63,12 +56,5 @@ export default function WorkTogether() {
     return <h3 className="h-[2.4em]">{words.join(" ")}</h3>;
   }, [isIntersecting, indexes]);
 
-  return (
-    <div
-      ref={ref as RefObject<HTMLDivElement>}
-      className="mx-auto my-12 w-fit text-5xl leading-[1.2] font-bold select-none md:text-6xl"
-    >
-      {content}
-    </div>
-  );
+  return <div className="mx-auto my-12 w-fit text-5xl leading-[1.2] font-bold select-none md:text-6xl">{content}</div>;
 }

@@ -30,7 +30,7 @@ export default function Contact() {
             <div className="ml-2 h-3 w-3 rounded-full bg-white/35" />
             <div className="ml-2 h-3 w-3 rounded-full bg-white/35" />
           </div>
-          <WorkTogether />
+          <WorkTogether isIntersecting={isIntersecting} />
           <ContactForm />
         </div>
       </section>
