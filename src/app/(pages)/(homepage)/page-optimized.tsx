@@ -11,10 +11,9 @@ import {
 // 使用 Next.js dynamic 创建优化的组件
 const ImaginationText2 = createTextComponent(() => import("@/app/(pages)/react-spring/ImaginationText"));
 const AnimatedLine = dynamic(() => import("./AnimatedLine"), {
-  loading: () => <div className="h-32 w-full animate-pulse rounded-lg bg-white/5" />,
-  ssr: false, // 动画组件不需要 SSR
+  ssr: false,
 });
-const YHScene = create3DComponent(() => import("./lusion/YHScene"));
+const YHScene = create3DComponent(() => import("./3d/LetterCollision/YHScene"));
 const FeaturedPosts = createCardComponent(() => import("./FeaturedPosts"));
 const AnimatedLine2 = dynamic(() => import("./AnimatedLine2"), {
   loading: () => <div className="h-32 w-full animate-pulse rounded-lg bg-white/5" />,
