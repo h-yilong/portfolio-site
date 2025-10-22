@@ -1,7 +1,7 @@
 "use client";
 import AnimatedText1 from "@/components/AnimatedText1";
 import AnimatedText2 from "@/components/AnimatedText2";
-import { LetterYApp } from "@/app/(pages)/(homepage)/lusion/LetterY";
+import LetterYApp from "@/app/(pages)/(homepage)/LetterCollision";
 import AnimatedCharacters from "@/components/AnimatedCharacters";
 import { useScroll } from "@/hooks/scroll/useScroll";
 import { useRef } from "react";

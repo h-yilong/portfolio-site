@@ -13,20 +13,20 @@ const POSTS = [
     description: "WebGL/Three.js • Design • Optimisation",
     image: "/assets/images/hero.jpg",
     video: "/assets/videos/hero-s.mp4",
-    link: "/posts/design/3d",
+    link: "/posts/welcome",
   },
   {
     title: "Performance Optimisation",
     description: "Performance • Optimisation • Lighthouse",
     image: "/assets/images/lighthouse.jpg",
     // video: "/assets/videos/kpop_30s.mp4",
-    link: "/posts/design/3d",
+    link: "/posts/welcome",
   },
   {
     title: "Implement Animations",
     description: "CSS • JavaScript • Web APIs • Performance",
     image: appDesign.src,
-    link: "/posts/design/3d",
+    link: "/posts/welcome",
   },
   {
     title: "3D Physics Scene",
@@ -34,20 +34,20 @@ const POSTS = [
     video: "/assets/videos/collision.mp4",
     image: "/assets/images/letter-collision.jpg",
     // image: artImg,
-    link: "/posts/design/3d",
+    link: "/posts/welcome",
   },
   {
     title: "Design & Build",
     description: "Design System • Figma • Shadcn/Radix",
     image: img3,
-    link: "/posts/design/3d",
+    link: "/posts/welcome",
   },
   {
     title: "Test and Deploy",
     description: "Vitest • Cypress • Github Actions • Vercel",
     image: "/assets/images/hero.jpg",
     video: "/assets/videos/framer_.mp4",
-    link: "/posts/design/3d",
+    link: "/posts/welcome",
   },
 ];
 

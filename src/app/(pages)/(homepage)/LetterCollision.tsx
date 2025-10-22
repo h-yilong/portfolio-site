@@ -3,7 +3,7 @@
 import { useHeroSectionLoaded } from "@/components/LazyLoader";
 import dynamic from "next/dynamic";
 
-const CollisionScene = dynamic(() => import("./lusion/YHScene"));
+const CollisionScene = dynamic(() => import("./3d/LetterCollision/YHScene"));
 
 const Article = () => (
   <article className="flex aspect-[1.6] w-full flex-col items-center justify-center opacity-0">

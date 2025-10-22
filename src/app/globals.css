@@ -465,4 +465,10 @@
 
 .prose {
   max-width: 80ch;
+  :where(blockquote p:first-of-type):not(:where([class~="not-prose"], [class~="not-prose"] *))::before {
+    content: "";
+  }
+  :where(blockquote p:last-of-type):not(:where([class~="not-prose"], [class~="not-prose"] *))::after {
+    content: "";
+  }
 }

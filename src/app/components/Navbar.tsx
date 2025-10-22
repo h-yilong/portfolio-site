@@ -19,12 +19,13 @@ const navLinks = [
   // },
   {
     name: "Posts",
-    href: "/posts/design/3d",
+    href: "/posts/welcome",
+    // href: "/posts/design/3d",
   },
-  {
-    name: "Playground",
-    href: "/playground",
-  },
+  // {
+  //   name: "Playground",
+  //   href: "/playground",
+  // },
 ];
 
 const NavItems = ({ onClick = () => {} }) => (
