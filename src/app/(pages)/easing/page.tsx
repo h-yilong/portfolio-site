@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import PostTitle from "@/components/PostTitle2";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import CssAnimatedText from "@/app/(pages)/(homepage)/HeroSection/HiText/CssAnimatedText";
@@ -59,12 +58,6 @@ export default function EasingPage() {
             </div>
           ))}
         </div>
-      </div>
-
-      <div>
-        <PostTitle className="group text-3xl" animate={isVisible}>
-          Hello World
-        </PostTitle>
       </div>
     </div>
   );
