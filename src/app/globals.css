@@ -6,6 +6,16 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --sh-class: #fff;
+  --sh-identifier: #fff;
+  --sh-sign: #449dff;
+  --sh-property: #d293ff;
+  --sh-entity: #ffce4c;
+  --sh-jsxliterals: #6266d1;
+  --sh-string: #7affc4;
+  --sh-keyword: #70d3ff;
+  --sh-comment: #7b778a;
+
   --about-bg: #161626;
   --radius: 0.625rem;
   --background: oklch(1 0 0);

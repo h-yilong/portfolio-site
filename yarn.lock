@@ -7060,6 +7060,11 @@ styled-jsx@5.1.6:
   dependencies:
     client-only "0.0.1"
 
+sugar-high@^0.9.4:
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/sugar-high/-/sugar-high-0.9.4.tgz#7ea57c2ca357dedf7831a4cf7d9be341234f310f"
+  integrity sha512-KzDgMqYZ3zxo2F+AdhAQ1vjyZj3FHe4TwiQCJisD1d4GlzBS/Z/pfUT1S7wCJdq71zjOt9TAfX6HnYqcI4YJrQ==
+
 supports-color@^7.1.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-7.2.0.tgz#1b7dcdcb32b8138801b3e478ba6a51caa89648da"
