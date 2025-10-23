@@ -24,6 +24,19 @@ export const metadata: Metadata = {
   title: "Hi, I'm Yilong",
   description:
     "Yilong HUANG is a Sydney based Web Developer, with extensive experience in web application development.",
+  authors: [{ name: "Yilong HUANG", url: "https://www.linkedin.com/in/yilonghuang/" }],
+  icons: {
+    icon: "/assets/images/logo.png",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://www.yilong.com.au",
+    title: "Hi, I'm Yilong",
+    description:
+      "Yilong HUANG is a Sydney based Web Developer, with extensive experience in web application development.",
+    siteName: "Hi, I'm Yilong",
+    images: [{ url: "https://www.yilong.com.au/assets/images/preview.jpg" }],
+  },
 };
 
 export default async function RootLayout({
